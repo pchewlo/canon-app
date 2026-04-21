@@ -316,7 +316,7 @@ export default function PlansPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search plans..."
-            className="h-8 w-full rounded-md border border-border bg-card pl-8 pr-3 text-[13px] text-quest-ink placeholder:text-quest-ink-faint outline-none focus:ring-1 focus:ring-quest-accent"
+            className="h-8 w-full rounded-md border border-border bg-quest-surface-muted pl-8 pr-3 text-[13px] text-quest-ink placeholder:text-quest-ink-faint outline-none focus:ring-1 focus:ring-quest-accent"
           />
         </div>
 

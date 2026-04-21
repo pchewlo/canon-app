@@ -94,7 +94,7 @@ function NumberControl({
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="h-8 w-[72px] rounded-md border border-border bg-card px-2 text-center text-[13px] tabular-nums text-quest-ink outline-none focus:ring-1 focus:ring-quest-accent"
+          className="h-8 w-[72px] rounded-md border border-border bg-quest-surface-muted px-2 text-center text-[13px] tabular-nums text-quest-ink outline-none focus:ring-1 focus:ring-quest-accent"
         />
         {suffix && (
           <span className="text-[12px] text-quest-ink-faint">{suffix}</span>

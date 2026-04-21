@@ -58,7 +58,7 @@ export function BudgetStep({
               value={dailyBudget || ''}
               onChange={(e) => onDailyBudgetChange(Number(e.target.value))}
               placeholder="500"
-              className="h-9 w-full rounded-md border border-border bg-card pl-7 pr-3 text-[14px] tabular-nums text-quest-ink placeholder:text-quest-ink-faint outline-none focus:ring-1 focus:ring-quest-accent"
+              className="h-9 w-full rounded-md border border-border bg-quest-surface-muted pl-7 pr-3 text-[14px] tabular-nums text-quest-ink placeholder:text-quest-ink-faint outline-none focus:ring-1 focus:ring-quest-accent"
             />
           </div>
           <span className="text-[11px] text-quest-ink-faint">
@@ -81,7 +81,7 @@ export function BudgetStep({
               value={perPlayerCap || ''}
               onChange={(e) => onPerPlayerCapChange(Number(e.target.value))}
               placeholder="2.00"
-              className="h-9 w-full rounded-md border border-border bg-card pl-7 pr-3 text-[14px] tabular-nums text-quest-ink placeholder:text-quest-ink-faint outline-none focus:ring-1 focus:ring-quest-accent"
+              className="h-9 w-full rounded-md border border-border bg-quest-surface-muted pl-7 pr-3 text-[14px] tabular-nums text-quest-ink placeholder:text-quest-ink-faint outline-none focus:ring-1 focus:ring-quest-accent"
             />
           </div>
           <span className="text-[11px] text-quest-ink-faint">
