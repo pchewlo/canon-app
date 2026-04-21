@@ -21,24 +21,29 @@ export function InsightCard({
 }: InsightCardProps) {
   return (
     <div className={cn(
-      "rounded-lg border border-border bg-card border-l-4 p-4",
-      accent ? "border-l-quest-accent" : "border-l-border"
+      "rounded-xl border border-border bg-white dark:bg-card shadow-sm p-5",
+      accent && "ring-1 ring-quest-danger/20"
     )}>
-      <div className="flex gap-3">
+      <div className="flex gap-4">
         {icon && (
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-quest-accent-soft text-quest-accent">
+          <div className={cn(
+            "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg",
+            accent
+              ? "bg-quest-danger-soft text-quest-danger"
+              : "bg-quest-accent-soft text-quest-accent"
+          )}>
             {icon}
           </div>
         )}
 
-        <div className="flex flex-1 flex-col gap-2">
-          <h4 className="text-[15px] font-medium text-quest-ink">{headline}</h4>
+        <div className="flex flex-1 flex-col gap-2.5">
+          <h4 className="text-[15px] font-semibold text-quest-ink">{headline}</h4>
           <p className="text-[13px] leading-relaxed text-quest-ink-muted">{explanation}</p>
 
           {metric && (
             <div className="mt-1 flex items-baseline gap-2">
               <span className="text-[12px] text-quest-ink-faint">{metric.label}</span>
-              <span className="text-[18px] font-medium tabular-nums text-quest-ink">
+              <span className="text-[20px] font-bold tabular-nums text-quest-ink">
                 {metric.value}
               </span>
               <span
@@ -55,10 +60,15 @@ export function InsightCard({
           )}
 
           {actionLabel && onAction && (
-            <div className="mt-2 flex justify-end">
+            <div className="mt-3 flex justify-end">
               <button
                 onClick={onAction}
-                className="rounded-md border border-border px-3 py-1.5 text-[12px] font-medium text-quest-ink-muted hover:bg-quest-surface-muted transition-colors"
+                className={cn(
+                  "rounded-md px-4 py-1.5 text-[12px] font-medium transition-colors",
+                  accent
+                    ? "bg-quest-accent text-white hover:bg-quest-accent/90"
+                    : "border border-border text-quest-ink-muted hover:bg-quest-surface-muted"
+                )}
               >
                 {actionLabel}
               </button>

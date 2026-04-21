@@ -94,7 +94,22 @@ function NumberControl({
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="h-8 w-[72px] rounded-md border border-border bg-quest-surface-muted px-2 text-center text-[13px] tabular-nums text-quest-ink outline-none focus:ring-1 focus:ring-quest-accent"
+          style={{
+            height: 32,
+            width: 72,
+            borderRadius: 4,
+            border: '1px solid rgba(55, 53, 47, 0.16)',
+            background: '#F7F7F5',
+            padding: '0 8px',
+            textAlign: 'center' as const,
+            fontSize: 13,
+            fontVariantNumeric: 'tabular-nums',
+            color: '#37352F',
+            outline: 'none',
+            boxShadow: '0 1px 2px rgba(15, 15, 15, 0.04)',
+          }}
+          onFocus={(e) => { e.currentTarget.style.borderColor = '#1A2332'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(26, 35, 50, 0.15)' }}
+          onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(55, 53, 47, 0.16)'; e.currentTarget.style.boxShadow = '0 1px 2px rgba(15, 15, 15, 0.04)' }}
         />
         {suffix && (
           <span className="text-[12px] text-quest-ink-faint">{suffix}</span>
@@ -125,7 +140,7 @@ export function GuardrailsStep({
   return (
     <div className="flex flex-col gap-5">
       <p className="text-[13px] text-quest-ink-muted">
-        Configure safety limits and select mission templates for this plan.
+        Configure safety limits and select mission templates for this strategy.
       </p>
 
       {/* Safety controls */}

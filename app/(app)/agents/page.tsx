@@ -64,7 +64,7 @@ export default function AgentsPage() {
     },
     {
       key: "planId",
-      label: "Plan",
+      label: "Strategy",
       render: (row: Agent) => {
         const plan = plans.find((p) => p.id === row.planId)
         return <span className="text-quest-ink-muted">{plan?.name ?? row.planId}</span>
@@ -134,7 +134,7 @@ export default function AgentsPage() {
       <div>
         <h1 className="text-[32px] font-medium text-quest-ink">Agents</h1>
         <p className="mt-1 text-[14px] text-quest-ink-muted">
-          12,847 active across {plans.filter((p) => p.status === "active").length} plans
+          12,847 active across {plans.filter((p) => p.status === "active").length} strategies
         </p>
       </div>
 
@@ -178,7 +178,7 @@ export default function AgentsPage() {
           onChange={(e) => setPlanFilter(e.target.value)}
           className="h-9 rounded-md border border-border bg-quest-surface-muted px-3 text-[13px] text-quest-ink outline-none focus:ring-1 focus:ring-quest-accent"
         >
-          <option value="all">All plans</option>
+          <option value="all">All strategies</option>
           {plans.map((p) => (
             <option key={p.id} value={p.id}>{p.name}</option>
           ))}

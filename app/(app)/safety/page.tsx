@@ -103,7 +103,7 @@ export default function SafetyPage() {
     },
     {
       key: "planId",
-      label: "Plan",
+      label: "Strategy",
       render: (row: SafetyEvent) => {
         const plan = plans.find((p) => p.id === row.planId)
         return <span className="text-quest-ink-muted">{plan?.name ?? row.planId}</span>
@@ -143,7 +143,7 @@ export default function SafetyPage() {
         <div>
           <h1 className="text-[32px] font-medium text-quest-ink">Safety</h1>
           <p className="mt-1 text-[14px] text-quest-ink-muted">
-            Compliance audit centre
+            Compliance audit centre. Every intervention Canon makes is logged, traceable, and exportable.
           </p>
         </div>
         <button
@@ -155,6 +155,13 @@ export default function SafetyPage() {
         </button>
       </div>
 
+      {/* Explainer card */}
+      <div className="rounded-lg border border-border bg-quest-surface-muted/50 px-5 py-4">
+        <p className="text-[13px] leading-relaxed text-quest-ink-muted">
+          Canon&apos;s responsible gambling guardrails automatically intervene when player behaviour signals risk. Every intervention is recorded for regulatory audit.
+        </p>
+      </div>
+
       {/* KPI row */}
       <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
         <KPICard
@@ -163,7 +170,7 @@ export default function SafetyPage() {
           delta="safety events"
           deltaType="neutral"
         />
-        <div className="rounded-lg bg-green-50 dark:bg-green-950/20 p-0.5 ring-1 ring-green-200 dark:ring-green-800">
+        <div className="rounded-xl bg-green-50 dark:bg-green-950/20 p-0.5 ring-2 ring-green-300 dark:ring-green-700 shadow-md shadow-green-100 dark:shadow-green-950/30">
           <KPICard
             label="Self-exclusion respect"
             value="100%"

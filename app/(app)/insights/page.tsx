@@ -88,20 +88,21 @@ const SAFETY_IMPACT = [
 
 export default function InsightsPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
         <h1 className="text-[32px] font-medium text-quest-ink">Insights</h1>
         <p className="mt-1 text-[14px] text-quest-ink-muted">
-          AI-surfaced observations across your plans
+          AI-surfaced observations from your live strategies. Sorted by impact.
         </p>
       </div>
 
       {/* Needs attention */}
       <div>
-        <h3 className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-quest-danger">
-          Needs attention
+        <h3 className="mb-4 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-quest-danger">
+          <span className="inline-block h-2 w-2 rounded-full bg-quest-danger" />
+          Needs attention ({NEEDS_ATTENTION.length})
         </h3>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {NEEDS_ATTENTION.map((insight, i) => (
             <InsightCard
               key={`attn-${i}`}
@@ -119,10 +120,11 @@ export default function InsightsPage() {
 
       {/* Opportunities */}
       <div>
-        <h3 className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-quest-accent">
-          Opportunities
+        <h3 className="mb-4 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-quest-accent">
+          <span className="inline-block h-2 w-2 rounded-full bg-quest-accent" />
+          Opportunities ({OPPORTUNITIES.length})
         </h3>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {OPPORTUNITIES.map((insight, i) => (
             <InsightCard
               key={`opp-${i}`}
@@ -139,10 +141,11 @@ export default function InsightsPage() {
 
       {/* Safety impact */}
       <div>
-        <h3 className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-quest-ink-faint">
-          Safety impact
+        <h3 className="mb-4 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-quest-ink-faint">
+          <span className="inline-block h-2 w-2 rounded-full bg-quest-success" />
+          Safety impact ({SAFETY_IMPACT.length})
         </h3>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {SAFETY_IMPACT.map((insight, i) => (
             <InsightCard
               key={`safety-${i}`}

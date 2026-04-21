@@ -13,11 +13,11 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import type { Plan, PlanObjective, Agent, Decision, SafetyEvent } from "@/lib/types"
 
 const objectiveLabels: Record<PlanObjective, string> = {
-  retain_at_risk: "Retain at-risk",
-  win_back_lapsed: "Win back lapsed",
-  new_player_nurture: "New player nurture",
-  responsible_ltv_growth: "LTV growth",
-  reduce_loss_chasing: "Reduce loss chasing",
+  activation: "Activation",
+  retention: "Retention",
+  revenue: "Revenue",
+  referral: "Referral",
+  ai_optimised: "AI optimised",
 }
 
 function getDaysAgo(dateStr: string): number {
@@ -56,15 +56,15 @@ export default function PlanDetailPage({
     return (
       <div className="space-y-6">
         <button
-          onClick={() => router.push("/plans")}
+          onClick={() => router.push("/strategies")}
           className="inline-flex items-center gap-1.5 text-[13px] text-quest-ink-muted hover:text-quest-ink transition-colors"
         >
           <ArrowLeft size={14} strokeWidth={1.5} />
-          Plans
+          Strategies
         </button>
         <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-card p-20">
           <p className="text-[14px] text-quest-ink-faint">
-            Plan not found
+            Strategy not found
           </p>
         </div>
       </div>
@@ -255,11 +255,11 @@ export default function PlanDetailPage({
     <div className="space-y-6">
       {/* Back link */}
       <button
-        onClick={() => router.push("/plans")}
+        onClick={() => router.push("/strategies")}
         className="inline-flex items-center gap-1.5 text-[13px] text-quest-ink-muted hover:text-quest-ink transition-colors"
       >
         <ArrowLeft size={14} strokeWidth={1.5} />
-        Plans
+        Strategies
       </button>
 
       {/* Header */}
@@ -327,7 +327,7 @@ export default function PlanDetailPage({
       <div className="rounded-lg bg-quest-surface-muted px-4 py-2.5">
         <div className="flex items-center gap-1.5 text-[12px]">
           <span className="text-quest-ink-muted">
-            Plan performance vs. control (held-out {plan.controlGroupPct}% of cohort)
+            Strategy performance vs. control (held-out {plan.controlGroupPct}% of cohort)
           </span>
           <span className="text-quest-ink-faint mx-1">&mdash;</span>
           <span className="font-medium" style={{ color: "#1A2332" }}>
@@ -380,7 +380,7 @@ export default function PlanDetailPage({
             rowKey={(row) => row.id as string}
             searchable
             searchPlaceholder="Search players..."
-            emptyMessage="No agents in this plan"
+            emptyMessage="No agents in this strategy"
           />
         </TabsContent>
 

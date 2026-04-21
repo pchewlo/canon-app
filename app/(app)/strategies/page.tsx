@@ -9,11 +9,29 @@ import { StatusPill } from "@/components/StatusPill"
 import type { Plan, PlanObjective } from "@/lib/types"
 
 const objectiveLabels: Record<PlanObjective, string> = {
-  retain_at_risk: "Retain at-risk",
-  win_back_lapsed: "Win back lapsed",
-  new_player_nurture: "New player nurture",
-  responsible_ltv_growth: "LTV growth",
-  reduce_loss_chasing: "Reduce loss chasing",
+  activation: "Activation",
+  retention: "Retention",
+  revenue: "Revenue",
+  referral: "Referral",
+  ai_optimised: "AI optimised",
+}
+
+type MetricType = "Activation" | "Retention" | "Revenue" | "Referral" | "AI optimised"
+
+const objectiveMetric: Record<PlanObjective, MetricType> = {
+  activation: "Activation",
+  retention: "Retention",
+  revenue: "Revenue",
+  referral: "Referral",
+  ai_optimised: "AI optimised",
+}
+
+const metricBadgeStyles: Record<MetricType, string> = {
+  Activation: "bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400",
+  Retention: "bg-green-50 text-green-700 dark:bg-green-950/30 dark:text-green-400",
+  Revenue: "bg-amber-50 text-amber-700 dark:bg-amber-950/30 dark:text-amber-400",
+  Referral: "bg-purple-50 text-purple-700 dark:bg-purple-950/30 dark:text-purple-400",
+  "AI optimised": "bg-slate-100 text-slate-800 dark:bg-slate-900/40 dark:text-slate-300",
 }
 
 const statusOrder: Record<Plan['status'], number> = {
@@ -214,11 +232,11 @@ export default function PlansPage() {
   ]
 
   const objectiveOptions: FilterOption[] = [
-    { value: "retain_at_risk", label: "Retain at-risk", count: objectiveCounts.retain_at_risk || 0 },
-    { value: "win_back_lapsed", label: "Win back lapsed", count: objectiveCounts.win_back_lapsed || 0 },
-    { value: "new_player_nurture", label: "New player nurture", count: objectiveCounts.new_player_nurture || 0 },
-    { value: "responsible_ltv_growth", label: "LTV growth", count: objectiveCounts.responsible_ltv_growth || 0 },
-    { value: "reduce_loss_chasing", label: "Reduce loss chasing", count: objectiveCounts.reduce_loss_chasing || 0 },
+    { value: "activation", label: "Activation", count: objectiveCounts.activation || 0 },
+    { value: "retention", label: "Retention", count: objectiveCounts.retention || 0 },
+    { value: "revenue", label: "Revenue", count: objectiveCounts.revenue || 0 },
+    { value: "referral", label: "Referral", count: objectiveCounts.referral || 0 },
+    { value: "ai_optimised", label: "AI optimised", count: objectiveCounts.ai_optimised || 0 },
   ]
 
   const isFiltered = statusFilter !== "all" || objectiveFilter !== "all" || searchQuery.trim() !== ""
@@ -226,7 +244,7 @@ export default function PlansPage() {
   const columns = [
     {
       key: "name",
-      label: "Plan",
+      label: "Strategy",
       render: (row: PlanRow) => (
         <div className="flex flex-col gap-0.5">
           <span className="text-[13px] font-medium text-quest-ink">{row.name}</span>
@@ -240,6 +258,19 @@ export default function PlansPage() {
       label: "Status",
       render: (row: PlanRow) => <StatusPill status={row.status} />,
       width: "120px",
+    },
+    {
+      key: "metric",
+      label: "Metric",
+      render: (row: PlanRow) => {
+        const metric = objectiveMetric[row.objective]
+        return (
+          <span className={`inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-medium ${metricBadgeStyles[metric]}`}>
+            {metric}
+          </span>
+        )
+      },
+      width: "100px",
     },
     {
       key: "dailyBudget",
@@ -300,7 +331,7 @@ export default function PlansPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-[32px] font-medium text-quest-ink">Plans</h1>
+        <h1 className="text-[32px] font-medium text-quest-ink">Strategies</h1>
       </div>
 
       {/* Filter row */}
@@ -315,7 +346,7 @@ export default function PlansPage() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search plans..."
+            placeholder="Search strategies..."
             className="h-8 w-full rounded-md border border-border bg-quest-surface-muted pl-8 pr-3 text-[13px] text-quest-ink placeholder:text-quest-ink-faint outline-none focus:ring-1 focus:ring-quest-accent"
           />
         </div>
@@ -336,8 +367,8 @@ export default function PlansPage() {
 
         <span className="ml-auto text-[12px] text-quest-ink-faint tabular-nums">
           {isFiltered
-            ? `Showing ${filteredRows.length} of ${planRows.length} plans`
-            : `Showing ${planRows.length} plans`}
+            ? `Showing ${filteredRows.length} of ${planRows.length} strategies`
+            : `Showing ${planRows.length} strategies`}
         </span>
       </div>
 
@@ -346,8 +377,8 @@ export default function PlansPage() {
         data={filteredRows}
         columns={columns}
         rowKey={(row) => row.id}
-        onRowClick={(row) => router.push(`/plans/${row.id}`)}
-        emptyMessage="No plans match your filters"
+        onRowClick={(row) => router.push(`/strategies/${row.id}`)}
+        emptyMessage="No strategies match your filters"
       />
     </div>
   )

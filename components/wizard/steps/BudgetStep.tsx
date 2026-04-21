@@ -11,6 +11,33 @@ type BudgetStepProps = {
   onControlGroupPctChange: (value: number) => void
 }
 
+const inputStyle: React.CSSProperties = {
+  height: 36,
+  width: '100%',
+  borderRadius: 'var(--radius-md, 4px)',
+  border: '1px solid rgba(55, 53, 47, 0.16)',
+  background: '#F7F7F5',
+  paddingLeft: 28,
+  paddingRight: 12,
+  fontSize: 14,
+  fontFamily: 'var(--font-sans)',
+  fontVariantNumeric: 'tabular-nums',
+  color: '#37352F',
+  outline: 'none',
+  boxShadow: '0 1px 2px rgba(15, 15, 15, 0.04)',
+  transition: 'border-color 120ms, box-shadow 120ms',
+}
+
+const inputFocusHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+  e.currentTarget.style.borderColor = '#1A2332'
+  e.currentTarget.style.boxShadow = '0 0 0 2px rgba(26, 35, 50, 0.15)'
+}
+
+const inputBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+  e.currentTarget.style.borderColor = 'rgba(55, 53, 47, 0.16)'
+  e.currentTarget.style.boxShadow = '0 1px 2px rgba(15, 15, 15, 0.04)'
+}
+
 export function BudgetStep({
   dailyBudget,
   perPlayerCap,
@@ -24,7 +51,6 @@ export function BudgetStep({
       return { estimatedAgents: 0, calibrationDays: 0 }
     }
     const estimatedAgents = Math.floor(dailyBudget / perPlayerCap)
-    // Simple heuristic: more agents = faster calibration
     const calibrationDays = Math.max(3, Math.ceil(14 - Math.log2(estimatedAgents + 1) * 2))
     return { estimatedAgents, calibrationDays }
   }, [dailyBudget, perPlayerCap])
@@ -38,18 +64,22 @@ export function BudgetStep({
   return (
     <div className="flex gap-6">
       {/* Inputs */}
-      <div className="flex flex-1 flex-col gap-4">
+      <div className="flex flex-1 flex-col gap-5">
         <p className="text-[13px] text-quest-ink-muted">
           Set your daily spend limits. Canon will allocate budget across active agents.
         </p>
 
+        {/* Daily budget */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[12px] font-medium uppercase tracking-wide text-quest-ink-faint">
+          <label className="text-[12px] font-medium text-quest-ink-muted" style={{ letterSpacing: '0.02em' }}>
             Daily total budget
           </label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[13px] text-quest-ink-faint">
-              \u00A3
+            <span
+              className="absolute top-1/2 -translate-y-1/2 text-quest-ink-faint"
+              style={{ left: 10, fontSize: 13, pointerEvents: 'none' }}
+            >
+              {"\u00A3"}
             </span>
             <input
               type="number"
@@ -58,7 +88,9 @@ export function BudgetStep({
               value={dailyBudget || ''}
               onChange={(e) => onDailyBudgetChange(Number(e.target.value))}
               placeholder="500"
-              className="h-9 w-full rounded-md border border-border bg-quest-surface-muted pl-7 pr-3 text-[14px] tabular-nums text-quest-ink placeholder:text-quest-ink-faint outline-none focus:ring-1 focus:ring-quest-accent"
+              style={inputStyle}
+              onFocus={inputFocusHandler}
+              onBlur={inputBlurHandler}
             />
           </div>
           <span className="text-[11px] text-quest-ink-faint">
@@ -66,13 +98,17 @@ export function BudgetStep({
           </span>
         </div>
 
+        {/* Per-player cap */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-[12px] font-medium uppercase tracking-wide text-quest-ink-faint">
+          <label className="text-[12px] font-medium text-quest-ink-muted" style={{ letterSpacing: '0.02em' }}>
             Per-player daily cap
           </label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[13px] text-quest-ink-faint">
-              \u00A3
+            <span
+              className="absolute top-1/2 -translate-y-1/2 text-quest-ink-faint"
+              style={{ left: 10, fontSize: 13, pointerEvents: 'none' }}
+            >
+              {"\u00A3"}
             </span>
             <input
               type="number"
@@ -81,7 +117,9 @@ export function BudgetStep({
               value={perPlayerCap || ''}
               onChange={(e) => onPerPlayerCapChange(Number(e.target.value))}
               placeholder="2.00"
-              className="h-9 w-full rounded-md border border-border bg-quest-surface-muted pl-7 pr-3 text-[14px] tabular-nums text-quest-ink placeholder:text-quest-ink-faint outline-none focus:ring-1 focus:ring-quest-accent"
+              style={inputStyle}
+              onFocus={inputFocusHandler}
+              onBlur={inputBlurHandler}
             />
           </div>
           <span className="text-[11px] text-quest-ink-faint">
@@ -90,8 +128,8 @@ export function BudgetStep({
         </div>
 
         {/* Control group slider */}
-        <div className="mt-2 flex flex-col gap-2 border-t border-border pt-4">
-          <label className="text-[12px] font-medium uppercase tracking-wide text-quest-ink-faint">
+        <div className="flex flex-col gap-2 border-t pt-5" style={{ borderColor: 'rgba(55,53,47,0.09)' }}>
+          <label className="text-[12px] font-medium text-quest-ink-muted" style={{ letterSpacing: '0.02em' }}>
             Control group size
           </label>
           <div className="flex items-center gap-3">
@@ -102,7 +140,11 @@ export function BudgetStep({
               step={1}
               value={controlGroupPct}
               onChange={(e) => onControlGroupPctChange(Number(e.target.value))}
-              className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-border accent-quest-accent [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-quest-accent"
+              className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full"
+              style={{
+                background: 'rgba(55,53,47,0.12)',
+                accentColor: '#1A2332',
+              }}
             />
             <span className="w-10 text-right text-[14px] font-medium tabular-nums text-quest-ink">
               {controlGroupPct}%
@@ -120,8 +162,14 @@ export function BudgetStep({
       </div>
 
       {/* Projections panel */}
-      <div className="flex w-[200px] shrink-0 flex-col gap-3 rounded-lg border border-border bg-quest-surface-muted/50 p-4">
-        <span className="text-[12px] font-medium uppercase tracking-wide text-quest-ink-faint">
+      <div
+        className="flex w-[200px] shrink-0 flex-col gap-3 rounded-lg p-4"
+        style={{
+          background: '#FBFBFA',
+          border: '1px solid rgba(55,53,47,0.09)',
+        }}
+      >
+        <span className="text-[12px] font-medium text-quest-ink-muted" style={{ letterSpacing: '0.02em' }}>
           Projections
         </span>
 
@@ -139,7 +187,7 @@ export function BudgetStep({
               {projections.calibrationDays > 0 ? `${projections.calibrationDays}d` : "\u2014"}
             </span>
             <span className="text-[11px] text-quest-ink-faint">
-              Before full optimization
+              Before full optimisation
             </span>
           </div>
         </div>

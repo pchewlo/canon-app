@@ -12,11 +12,11 @@ import { GuardrailsStep } from "@/components/wizard/steps/GuardrailsStep"
 import type { PlanObjective, CohortFilter, Guardrails, Plan } from "@/lib/types"
 
 const objectiveLabels: Record<PlanObjective, string> = {
-  retain_at_risk: "Retain at-risk",
-  win_back_lapsed: "Win back lapsed",
-  new_player_nurture: "New player nurture",
-  responsible_ltv_growth: "LTV growth",
-  reduce_loss_chasing: "Reduce loss chasing",
+  activation: "Activation",
+  retention: "Retention",
+  revenue: "Revenue",
+  referral: "Referral",
+  ai_optimised: "AI optimised",
 }
 
 function estimateCohortSize(filter: CohortFilter): number {
@@ -141,7 +141,7 @@ export default function CreatePlanPage() {
     }
 
     db.addPlan(newPlan)
-    router.push(`/plans/${newId}`)
+    router.push(`/strategies/${newId}`)
   }
 
   function handleSaveDraft() {
@@ -150,8 +150,8 @@ export default function CreatePlanPage() {
     const newPlan: Plan = {
       id: newId,
       operatorId: "parlour",
-      name: selectedObjective ? generatePlanName(selectedObjective) : "Untitled plan",
-      objective: selectedObjective || "retain_at_risk",
+      name: selectedObjective ? generatePlanName(selectedObjective) : "Untitled strategy",
+      objective: selectedObjective || "retention",
       status: "draft",
       createdAt: new Date().toISOString(),
       dailyBudgetTotal: dailyBudget || 0,
@@ -163,7 +163,7 @@ export default function CreatePlanPage() {
     }
 
     db.addPlan(newPlan)
-    router.push("/plans")
+    router.push("/strategies")
   }
 
   const canLaunch = !!selectedObjective && dailyBudget > 0 && perPlayerCap > 0 && selectedTemplates.length > 0
@@ -172,14 +172,14 @@ export default function CreatePlanPage() {
     <div className="space-y-6">
       {/* Back link */}
       <button
-        onClick={() => router.push("/plans")}
+        onClick={() => router.push("/strategies")}
         className="inline-flex items-center gap-1.5 text-[13px] text-quest-ink-muted hover:text-quest-ink transition-colors"
       >
         <ArrowLeft size={14} strokeWidth={1.5} />
-        Plans
+        Strategies
       </button>
 
-      <h1 className="text-[32px] font-medium text-quest-ink">Create plan</h1>
+      <h1 className="text-[32px] font-medium text-quest-ink">Create strategy</h1>
 
       {/* Two column layout */}
       <div className="flex gap-6">
@@ -245,15 +245,15 @@ export default function CreatePlanPage() {
               className="inline-flex items-center gap-1.5 rounded-lg bg-quest-accent px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-quest-accent/90 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <Rocket size={14} strokeWidth={1.5} />
-              Launch plan
+              Launch strategy
             </button>
           </div>
         </div>
 
-        {/* Right: Plan preview (40%) */}
+        {/* Right: Strategy preview (40%) */}
         <div className="flex-[2]">
           <div className="sticky top-6 rounded-lg border border-border bg-card p-5">
-            <h3 className="mb-4 text-[14px] font-medium text-quest-ink">Plan preview</h3>
+            <h3 className="mb-4 text-[14px] font-medium text-quest-ink">Strategy preview</h3>
 
             <div className="flex flex-col gap-4">
               {/* Objective */}
@@ -349,11 +349,11 @@ export default function CreatePlanPage() {
 
 function generatePlanName(objective: PlanObjective): string {
   const names: Record<PlanObjective, string> = {
-    retain_at_risk: "At-risk retention campaign",
-    win_back_lapsed: "Lapsed player win-back",
-    new_player_nurture: "New player nurture programme",
-    responsible_ltv_growth: "Responsible LTV growth",
-    reduce_loss_chasing: "Loss chasing intervention",
+    activation: "Activation campaign",
+    retention: "Retention campaign",
+    revenue: "Revenue growth campaign",
+    referral: "Referral programme",
+    ai_optimised: "AI-optimised campaign",
   }
   return names[objective]
 }

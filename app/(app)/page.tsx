@@ -23,11 +23,11 @@ function formatCurrency(n: number): string {
 }
 
 const objectiveLabels: Record<PlanObjective, string> = {
-  retain_at_risk: "Retain at-risk players",
-  win_back_lapsed: "Win back lapsed players",
-  new_player_nurture: "New player nurture",
-  responsible_ltv_growth: "Responsible LTV growth",
-  reduce_loss_chasing: "Reduce loss chasing",
+  activation: "Activation",
+  retention: "Retention",
+  revenue: "Revenue",
+  referral: "Referral",
+  ai_optimised: "AI optimised",
 }
 
 // ---- Page ----
@@ -42,8 +42,9 @@ export default function OverviewPage() {
 
   // Chart toggle state
   const [chartToggles, setChartToggles] = useState<Record<string, boolean>>({
-    spend: true,
     retentionLift: true,
+    roiIndex: true,
+    spend: false,
     activeAgents: false,
     safetyInterventions: false,
   })
@@ -61,13 +62,17 @@ export default function OverviewPage() {
       retentionLift: point.retentionLift,
       activeAgents: Math.round(point.activeAgents / 1000 * 10) / 10,
       safetyInterventions: point.safetyInterventions,
+      roiIndex: point.spend > 0
+        ? Math.round((point.retentionLift / point.spend) * 1000 * 10) / 10
+        : 0,
     }))
   }, [timeSeries])
 
   // Build visible series list from toggle state
   const allSeriesDefs = [
-    { key: "spend", label: "Spend (\u00A3)", color: "#1A2332", type: "area" as const },
     { key: "retentionLift", label: "Retention lift (%)", color: "#3B6D2E", type: "line" as const },
+    { key: "roiIndex", label: "ROI index", color: "#7C3AED", type: "line" as const },
+    { key: "spend", label: "Spend (\u00A3)", color: "#1A2332", type: "area" as const },
     { key: "activeAgents", label: "Active agents (k)", color: "#185FA5", type: "line" as const },
     { key: "safetyInterventions", label: "Safety interventions", color: "#854F0B", type: "line" as const },
   ]
@@ -90,7 +95,7 @@ export default function OverviewPage() {
   const columns = useMemo(() => [
     {
       key: "name",
-      label: "Plan",
+      label: "Strategy",
       render: (row: Plan & { cpep: number; retentionLift: number }) => (
         <div className="flex flex-col">
           <span className="font-medium text-quest-ink">{row.name}</span>
@@ -148,6 +153,11 @@ export default function OverviewPage() {
 
   return (
     <div className="space-y-6">
+      {/* Explanatory text */}
+      <p className="text-[13px] text-quest-ink-faint">
+        Real-time performance across all active strategies. Metrics update every 10 seconds.
+      </p>
+
       {/* KPI Row */}
       <div className="grid grid-cols-6 gap-4">
         <KPICard
@@ -165,33 +175,35 @@ export default function OverviewPage() {
           label="CPEP"
           prefix={"\u00A3"}
           value={kpis.cpep.toFixed(2)}
-          delta="-8.2% vs. last week"
-          deltaType="positive"
+          subtitle="cost per engaged player"
         />
 
         {/* Double-width retention comparison card */}
         <div className="col-span-2 rounded-lg border border-border bg-card overflow-hidden">
+          <div className="px-4 pt-3 pb-1">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-quest-ink-faint">A/B test results</span>
+          </div>
           <div className="grid grid-cols-2">
             {/* CANON side */}
-            <div className="border-r border-border p-4">
+            <div className="border-r border-border px-4 pb-3">
               <span className="text-[11px] font-medium uppercase tracking-wide" style={{ color: "#1A2332" }}>CANON</span>
               <div className="mt-1">
-                <span className="text-[28px] font-medium tabular-nums" style={{ color: "#1A2332" }}>+{kpis.retentionLift.toFixed(1)}%</span>
+                <span className="text-[32px] font-semibold tabular-nums leading-tight" style={{ color: "#1A2332" }}>+{kpis.retentionLift.toFixed(1)}%</span>
               </div>
               <span className="text-[11px] text-quest-ink-faint">7-day retention</span>
             </div>
             {/* Control side */}
-            <div className="p-4 bg-quest-surface-muted/40">
-              <span className="text-[11px] font-medium uppercase tracking-wide text-quest-ink-faint">Rules-based control</span>
+            <div className="px-4 pb-3 bg-quest-surface-muted/40">
+              <span className="text-[11px] font-medium uppercase tracking-wide text-quest-ink-faint">Control</span>
               <div className="mt-1">
-                <span className="text-[28px] font-medium tabular-nums text-quest-ink-faint">+4.2%</span>
+                <span className="text-[22px] font-medium tabular-nums text-quest-ink-faint leading-tight">+4.2%</span>
               </div>
-              <span className="text-[11px] text-quest-ink-faint">same cohort, held out</span>
+              <span className="text-[11px] text-quest-ink-faint">rules-based holdout</span>
             </div>
           </div>
-          <div className="flex items-center justify-between border-t border-border px-4 py-2">
-            <span className="text-[12px] font-medium tabular-nums text-quest-success">Lift: +{(kpis.retentionLift - 4.2).toFixed(1)}pp</span>
-            <span className="text-[11px] text-quest-ink-faint">10% holdout · rules-based baseline</span>
+          <div className="flex items-center justify-between border-t border-border px-4 py-2.5 bg-quest-success/5">
+            <span className="text-[14px] font-semibold tabular-nums text-quest-success">Lift: +{(kpis.retentionLift - 4.2).toFixed(1)}pp</span>
+            <span className="text-[11px] text-quest-ink-faint">10% holdout</span>
           </div>
         </div>
 
@@ -208,6 +220,9 @@ export default function OverviewPage() {
       <div className="grid grid-cols-3 gap-4">
         {/* Left: Performance chart */}
         <div className="col-span-2 rounded-lg border border-border bg-card p-4">
+          <p className="mb-2 text-[12px] text-quest-ink-faint">
+            Performance across all active strategies over the last 7 days.
+          </p>
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-[15px] font-medium text-quest-ink">
               Performance &middot; last 7 days
@@ -238,13 +253,13 @@ export default function OverviewPage() {
             xKey="date"
             series={visibleSeries}
             height={360}
-            yAxisLeft="Spend (\u00A3)"
-            yAxisRight="Retention lift (%)"
+            yAxisLeft="Retention lift (%)"
+            yAxisRight="ROI index"
             referenceLine={{
               value: 4.2,
-              label: "Control baseline",
+              label: "Control",
               color: "#9CA3AF",
-              yAxisId: "right",
+              yAxisId: "left",
             }}
           />
         </div>
@@ -258,9 +273,9 @@ export default function OverviewPage() {
       {/* Active plans table */}
       <div>
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-[15px] font-medium text-quest-ink">Plans</h2>
+          <h2 className="text-[15px] font-medium text-quest-ink">Strategies</h2>
           <Link
-            href="/plans"
+            href="/strategies"
             className="text-[13px] font-medium text-quest-accent hover:text-quest-accent/80 transition-colors"
           >
             View all &rarr;
@@ -270,9 +285,9 @@ export default function OverviewPage() {
           data={planTableData as unknown as Record<string, unknown>[]}
           columns={columns as unknown as { key: string; label: string; render?: (row: Record<string, unknown>) => React.ReactNode; sortable?: boolean; width?: string; align?: "left" | "right" }[]}
           rowKey={(row) => (row as unknown as Plan).id}
-          onRowClick={(row) => router.push(`/plans/${(row as unknown as Plan).id}`)}
+          onRowClick={(row) => router.push(`/strategies/${(row as unknown as Plan).id}`)}
           searchable
-          searchPlaceholder="Search plans..."
+          searchPlaceholder="Search strategies..."
         />
       </div>
     </div>

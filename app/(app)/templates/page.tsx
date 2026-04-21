@@ -16,11 +16,11 @@ const ARCHETYPE_LABELS: Record<MissionTemplate["archetype"], { label: string; va
 }
 
 const OBJECTIVE_LABELS: Record<PlanObjective, string> = {
-  retain_at_risk: "Retain at risk",
-  win_back_lapsed: "Win back",
-  new_player_nurture: "Nurture",
-  responsible_ltv_growth: "LTV growth",
-  reduce_loss_chasing: "Loss chasing",
+  activation: "Activation",
+  retention: "Retention",
+  revenue: "Revenue",
+  referral: "Referral",
+  ai_optimised: "AI optimised",
 }
 
 // Deterministic pseudo-random from template ID

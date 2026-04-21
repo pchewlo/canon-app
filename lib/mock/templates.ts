@@ -10,7 +10,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.10,
       maxStake: 0.50,
       expectedCostRange: [0.20, 0.80],
-      fitsObjectives: ["retain_at_risk", "new_player_nurture"],
+      fitsObjectives: ["retention", "activation"],
     },
     {
       id: "tpl-streak-3-wins",
@@ -20,7 +20,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.50,
       maxStake: 2.00,
       expectedCostRange: [1.00, 3.00],
-      fitsObjectives: ["retain_at_risk", "responsible_ltv_growth"],
+      fitsObjectives: ["retention", "revenue"],
     },
     {
       id: "tpl-scratch-card-morning",
@@ -30,7 +30,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0,
       maxStake: 0,
       expectedCostRange: [0.20, 0.50],
-      fitsObjectives: ["retain_at_risk", "win_back_lapsed", "new_player_nurture"],
+      fitsObjectives: ["retention", "activation"],
     },
     {
       id: "tpl-match-deposit-50",
@@ -40,7 +40,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 1.00,
       maxStake: 5.00,
       expectedCostRange: [2.00, 5.00],
-      fitsObjectives: ["win_back_lapsed", "responsible_ltv_growth"],
+      fitsObjectives: ["activation", "revenue"],
     },
     {
       id: "tpl-cashback-weekend",
@@ -50,7 +50,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.50,
       maxStake: 3.00,
       expectedCostRange: [0.80, 2.50],
-      fitsObjectives: ["retain_at_risk", "win_back_lapsed"],
+      fitsObjectives: ["retention", "activation"],
     },
     {
       id: "tpl-f2p-daily-quiz",
@@ -60,7 +60,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0,
       maxStake: 0,
       expectedCostRange: [0.20, 0.40],
-      fitsObjectives: ["retain_at_risk", "new_player_nurture", "reduce_loss_chasing"],
+      fitsObjectives: ["retention", "activation", "referral"],
     },
     {
       id: "tpl-cooldown-gentle",
@@ -70,7 +70,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0,
       maxStake: 0,
       expectedCostRange: [0.20, 0.30],
-      fitsObjectives: ["reduce_loss_chasing", "retain_at_risk"],
+      fitsObjectives: ["retention"],
     },
     {
       id: "tpl-high-stake-match",
@@ -80,7 +80,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 5.00,
       maxStake: 15.00,
       expectedCostRange: [3.50, 5.00],
-      fitsObjectives: ["responsible_ltv_growth"],
+      fitsObjectives: ["revenue"],
     },
     {
       id: "tpl-loss-recovery-10",
@@ -90,7 +90,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.50,
       maxStake: 2.00,
       expectedCostRange: [0.50, 1.80],
-      fitsObjectives: ["retain_at_risk", "reduce_loss_chasing"],
+      fitsObjectives: ["retention"],
     },
     {
       id: "tpl-welcome-streak-7day",
@@ -100,7 +100,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.25,
       maxStake: 1.00,
       expectedCostRange: [0.50, 2.00],
-      fitsObjectives: ["new_player_nurture"],
+      fitsObjectives: ["activation"],
     },
     {
       id: "tpl-midweek-spin",
@@ -110,7 +110,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.10,
       maxStake: 0.25,
       expectedCostRange: [0.30, 0.75],
-      fitsObjectives: ["retain_at_risk", "win_back_lapsed"],
+      fitsObjectives: ["retention", "activation"],
     },
     {
       id: "tpl-sports-acca-boost",
@@ -120,7 +120,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 1.00,
       maxStake: 5.00,
       expectedCostRange: [1.50, 4.00],
-      fitsObjectives: ["win_back_lapsed", "retain_at_risk"],
+      fitsObjectives: ["activation", "retention"],
     },
     {
       id: "tpl-daily-streak-reward",
@@ -130,17 +130,17 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0,
       maxStake: 0.50,
       expectedCostRange: [0.30, 1.20],
-      fitsObjectives: ["new_player_nurture", "retain_at_risk"],
+      fitsObjectives: ["activation", "retention"],
     },
     {
       id: "tpl-live-casino-freebet",
-      name: "Live casino free bet · £1",
+      name: "Live casino free bet · \u00A31",
       archetype: "bonus_bet",
       complianceApprovedAt: "2026-03-15T13:00:00Z",
       minStake: 1.00,
       maxStake: 1.00,
       expectedCostRange: [0.80, 1.00],
-      fitsObjectives: ["retain_at_risk", "responsible_ltv_growth"],
+      fitsObjectives: ["retention", "revenue"],
     },
     {
       id: "tpl-weekend-cashback-5",
@@ -150,7 +150,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.25,
       maxStake: 1.50,
       expectedCostRange: [0.40, 1.50],
-      fitsObjectives: ["retain_at_risk", "win_back_lapsed"],
+      fitsObjectives: ["retention", "activation"],
     },
     {
       id: "tpl-cooldown-break-suggest",
@@ -160,7 +160,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0,
       maxStake: 0,
       expectedCostRange: [0.20, 0.25],
-      fitsObjectives: ["reduce_loss_chasing"],
+      fitsObjectives: ["retention"],
     },
     {
       id: "tpl-f2p-prediction-game",
@@ -170,7 +170,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0,
       maxStake: 0,
       expectedCostRange: [0.25, 0.45],
-      fitsObjectives: ["win_back_lapsed", "new_player_nurture"],
+      fitsObjectives: ["activation", "referral"],
     },
     {
       id: "tpl-slot-tournament-entry",
@@ -180,7 +180,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.20,
       maxStake: 1.00,
       expectedCostRange: [0.50, 1.50],
-      fitsObjectives: ["retain_at_risk", "responsible_ltv_growth"],
+      fitsObjectives: ["retention", "revenue"],
     },
     {
       id: "tpl-vip-reload-bonus",
@@ -190,7 +190,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 5.00,
       maxStake: 15.00,
       expectedCostRange: [3.00, 5.00],
-      fitsObjectives: ["responsible_ltv_growth"],
+      fitsObjectives: ["revenue"],
     },
     {
       id: "tpl-early-week-spin",
@@ -200,7 +200,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.10,
       maxStake: 0.50,
       expectedCostRange: [0.25, 0.60],
-      fitsObjectives: ["retain_at_risk", "new_player_nurture"],
+      fitsObjectives: ["retention", "activation"],
     },
     {
       id: "tpl-cashback-first-loss",
@@ -210,7 +210,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.25,
       maxStake: 2.00,
       expectedCostRange: [0.50, 2.50],
-      fitsObjectives: ["new_player_nurture"],
+      fitsObjectives: ["activation"],
     },
     {
       id: "tpl-streak-5-day",
@@ -220,7 +220,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0.25,
       maxStake: 1.50,
       expectedCostRange: [0.80, 2.50],
-      fitsObjectives: ["retain_at_risk", "new_player_nurture", "win_back_lapsed"],
+      fitsObjectives: ["retention", "activation"],
     },
     {
       id: "tpl-cooldown-session-limit",
@@ -230,7 +230,7 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0,
       maxStake: 0,
       expectedCostRange: [0.20, 0.30],
-      fitsObjectives: ["reduce_loss_chasing"],
+      fitsObjectives: ["retention"],
     },
     {
       id: "tpl-f2p-spin-wheel",
@@ -240,17 +240,17 @@ export function generateTemplates(): MissionTemplate[] {
       minStake: 0,
       maxStake: 0,
       expectedCostRange: [0.30, 0.60],
-      fitsObjectives: ["retain_at_risk", "new_player_nurture", "win_back_lapsed"],
+      fitsObjectives: ["retention", "activation", "referral"],
     },
     {
       id: "tpl-sports-free-bet",
-      name: "Sports free bet · £2 stake",
+      name: "Sports free bet · \u00A32 stake",
       archetype: "bonus_bet",
       complianceApprovedAt: "2026-02-12T10:00:00Z",
       minStake: 2.00,
       maxStake: 2.00,
       expectedCostRange: [1.50, 2.00],
-      fitsObjectives: ["win_back_lapsed", "retain_at_risk"],
+      fitsObjectives: ["activation", "retention"],
     },
   ];
 }

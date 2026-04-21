@@ -6,11 +6,11 @@ export type Operator = {
 };
 
 export type PlanObjective =
-  | "retain_at_risk"
-  | "win_back_lapsed"
-  | "new_player_nurture"
-  | "responsible_ltv_growth"
-  | "reduce_loss_chasing";
+  | "activation"
+  | "retention"
+  | "revenue"
+  | "referral"
+  | "ai_optimised";
 
 export type CohortFilter = {
   stakeBand?: ("low" | "medium" | "high" | "vip")[];

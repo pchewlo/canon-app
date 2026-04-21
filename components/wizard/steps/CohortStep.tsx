@@ -125,7 +125,7 @@ export function CohortStep({ filter, onChange }: CohortStepProps) {
   return (
     <div className="flex flex-col gap-4">
       <p className="text-[13px] text-quest-ink-muted">
-        Define which players this plan targets. Start with a preset or build custom rules.
+        Define which players this strategy targets. Start with a preset or build custom rules.
       </p>
 
       {/* Presets */}

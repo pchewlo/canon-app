@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from "@/lib/utils"
-import { Shield, UserPlus, Sprout, TrendingUp, Heart } from "lucide-react"
+import { Users, Shield, TrendingUp, Share2, Brain } from "lucide-react"
 import type { PlanObjective } from "@/lib/types"
 
 type ObjectiveOption = {
@@ -10,43 +10,45 @@ type ObjectiveOption = {
   description: string
   icon: React.ElementType
   cpep: string
+  recommended?: boolean
 }
 
 const objectives: ObjectiveOption[] = [
   {
-    id: "retain_at_risk",
-    title: "Retain at-risk",
-    description: "Keep players showing churn signals engaged",
+    id: "activation",
+    title: "Activation",
+    description: "Convert new signups into active players",
+    icon: Users,
+    cpep: "Typical CPEP \u00A30.30\u20130.60",
+  },
+  {
+    id: "retention",
+    title: "Retention",
+    description: "Keep existing players engaged and reduce churn",
     icon: Shield,
     cpep: "Typical CPEP \u00A30.40\u20130.80",
   },
   {
-    id: "win_back_lapsed",
-    title: "Win back lapsed",
-    description: "Reactivate players after 7+ days idle",
-    icon: UserPlus,
+    id: "revenue",
+    title: "Revenue",
+    description: "Grow player lifetime value responsibly",
+    icon: TrendingUp,
     cpep: "Typical CPEP \u00A30.60\u20131.20",
   },
   {
-    id: "new_player_nurture",
-    title: "New player nurture",
-    description: "Guide players through their first 30 days",
-    icon: Sprout,
-    cpep: "Typical CPEP \u00A30.30\u20130.60",
-  },
-  {
-    id: "responsible_ltv_growth",
-    title: "Grow LTV responsibly",
-    description: "Increase lifetime value within RG envelope",
-    icon: TrendingUp,
-    cpep: "Typical CPEP \u00A30.80\u20131.50",
-  },
-  {
-    id: "reduce_loss_chasing",
-    title: "Reduce loss chasing",
-    description: "Identify and intervene on loss-chasing behaviour",
-    icon: Heart,
+    id: "referral",
+    title: "Referral",
+    description: "Encourage players to invite others",
+    icon: Share2,
     cpep: "Typical CPEP \u00A30.20\u20130.50",
+  },
+  {
+    id: "ai_optimised",
+    title: "AI optimised",
+    description: "Let Canon choose the best objective and control group",
+    icon: Brain,
+    cpep: "Canon dynamically optimises across metrics",
+    recommended: true,
   },
 ]
 
@@ -65,24 +67,35 @@ export function ObjectiveStep({ selected, onSelect }: ObjectiveStepProps) {
       {objectives.map((obj) => {
         const Icon = obj.icon
         const isSelected = selected === obj.id
+        const isRecommended = obj.recommended
         return (
           <button
             key={obj.id}
             type="button"
             onClick={() => onSelect(obj.id)}
             className={cn(
-              "flex items-start gap-3.5 rounded-lg border p-4 text-left transition-colors",
+              "relative flex items-start gap-3.5 rounded-lg border p-4 text-left transition-colors",
               isSelected
                 ? "border-quest-accent bg-quest-accent-soft/40"
-                : "border-border bg-card hover:bg-quest-surface-muted/50",
+                : isRecommended
+                  ? "border-quest-accent/30 bg-gradient-to-r from-quest-accent-soft/20 to-transparent hover:from-quest-accent-soft/30"
+                  : "border-border bg-card hover:bg-quest-surface-muted/50",
             )}
           >
+            {isRecommended && (
+              <span className="absolute right-3 top-3 rounded-full bg-quest-accent/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-quest-accent">
+                Recommended
+              </span>
+            )}
+
             <div
               className={cn(
                 "flex h-9 w-9 shrink-0 items-center justify-center rounded-md",
                 isSelected
                   ? "bg-quest-accent text-white"
-                  : "bg-quest-surface-muted text-quest-ink-faint",
+                  : isRecommended
+                    ? "bg-quest-accent/10 text-quest-accent"
+                    : "bg-quest-surface-muted text-quest-ink-faint",
               )}
             >
               <Icon size={18} strokeWidth={1.5} />

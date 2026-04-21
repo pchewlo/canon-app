@@ -71,7 +71,7 @@ export function AreaChartComponent({
 
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <ComposedChart data={data} margin={{ top: 8, right: hasRightAxis ? 16 : 8, bottom: 0, left: 0 }}>
+      <ComposedChart data={data} margin={{ top: 8, right: hasRightAxis ? 48 : 24, bottom: 8, left: 8 }}>
         <CartesianGrid
           stroke="rgba(0,0,0,0.04)"
           strokeDasharray="none"
@@ -79,20 +79,20 @@ export function AreaChartComponent({
         />
         <XAxis
           dataKey={xKey}
-          tick={{ fontSize: 11, fill: "var(--quest-ink-faint)" }}
+          tick={{ fontSize: 10, fill: "var(--quest-ink-faint)" }}
           tickLine={false}
           axisLine={false}
-          dy={8}
+          dy={4}
         />
         <YAxis
           yAxisId="left"
-          tick={{ fontSize: 11, fill: "var(--quest-ink-faint)" }}
+          tick={{ fontSize: 10, fill: "var(--quest-ink-faint)" }}
           tickLine={false}
           axisLine={false}
-          width={48}
+          width={52}
           label={
             yAxisLeft
-              ? { value: yAxisLeft, angle: -90, position: "insideLeft", fontSize: 11, fill: "var(--quest-ink-faint)", dx: -4 }
+              ? { value: yAxisLeft, angle: -90, position: "insideLeft", fontSize: 10, fill: "var(--quest-ink-faint)", dx: -4 }
               : undefined
           }
         />
@@ -100,13 +100,13 @@ export function AreaChartComponent({
           <YAxis
             yAxisId="right"
             orientation="right"
-            tick={{ fontSize: 11, fill: "var(--quest-ink-faint)" }}
+            tick={{ fontSize: 10, fill: "var(--quest-ink-faint)" }}
             tickLine={false}
             axisLine={false}
-            width={48}
+            width={52}
             label={
               yAxisRight
-                ? { value: yAxisRight, angle: 90, position: "insideRight", fontSize: 11, fill: "var(--quest-ink-faint)", dx: 4 }
+                ? { value: yAxisRight, angle: 90, position: "insideRight", fontSize: 10, fill: "var(--quest-ink-faint)", dx: 4 }
                 : undefined
             }
           />
@@ -156,8 +156,8 @@ export function AreaChartComponent({
             strokeWidth={1.5}
             label={{
               value: referenceLine.label,
-              position: "right",
-              fontSize: 11,
+              position: "insideTopRight",
+              fontSize: 10,
               fill: referenceLine.color,
             }}
           />
