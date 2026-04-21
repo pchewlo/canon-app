@@ -1,0 +1,204 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* QUEST tokens mapped to Canon semantic layer */
+  --color-quest-bg: var(--quest-bg);
+  --color-quest-surface: var(--quest-surface);
+  --color-quest-surface-muted: var(--quest-surface-muted);
+  --color-quest-ink: var(--quest-ink);
+  --color-quest-ink-muted: var(--quest-ink-muted);
+  --color-quest-ink-faint: var(--quest-ink-faint);
+  --color-quest-accent: var(--quest-accent);
+  --color-quest-accent-soft: var(--quest-accent-soft);
+  --color-quest-success: var(--quest-success);
+  --color-quest-success-soft: var(--quest-success-soft);
+  --color-quest-warning: var(--quest-warning);
+  --color-quest-warning-soft: var(--quest-warning-soft);
+  --color-quest-danger: var(--quest-danger);
+  --color-quest-danger-soft: var(--quest-danger-soft);
+  --color-quest-info: var(--quest-info);
+  --color-quest-info-soft: var(--quest-info-soft);
+}
+
+/* ==========================================================================
+   CANON DESIGN SYSTEM — mapped to QUEST
+   Layer 1: Raw Canon palette
+   Layer 2: Semantic tokens (what components reference)
+   ========================================================================== */
+
+:root {
+  /* --- shadcn base vars mapped to Canon --- */
+  --background: #FFFFFF;
+  --foreground: #37352F;
+  --card: #FFFFFF;
+  --card-foreground: #37352F;
+  --popover: #FFFFFF;
+  --popover-foreground: #37352F;
+  --primary: #1A2332;
+  --primary-foreground: #F3EFE6;
+  --secondary: #F7F7F5;
+  --secondary-foreground: #37352F;
+  --muted: #F7F7F5;
+  --muted-foreground: #5F5E5B;
+  --accent: #F7F7F5;
+  --accent-foreground: #37352F;
+  --destructive: #D44C47;
+  --border: rgba(55, 53, 47, 0.12);
+  --input: rgba(55, 53, 47, 0.12);
+  --ring: #1A2332;
+  --radius: 0.25rem;
+
+  /* Chart colors — Canon institutional */
+  --chart-1: #1A2332;
+  --chart-2: #448361;
+  --chart-3: #2383E2;
+  --chart-4: #D9730D;
+  --chart-5: #9B9A97;
+
+  /* Sidebar */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #37352F;
+  --sidebar-primary: #1A2332;
+  --sidebar-primary-foreground: #F3EFE6;
+  --sidebar-accent: #F7F7F5;
+  --sidebar-accent-foreground: #37352F;
+  --sidebar-border: rgba(55, 53, 47, 0.09);
+  --sidebar-ring: #1A2332;
+
+  /* --- QUEST semantic tokens → Canon values --- */
+  --quest-bg: #FFFFFF;
+  --quest-surface: #FFFFFF;
+  --quest-surface-muted: #F7F7F5;
+  --quest-ink: #37352F;
+  --quest-ink-muted: #5F5E5B;
+  --quest-ink-faint: #9B9A97;
+  --quest-accent: #1A2332;
+  --quest-accent-soft: rgba(26, 35, 50, 0.08);
+  --quest-success: #448361;
+  --quest-success-soft: #DBEDDB;
+  --quest-warning: #D9730D;
+  --quest-warning-soft: #FADEC9;
+  --quest-danger: #D44C47;
+  --quest-danger-soft: #FBE4E4;
+  --quest-info: #2383E2;
+  --quest-info-soft: rgba(35, 131, 226, 0.10);
+
+  /* Canon typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-brand: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+}
+
+.dark {
+  --background: #191919;
+  --foreground: #E9E9E7;
+  --card: #202020;
+  --card-foreground: #E9E9E7;
+  --popover: #202020;
+  --popover-foreground: #E9E9E7;
+  --primary: #2383E2;
+  --primary-foreground: #FFFFFF;
+  --secondary: #2A2A2A;
+  --secondary-foreground: #E9E9E7;
+  --muted: #2A2A2A;
+  --muted-foreground: #9B9A97;
+  --accent: #2A2A2A;
+  --accent-foreground: #E9E9E7;
+  --destructive: #E77B77;
+  --border: rgba(255, 255, 255, 0.13);
+  --input: rgba(255, 255, 255, 0.13);
+  --ring: #2383E2;
+
+  --chart-1: #2383E2;
+  --chart-2: #5EB07A;
+  --chart-3: #6FB3EF;
+  --chart-4: #E1A33B;
+  --chart-5: #9B9A97;
+
+  --sidebar: #202020;
+  --sidebar-foreground: #E9E9E7;
+  --sidebar-primary: #2383E2;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2A2A2A;
+  --sidebar-accent-foreground: #E9E9E7;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-ring: #2383E2;
+
+  --quest-bg: #191919;
+  --quest-surface: #202020;
+  --quest-surface-muted: #2A2A2A;
+  --quest-ink: #E9E9E7;
+  --quest-ink-muted: #BFBFBB;
+  --quest-ink-faint: #9B9A97;
+  --quest-accent: #2383E2;
+  --quest-accent-soft: rgba(35, 131, 226, 0.15);
+  --quest-success: #5EB07A;
+  --quest-success-soft: rgba(68, 131, 97, 0.22);
+  --quest-warning: #E1A33B;
+  --quest-warning-soft: rgba(217, 115, 13, 0.22);
+  --quest-danger: #E77B77;
+  --quest-danger-soft: rgba(212, 76, 71, 0.22);
+  --quest-info: #6FB3EF;
+  --quest-info-soft: rgba(35, 131, 226, 0.18);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    @apply font-sans;
+  }
+}
