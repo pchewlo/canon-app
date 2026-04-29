@@ -66,7 +66,7 @@ export function LiveFeed({ decisions, maxItems = 50, onItemClick }: LiveFeedProp
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 className={cn(
-                  "flex items-center gap-3 border-b border-border px-4 text-[13px] cursor-default",
+                  "flex flex-col gap-1.5 border-b border-border px-4 py-2 text-[13px] cursor-default",
                   isRgRow(decision.type)
                     ? "bg-quest-danger-soft/50"
                     : isMutedRow(decision.type)
@@ -74,45 +74,42 @@ export function LiveFeed({ decisions, maxItems = 50, onItemClick }: LiveFeedProp
                     : "hover:bg-quest-surface-muted",
                   onItemClick && "cursor-pointer",
                 )}
-                style={{ minHeight: "36px" }}
                 onClick={() => onItemClick?.(decision)}
               >
-                {/* Time */}
-                <span className="w-[64px] shrink-0 tabular-nums text-quest-ink-faint text-[12px]">
-                  {formatTime(decision.timestamp)}
-                </span>
+                {/* Top row: meta */}
+                <div className="flex items-center gap-3">
+                  <span className="w-[64px] shrink-0 tabular-nums text-quest-ink-faint text-[12px]">
+                    {formatTime(decision.timestamp)}
+                  </span>
 
-                {/* Player */}
-                <span className="w-[80px] shrink-0 truncate tabular-nums text-quest-ink-muted">
-                  {decision.playerId.slice(0, 8)}
-                </span>
+                  <span className="w-[72px] shrink-0 truncate tabular-nums text-quest-ink-muted">
+                    {decision.playerId.slice(0, 8)}
+                  </span>
 
-                {/* Type */}
-                <span className="w-[80px] shrink-0">
-                  <QuestBadge variant={display.variant} muted={display.muted}>{display.label}</QuestBadge>
-                </span>
+                  <span className="shrink-0">
+                    <QuestBadge variant={display.variant} muted={display.muted}>
+                      {display.label}
+                    </QuestBadge>
+                  </span>
 
-                {/* Signals */}
-                <span className="flex min-w-0 flex-1 items-center gap-1 overflow-hidden">
-                  {decision.signals.slice(0, 3).map((signal) => (
-                    <span
-                      key={signal}
-                      className="inline-flex shrink-0 items-center rounded bg-quest-surface-muted px-1 py-0.5 text-[11px] text-quest-ink-faint"
-                    >
-                      {signal}
-                    </span>
-                  ))}
-                  {decision.signals.length > 3 && (
-                    <span className="text-[11px] text-quest-ink-faint">
-                      +{decision.signals.length - 3}
-                    </span>
-                  )}
-                </span>
+                  <span className="ml-auto shrink-0 text-right tabular-nums text-quest-ink-muted">
+                    {formatCost(decision.cost)}
+                  </span>
+                </div>
 
-                {/* Cost */}
-                <span className="w-[56px] shrink-0 text-right tabular-nums text-quest-ink-muted">
-                  {formatCost(decision.cost)}
-                </span>
+                {/* Bottom row: full-width signals */}
+                {decision.signals.length > 0 && (
+                  <div className="flex flex-wrap items-center gap-1 pl-[64px]">
+                    {decision.signals.map((signal) => (
+                      <span
+                        key={signal}
+                        className="inline-flex items-center rounded bg-quest-surface-muted px-1.5 py-0.5 text-[11px] text-quest-ink-faint"
+                      >
+                        {signal}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </motion.div>
             )
           })}

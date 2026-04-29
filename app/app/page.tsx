@@ -40,17 +40,20 @@ export default function OverviewPage() {
   const plans = db.plans
   const timeSeries = db.getAggregateTimeSeries()
 
-  // Chart toggle state
-  const [chartToggles, setChartToggles] = useState<Record<string, boolean>>({
-    retentionLift: true,
-    roiIndex: true,
-    spend: false,
-    activeAgents: false,
-    safetyInterventions: false,
-  })
+  // Chart selection \u2014 ordered, max 2 metrics. First is left axis, second is right.
+  const [selectedKeys, setSelectedKeys] = useState<string[]>(["retentionLift", "roiIndex"])
 
   function toggleSeries(key: string) {
-    setChartToggles((prev) => ({ ...prev, [key]: !prev[key] }))
+    setSelectedKeys((prev) => {
+      if (prev.includes(key)) {
+        // Deselect \u2014 but keep at least one selected
+        if (prev.length === 1) return prev
+        return prev.filter((k) => k !== key)
+      }
+      // Add \u2014 if already at 2, drop the oldest
+      if (prev.length >= 2) return [prev[1], key]
+      return [...prev, key]
+    })
   }
 
   // Last 7 days for the chart
@@ -68,7 +71,7 @@ export default function OverviewPage() {
     }))
   }, [timeSeries])
 
-  // Build visible series list from toggle state
+  // Build visible series list \u2014 order matters; first = left axis, second = right.
   const allSeriesDefs = [
     { key: "retentionLift", label: "Retention lift (%)", color: "#3B6D2E", type: "line" as const },
     { key: "roiIndex", label: "ROI index", color: "#7C3AED", type: "line" as const },
@@ -77,7 +80,15 @@ export default function OverviewPage() {
     { key: "safetyInterventions", label: "Safety interventions", color: "#854F0B", type: "line" as const },
   ]
 
-  const visibleSeries = allSeriesDefs.filter((s) => chartToggles[s.key])
+  const visibleSeries = selectedKeys
+    .map((k) => allSeriesDefs.find((s) => s.key === k))
+    .filter((s): s is typeof allSeriesDefs[number] => Boolean(s))
+
+  const yAxisLeft = visibleSeries[0]?.label
+  const yAxisRight = visibleSeries[1]?.label
+  const retentionIdx = visibleSeries.findIndex((s) => s.key === "retentionLift")
+  const showControlLine = retentionIdx !== -1
+  const controlLineAxis = retentionIdx === 0 ? "left" : "right"
 
   // Plan table data — enrich with computed stats
   const planTableData = useMemo(() => {
@@ -228,39 +239,49 @@ export default function OverviewPage() {
               Performance &middot; last 7 days
             </h2>
             <div className="flex items-center gap-1.5">
-              {allSeriesDefs.map((s) => (
-                <button
-                  key={s.key}
-                  onClick={() => toggleSeries(s.key)}
-                  className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
-                    chartToggles[s.key]
-                      ? "text-white"
-                      : "border border-border bg-card text-quest-ink-muted hover:bg-quest-surface-muted"
-                  }`}
-                  style={chartToggles[s.key] ? { backgroundColor: s.color } : undefined}
-                >
-                  <span
-                    className="h-1.5 w-1.5 rounded-full"
-                    style={{ backgroundColor: chartToggles[s.key] ? "#fff" : s.color }}
-                  />
-                  {s.label}
-                </button>
-              ))}
+              {allSeriesDefs.map((s) => {
+                const isSelected = selectedKeys.includes(s.key)
+                return (
+                  <button
+                    key={s.key}
+                    onClick={() => toggleSeries(s.key)}
+                    className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                      isSelected
+                        ? "text-white"
+                        : "border border-border bg-card text-quest-ink-muted hover:bg-quest-surface-muted"
+                    }`}
+                    style={isSelected ? { backgroundColor: s.color } : undefined}
+                  >
+                    <span
+                      className="h-1.5 w-1.5 rounded-full"
+                      style={{ backgroundColor: isSelected ? "#fff" : s.color }}
+                    />
+                    {s.label}
+                  </button>
+                )
+              })}
             </div>
           </div>
+          <p className="mb-2 text-[11px] text-quest-ink-faint">
+            Pick up to two metrics — selecting a third replaces your earliest pick.
+          </p>
           <AreaChartComponent
             data={chartData}
             xKey="date"
             series={visibleSeries}
             height={360}
-            yAxisLeft="Retention lift (%)"
-            yAxisRight="ROI index"
-            referenceLine={{
-              value: 4.2,
-              label: "Control",
-              color: "#9CA3AF",
-              yAxisId: "left",
-            }}
+            yAxisLeft={yAxisLeft}
+            yAxisRight={yAxisRight}
+            referenceLine={
+              showControlLine
+                ? {
+                    value: 4.2,
+                    label: "Control",
+                    color: "#9CA3AF",
+                    yAxisId: controlLineAxis,
+                  }
+                : undefined
+            }
           />
         </div>
 
