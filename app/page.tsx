@@ -295,10 +295,12 @@ function HowItWorks() {
   return (
     <section className="bg-[#F3EFE6]">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
-        <div className="max-w-2xl">
+        <div className="max-w-4xl">
           <Eyebrow>How it works</Eyebrow>
           <Heading size="lg">
-            You set the goal and the budget.<br />The agents do the rest.
+            <span className="whitespace-nowrap">You set the goal and the budget.</span>
+            <br />
+            <span className="whitespace-nowrap">The agents do the rest.</span>
           </Heading>
         </div>
 
@@ -653,9 +655,9 @@ function InferenceCostChart() {
 
 function Outcomes() {
   const stats = [
-    { value: "45%", label: "Activation rate", sub: "of newly registered players" },
-    { value: "52%", label: "One-month retention", sub: "vs. rules-based control" },
-    { value: "£12.50", label: "Average revenue per user", sub: "across treated cohorts" },
+    { value: "+45%", label: "Activation rate lift", sub: "vs. rules-based control" },
+    { value: "+52%", label: "One-month retention lift", sub: "vs. rules-based control" },
+    { value: "+£12.50", label: "ARPU lift per player", sub: "vs. rules-based control" },
   ]
 
   return (
@@ -724,20 +726,39 @@ function CTAFooter() {
 // ============================================================================
 
 function SiteFooter() {
+  const year = new Date().getFullYear()
   return (
     <footer className="border-t border-border bg-white">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-8">
-        <Wordmark size={13} />
-        <span className="text-[12px] text-quest-ink-faint">
-          The agentic platform for player bonuses
-        </span>
-        <div className="flex items-center gap-5">
-          <Link
-            href={DEMO_URL}
-            className="text-[12px] text-quest-ink-muted hover:text-quest-ink transition-colors"
-          >
-            Request a demo
-          </Link>
+      <div className="mx-auto max-w-6xl px-6 py-10">
+        <div className="flex flex-wrap items-start justify-between gap-8">
+          <div>
+            <Wordmark size={13} />
+            <p className="mt-3 text-[12px] text-quest-ink-faint">
+              The agentic platform for player bonuses
+            </p>
+          </div>
+
+          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-quest-ink-muted">
+            <Link href="/privacy" className="hover:text-quest-ink transition-colors">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-quest-ink transition-colors">
+              Terms
+            </Link>
+            <Link href="/cookies" className="hover:text-quest-ink transition-colors">
+              Cookies
+            </Link>
+            <Link href="/contact" className="hover:text-quest-ink transition-colors">
+              Contact
+            </Link>
+            <Link href={DEMO_URL} className="hover:text-quest-ink transition-colors">
+              Request a demo
+            </Link>
+          </nav>
+        </div>
+
+        <div className="mt-8 border-t border-border pt-6 text-[12px] text-quest-ink-faint">
+          © {year} Canon. All rights reserved.
         </div>
       </div>
     </footer>
