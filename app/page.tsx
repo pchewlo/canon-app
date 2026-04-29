@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { DemoRequestForm } from "@/components/landing/DemoRequestForm"
 import { HeroShowcase } from "@/components/landing/HeroShowcase"
 import { HowItWorksAnimated } from "@/components/landing/HowItWorksAnimated"
 import { PlayerJourney } from "@/components/landing/PlayerJourney"
@@ -114,12 +115,6 @@ function LandingNav() {
           <Wordmark size={14} />
         </Link>
         <div className="flex items-center gap-5">
-          <Link
-            href="/app"
-            className="text-[13px] text-quest-ink-muted hover:text-quest-ink transition-colors"
-          >
-            Sign in
-          </Link>
           <Link
             href={DEMO_URL}
             className="inline-flex items-center rounded-md bg-quest-accent px-3 py-1.5 text-[13px] font-medium text-white hover:bg-quest-accent/90 transition-colors"
@@ -708,16 +703,13 @@ function CTAFooter() {
           you want to lift — activation, retention, ARPU — and we&apos;ll show
           you Canon running on a sample of your players.
         </p>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href={DEMO_URL}
-            className="inline-flex items-center rounded-md bg-white px-5 py-2.5 text-[14px] font-medium text-[#1A2332] hover:bg-white/90 transition-colors"
-          >
-            Request a demo
-          </Link>
+
+        <DemoRequestForm />
+
+        <div className="mt-12">
           <Link
             href="/app"
-            className="inline-flex items-center text-[14px] font-medium text-white/70 hover:text-white transition-colors"
+            className="text-[13px] font-medium text-white/55 hover:text-white transition-colors"
           >
             Explore the product →
           </Link>
@@ -740,12 +732,6 @@ function SiteFooter() {
           The agentic platform for player bonuses
         </span>
         <div className="flex items-center gap-5">
-          <Link
-            href="/app"
-            className="text-[12px] text-quest-ink-muted hover:text-quest-ink transition-colors"
-          >
-            Sign in
-          </Link>
           <Link
             href={DEMO_URL}
             className="text-[12px] text-quest-ink-muted hover:text-quest-ink transition-colors"

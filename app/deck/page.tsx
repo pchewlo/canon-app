@@ -69,17 +69,8 @@ export default function DeckPage() {
           <Link href="/" className="hover:text-white transition-colors">
             Site
           </Link>
-          <Link
-            href="/app"
-            className="hover:text-white transition-colors"
-          >
+          <Link href="/app" className="hover:text-white transition-colors">
             Product demo
-          </Link>
-          <Link
-            href="/#demo"
-            className="inline-flex items-center rounded-md bg-white px-3 py-1.5 text-[12px] font-medium text-black hover:bg-white/90 transition-colors"
-          >
-            Request a meeting
           </Link>
         </nav>
       </header>
