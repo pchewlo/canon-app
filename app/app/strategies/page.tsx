@@ -377,7 +377,7 @@ export default function PlansPage() {
         data={filteredRows}
         columns={columns}
         rowKey={(row) => row.id}
-        onRowClick={(row) => router.push(`/strategies/${row.id}`)}
+        onRowClick={(row) => router.push(`/app/strategies/${row.id}`)}
         emptyMessage="No strategies match your filters"
       />
     </div>

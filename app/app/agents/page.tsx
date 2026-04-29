@@ -120,7 +120,7 @@ export default function AgentsPage() {
           className="text-[12px] text-quest-ink-faint hover:text-quest-accent transition-colors"
           onClick={(e) => {
             e.stopPropagation()
-            router.push(`/agents/${row.playerId.replace("#", "")}`)
+            router.push(`/app/agents/${row.playerId.replace("#", "")}`)
           }}
         >
           View &rarr;
@@ -220,7 +220,7 @@ export default function AgentsPage() {
         rowKey={(row) => (row as unknown as Agent).id}
         onRowClick={(row) => {
           const agent = row as unknown as Agent
-          router.push(`/agents/${agent.playerId.replace("#", "")}`)
+          router.push(`/app/agents/${agent.playerId.replace("#", "")}`)
         }}
       />
     </div>

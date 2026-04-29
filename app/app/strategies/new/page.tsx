@@ -141,7 +141,7 @@ export default function CreatePlanPage() {
     }
 
     db.addPlan(newPlan)
-    router.push(`/strategies/${newId}`)
+    router.push(`/app/strategies/${newId}`)
   }
 
   function handleSaveDraft() {
@@ -163,7 +163,7 @@ export default function CreatePlanPage() {
     }
 
     db.addPlan(newPlan)
-    router.push("/strategies")
+    router.push("/app/strategies")
   }
 
   const canLaunch = !!selectedObjective && dailyBudget > 0 && perPlayerCap > 0 && selectedTemplates.length > 0
@@ -172,7 +172,7 @@ export default function CreatePlanPage() {
     <div className="space-y-6">
       {/* Back link */}
       <button
-        onClick={() => router.push("/strategies")}
+        onClick={() => router.push("/app/strategies")}
         className="inline-flex items-center gap-1.5 text-[13px] text-quest-ink-muted hover:text-quest-ink transition-colors"
       >
         <ArrowLeft size={14} strokeWidth={1.5} />

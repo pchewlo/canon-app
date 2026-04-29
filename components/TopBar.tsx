@@ -23,7 +23,7 @@ export function TopBar() {
   return (
     <header className="flex h-14 shrink-0 items-center justify-end border-b border-border bg-card px-5">
       <div className="flex items-center gap-2">
-        <Link href="/strategies/new">
+        <Link href="/app/strategies/new">
           <Button
             size="sm"
             className="h-8 gap-1.5 bg-quest-accent text-white hover:bg-quest-accent/90 text-[13px]"
@@ -54,7 +54,7 @@ export function TopBar() {
               </div>
               <div className="mx-2 border-t border-border" />
               <Link
-                href="/settings"
+                href="/app/settings"
                 onClick={() => setAvatarOpen(false)}
                 className="flex w-full items-center gap-2.5 px-3 py-2 text-[13px] text-quest-ink-muted hover:bg-quest-surface-muted transition-colors"
               >

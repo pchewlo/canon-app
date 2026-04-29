@@ -635,7 +635,7 @@ export default function AgentDetailPage({
     <div className="space-y-4">
       {/* Back link */}
       <button
-        onClick={() => router.push("/agents")}
+        onClick={() => router.push("/app/agents")}
         className="inline-flex items-center gap-1.5 text-[13px] text-quest-ink-muted hover:text-quest-ink transition-colors"
       >
         <ArrowLeft size={14} strokeWidth={1.5} />

@@ -255,7 +255,7 @@ export default function SafetyPage() {
           searchPlaceholder="Search events..."
           onRowClick={(row) => {
             const event = row as unknown as SafetyEvent
-            router.push(`/agents/${event.playerId.replace("#", "")}`)
+            router.push(`/app/agents/${event.playerId.replace("#", "")}`)
           }}
         />
       </div>

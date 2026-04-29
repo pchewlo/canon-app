@@ -56,7 +56,7 @@ export default function PlanDetailPage({
     return (
       <div className="space-y-6">
         <button
-          onClick={() => router.push("/strategies")}
+          onClick={() => router.push("/app/strategies")}
           className="inline-flex items-center gap-1.5 text-[13px] text-quest-ink-muted hover:text-quest-ink transition-colors"
         >
           <ArrowLeft size={14} strokeWidth={1.5} />
@@ -255,7 +255,7 @@ export default function PlanDetailPage({
     <div className="space-y-6">
       {/* Back link */}
       <button
-        onClick={() => router.push("/strategies")}
+        onClick={() => router.push("/app/strategies")}
         className="inline-flex items-center gap-1.5 text-[13px] text-quest-ink-muted hover:text-quest-ink transition-colors"
       >
         <ArrowLeft size={14} strokeWidth={1.5} />

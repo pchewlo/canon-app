@@ -12,19 +12,19 @@ import {
 } from "lucide-react"
 
 const navItems = [
-  { label: "Overview", href: "/", icon: LayoutDashboard },
-  { label: "Strategies", href: "/strategies", icon: Target },
-  { label: "Agents", href: "/agents", icon: Bot },
-  { label: "Insights", href: "/insights", icon: Lightbulb },
-  { label: "Templates", href: "/templates", icon: FileText },
-  { label: "Safety", href: "/safety", icon: Shield },
+  { label: "Overview", href: "/app", icon: LayoutDashboard },
+  { label: "Strategies", href: "/app/strategies", icon: Target },
+  { label: "Agents", href: "/app/agents", icon: Bot },
+  { label: "Insights", href: "/app/insights", icon: Lightbulb },
+  { label: "Templates", href: "/app/templates", icon: FileText },
+  { label: "Safety", href: "/app/safety", icon: Shield },
 ]
 
 export function Sidebar() {
   const pathname = usePathname()
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/"
+    if (href === "/app") return pathname === "/app"
     return pathname.startsWith(href)
   }
 

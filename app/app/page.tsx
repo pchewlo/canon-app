@@ -275,7 +275,7 @@ export default function OverviewPage() {
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-[15px] font-medium text-quest-ink">Strategies</h2>
           <Link
-            href="/strategies"
+            href="/app/strategies"
             className="text-[13px] font-medium text-quest-accent hover:text-quest-accent/80 transition-colors"
           >
             View all &rarr;
@@ -285,7 +285,7 @@ export default function OverviewPage() {
           data={planTableData as unknown as Record<string, unknown>[]}
           columns={columns as unknown as { key: string; label: string; render?: (row: Record<string, unknown>) => React.ReactNode; sortable?: boolean; width?: string; align?: "left" | "right" }[]}
           rowKey={(row) => (row as unknown as Plan).id}
-          onRowClick={(row) => router.push(`/strategies/${(row as unknown as Plan).id}`)}
+          onRowClick={(row) => router.push(`/app/strategies/${(row as unknown as Plan).id}`)}
           searchable
           searchPlaceholder="Search strategies..."
         />
