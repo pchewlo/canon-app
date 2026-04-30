@@ -26,6 +26,7 @@ export function DemoRequestForm() {
       className="mx-auto mt-10 flex w-full max-w-md flex-col gap-3 sm:flex-row"
     >
       <input
+        id="demo-email"
         type="email"
         required
         value={email}
