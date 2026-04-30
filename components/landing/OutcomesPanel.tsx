@@ -68,28 +68,7 @@ export function OutcomesPanel() {
           <OutcomeCard key={o.label} outcome={o} />
         ))}
       </div>
-
-      <div className="relative mt-10 flex items-center justify-center gap-6 text-[12px] text-quest-ink-muted">
-        <Footprint label="Decisions analysed" value="4.2M" />
-        <Sep />
-        <Footprint label="Treated cohort" value="91,245" />
-        <Sep />
-        <Footprint label="Holdout" value="10%" />
-      </div>
     </div>
-  )
-}
-
-function Sep() {
-  return <span className="h-1 w-1 rounded-full bg-quest-ink-faint/60" />
-}
-
-function Footprint({ label, value }: { label: string; value: string }) {
-  return (
-    <span className="inline-flex items-baseline gap-1.5">
-      <span className="font-semibold tabular-nums text-quest-ink">{value}</span>
-      <span>{label}</span>
-    </span>
   )
 }
 

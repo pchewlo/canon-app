@@ -1,13 +1,11 @@
 import Link from "next/link"
 import { DashboardSnapshot } from "@/components/landing/DashboardSnapshot"
+import { DemoLink } from "@/components/landing/DemoLink"
 import { DemoRequestForm } from "@/components/landing/DemoRequestForm"
 import { HeroShowcase } from "@/components/landing/HeroShowcase"
 import { HowItWorksAnimated } from "@/components/landing/HowItWorksAnimated"
 import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
 import { PlayerJourney } from "@/components/landing/PlayerJourney"
-
-// Replace this with the booking link when ready.
-const DEMO_URL = "#demo"
 
 export const metadata = {
   title: "Canon — The agentic platform for player bonuses",
@@ -118,12 +116,9 @@ function LandingNav() {
           <Wordmark size={14} />
         </Link>
         <div className="flex items-center gap-5">
-          <a
-            href={DEMO_URL}
-            className="inline-flex items-center rounded-md bg-quest-accent px-3 py-1.5 text-[13px] font-medium text-white hover:bg-quest-accent/90 transition-colors"
-          >
+          <DemoLink className="inline-flex items-center rounded-md bg-quest-accent px-3 py-1.5 text-[13px] font-medium text-white hover:bg-quest-accent/90 transition-colors">
             Request a demo
-          </a>
+          </DemoLink>
         </div>
       </div>
     </header>
@@ -149,12 +144,9 @@ function Hero() {
               on bonus spend.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <a
-                href={DEMO_URL}
-                className="inline-flex items-center rounded-md bg-quest-accent px-5 py-2.5 text-[14px] font-medium text-white hover:bg-quest-accent/90 transition-colors"
-              >
+              <DemoLink className="inline-flex items-center rounded-md bg-quest-accent px-5 py-2.5 text-[14px] font-medium text-white hover:bg-quest-accent/90 transition-colors">
                 Request a demo
-              </a>
+              </DemoLink>
               <Link
                 href="/app"
                 className="inline-flex items-center text-[14px] font-medium text-quest-ink-muted hover:text-quest-ink transition-colors"
@@ -663,9 +655,9 @@ function SiteFooter() {
             <Link href="/contact" className="hover:text-quest-ink transition-colors">
               Contact
             </Link>
-            <a href={DEMO_URL} className="hover:text-quest-ink transition-colors">
+            <DemoLink className="hover:text-quest-ink transition-colors">
               Request a demo
-            </a>
+            </DemoLink>
           </nav>
         </div>
 
