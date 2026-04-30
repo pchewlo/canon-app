@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#F3EFE6"/>
+  <g transform="translate(100, 100)">
+    <!-- Outer ring: outer boundary at (-4, 2), inner boundary at (-2.8, 3).
+         The 1.5px offset between the two boundaries creates calligraphic
+         thickness variation around the circumference (~0.4 to ~3.6). -->
+    <path
+      d="M -48,2 a 44,44 0 1,0 88,0 a 44,44 0 1,0 -88,0 z
+         M -44.8,3 a 42,42 0 1,0 84,0 a 42,42 0 1,0 -84,0 z"
+      fill="#1A2332"
+      fill-rule="evenodd"/>
+
+    <!-- Inner ring offset on a different calligraphic axis,
+         so the two rings feel hand-drawn rather than mechanical. -->
+    <path
+      d="M -19,-2 a 22,22 0 1,0 44,0 a 22,22 0 1,0 -44,0 z
+         M -16.8,-2.5 a 20.5,20.5 0 1,0 41,0 a 20.5,20.5 0 1,0 -41,0 z"
+      fill="#1A2332"
+      fill-rule="evenodd"/>
+
+    <!-- The canon: a clean, sealed center against the wandering rings -->
+    <circle cx="0" cy="0" r="5" fill="#1A2332"/>
+  </g>
+</svg>

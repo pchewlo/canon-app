@@ -1,6 +1,10 @@
-// Server component — single player's full journey of agent decisions over
-// their 14-day lifetime. Visualises the per-player narrative that the
-// aggregate dashboard summarises in the chart on the left.
+"use client"
+
+// Client component — single player's full journey of agent decisions over
+// their 14-day lifetime. The most recent decision pulses to feel alive,
+// and the lifetime stats tick subtly upward to suggest live activity.
+
+import { useEffect, useState } from "react"
 
 type Variant = "accent" | "success" | "neutral" | "muted" | "danger"
 
@@ -41,6 +45,23 @@ const DOT_CLASS: Record<Variant, string> = {
 }
 
 export function PlayerJourney() {
+  // Subtle live ticking on the lifetime stats
+  const [decisions, setDecisions] = useState(47)
+  const [lifetimeArpu, setLifetimeArpu] = useState(18.4)
+  const [vsControl, setVsControl] = useState(23)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      // ~1-in-3 chance per tick for a new decision, keeps it feeling natural
+      if (Math.random() > 0.66) {
+        setDecisions((d) => d + 1)
+        setLifetimeArpu((a) => +(a + Math.random() * 0.05).toFixed(2))
+        setVsControl((v) => v + (Math.random() > 0.7 ? 1 : 0))
+      }
+    }, 1800)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <div className="rounded-xl border border-border bg-card shadow-[0_20px_60px_-20px_rgba(26,35,50,0.12)] overflow-hidden flex flex-col h-full">
       {/* Header — player identity */}
@@ -76,9 +97,17 @@ export function PlayerJourney() {
 
           {EVENTS.map((e, i) => (
             <li key={i} className="relative flex items-start gap-3 pb-3.5 last:pb-0">
-              <span
-                className={`relative z-10 mt-1.5 h-3.5 w-3.5 shrink-0 rounded-full ring-4 ring-card ${DOT_CLASS[e.variant]}`}
-              />
+              <span className="relative z-10 mt-1.5 h-3.5 w-3.5 shrink-0">
+                {/* Pulse ring on the most recent (top) event */}
+                {i === 0 && (
+                  <span
+                    className={`absolute inset-0 rounded-full ${DOT_CLASS[e.variant]} animate-ping opacity-60`}
+                  />
+                )}
+                <span
+                  className={`relative inline-block h-3.5 w-3.5 rounded-full ring-4 ring-card ${DOT_CLASS[e.variant]}`}
+                />
+              </span>
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between gap-2">
                   <span className="text-[11px] font-medium tabular-nums text-quest-ink-faint">
@@ -106,9 +135,9 @@ export function PlayerJourney() {
       {/* Footer — lifetime stats */}
       <div className="border-t border-border bg-quest-surface-muted/40 px-5 py-3">
         <div className="grid grid-cols-3 gap-3">
-          <Stat label="Lifetime ARPU" value="£18.40" />
-          <Stat label="Decisions" value="47" />
-          <Stat label="vs. control" value="+£23" accent />
+          <Stat label="Lifetime ARPU" value={`£${lifetimeArpu.toFixed(2)}`} />
+          <Stat label="Decisions" value={String(decisions)} />
+          <Stat label="vs. control" value={`+£${vsControl}`} accent />
         </div>
       </div>
     </div>

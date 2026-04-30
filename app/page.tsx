@@ -1,7 +1,9 @@
 import Link from "next/link"
+import { DashboardSnapshot } from "@/components/landing/DashboardSnapshot"
 import { DemoRequestForm } from "@/components/landing/DemoRequestForm"
 import { HeroShowcase } from "@/components/landing/HeroShowcase"
 import { HowItWorksAnimated } from "@/components/landing/HowItWorksAnimated"
+import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
 import { PlayerJourney } from "@/components/landing/PlayerJourney"
 
 // Replace this with the booking link when ready.
@@ -116,12 +118,12 @@ function LandingNav() {
           <Wordmark size={14} />
         </Link>
         <div className="flex items-center gap-5">
-          <Link
+          <a
             href={DEMO_URL}
             className="inline-flex items-center rounded-md bg-quest-accent px-3 py-1.5 text-[13px] font-medium text-white hover:bg-quest-accent/90 transition-colors"
           >
             Request a demo
-          </Link>
+          </a>
         </div>
       </div>
     </header>
@@ -147,12 +149,12 @@ function Hero() {
               on bonus spend.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link
+              <a
                 href={DEMO_URL}
                 className="inline-flex items-center rounded-md bg-quest-accent px-5 py-2.5 text-[14px] font-medium text-white hover:bg-quest-accent/90 transition-colors"
               >
                 Request a demo
-              </Link>
+              </a>
               <Link
                 href="/app"
                 className="inline-flex items-center text-[14px] font-medium text-quest-ink-muted hover:text-quest-ink transition-colors"
@@ -346,171 +348,6 @@ function ProductPreview() {
   )
 }
 
-function DashboardSnapshot() {
-  return (
-    <div className="h-full rounded-xl border border-border bg-card shadow-[0_20px_60px_-20px_rgba(26,35,50,0.18)] overflow-hidden flex flex-col">
-      <div className="flex items-center justify-between border-b border-border bg-white px-5 py-2.5 shrink-0">
-        <Wordmark size={13} />
-        <span className="text-[11px] uppercase tracking-wide text-quest-ink-faint">
-          Overview · Real-time
-        </span>
-      </div>
-
-      <div className="flex-1 bg-white p-5 space-y-5">
-        <div className="grid grid-cols-3 gap-3">
-          <PreviewKPI label="Active agents" value="182,491" />
-          <PreviewKPI
-            label="Today's spend"
-            value="£48,210"
-            subtitle="of £62,000 budget"
-            progress={78}
-          />
-          <PreviewKPI
-            label="Retention lift"
-            value="+14.3%"
-            subtitle="vs. 4.2% control"
-            accent
-          />
-        </div>
-
-        <div className="rounded-lg border border-border bg-card p-4">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-[13px] font-semibold text-quest-ink">
-              Performance · last 7 days
-            </span>
-            <span className="text-[11px] text-quest-ink-faint">
-              vs. rules-based control
-            </span>
-          </div>
-          <PerformanceChart />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function PreviewKPI({
-  label,
-  value,
-  subtitle,
-  progress,
-  accent,
-}: {
-  label: string
-  value: string
-  subtitle?: string
-  progress?: number
-  accent?: boolean
-}) {
-  return (
-    <div className="relative flex flex-col gap-1.5 rounded-lg border border-border bg-card p-3.5 overflow-hidden">
-      <span className="text-[10px] font-medium uppercase tracking-wide text-quest-ink-faint">
-        {label}
-      </span>
-      <span
-        className={`text-[24px] font-semibold tabular-nums leading-none ${
-          accent ? "text-quest-success" : "text-quest-ink"
-        }`}
-      >
-        {value}
-      </span>
-      {subtitle && <span className="text-[11px] text-quest-ink-faint">{subtitle}</span>}
-      {progress !== undefined && (
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-quest-surface-muted">
-          <div
-            className="h-full bg-quest-accent"
-            style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
-          />
-        </div>
-      )}
-    </div>
-  )
-}
-
-function PerformanceChart() {
-  const w = 560
-  const h = 180
-  const pad = 16
-  const canon = [4.2, 5.8, 7.4, 8.6, 10.2, 12.1, 14.3]
-  const control = [4.2, 4.0, 4.3, 4.1, 4.2, 4.4, 4.2]
-  const max = 16
-  const xs = canon.map((_, i) => pad + (i * (w - 2 * pad)) / (canon.length - 1))
-  const ys = (vals: number[]) =>
-    vals.map((v) => h - pad - (v / max) * (h - 2 * pad))
-  const canonYs = ys(canon)
-  const controlYs = ys(control)
-  const path = (yArr: number[]) =>
-    yArr.map((y, i) => `${i === 0 ? "M" : "L"} ${xs[i]},${y}`).join(" ")
-  const area =
-    `M ${xs[0]},${canonYs[0]} ` +
-    canonYs
-      .slice(1)
-      .map((y, i) => `L ${xs[i + 1]},${y}`)
-      .join(" ") +
-    ` L ${xs[xs.length - 1]},${h - pad} L ${xs[0]},${h - pad} Z`
-
-  return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-auto">
-      {[0.25, 0.5, 0.75].map((f) => (
-        <line
-          key={f}
-          x1={pad}
-          x2={w - pad}
-          y1={pad + f * (h - 2 * pad)}
-          y2={pad + f * (h - 2 * pad)}
-          stroke="rgba(0,0,0,0.05)"
-          strokeWidth="1"
-        />
-      ))}
-
-      <path d={area} fill="#1A2332" fillOpacity="0.07" />
-      <path
-        d={path(canonYs)}
-        fill="none"
-        stroke="#1A2332"
-        strokeWidth="2"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-      <path
-        d={path(controlYs)}
-        fill="none"
-        stroke="#9CA3AF"
-        strokeWidth="1.5"
-        strokeDasharray="4 4"
-      />
-
-      <g transform={`translate(${pad}, ${pad - 4})`}>
-        <circle cx="0" cy="0" r="3" fill="#1A2332" />
-        <text x="8" y="3" fontSize="10" fill="#37352F">
-          Canon
-        </text>
-        <circle cx="60" cy="0" r="3" fill="#9CA3AF" />
-        <text x="68" y="3" fontSize="10" fill="#9CA3AF">
-          Control
-        </text>
-      </g>
-
-      {xs.map((x, i) => (
-        <text key={i} x={x} y={h - 2} fontSize="9" textAnchor="middle" fill="#9B9A97">
-          Day {i + 1}
-        </text>
-      ))}
-
-      <text
-        x={xs[xs.length - 1] - 4}
-        y={canonYs[canonYs.length - 1] - 8}
-        fontSize="11"
-        fontWeight="500"
-        textAnchor="end"
-        fill="#1A2332"
-      >
-        +14.3%
-      </text>
-    </svg>
-  )
-}
-
 // ============================================================================
 // Why now
 // ============================================================================
@@ -655,35 +492,20 @@ function InferenceCostChart() {
 // ============================================================================
 
 function Outcomes() {
-  const stats = [
-    { value: "+45%", label: "Activation rate lift", sub: "vs. rules-based control" },
-    { value: "+52%", label: "One-month retention lift", sub: "vs. rules-based control" },
-    { value: "+£12.50", label: "ARPU lift per player", sub: "vs. rules-based control" },
-  ]
-
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <div className="max-w-2xl">
           <Eyebrow>Outcomes</Eyebrow>
           <Heading size="lg">What operators see in production.</Heading>
+          <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted">
+            Across treated cohorts vs. a rules-based control group. Lifts hold
+            after the calibration window and compound over the player lifetime.
+          </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {stats.map((s) => (
-            <div
-              key={s.label}
-              className="rounded-xl border border-border bg-card p-7"
-            >
-              <div className="text-[48px] font-semibold tabular-nums leading-none text-quest-ink">
-                {s.value}
-              </div>
-              <div className="mt-4 text-[14px] font-semibold text-quest-ink">
-                {s.label}
-              </div>
-              <div className="mt-1.5 text-[13px] text-quest-ink-muted">{s.sub}</div>
-            </div>
-          ))}
+        <div className="mt-12">
+          <OutcomesPanel />
         </div>
       </div>
     </section>
@@ -782,7 +604,10 @@ function ComplianceStat({ value, label }: { value: string; label: string }) {
 
 function CTAFooter() {
   return (
-    <section id="demo" className="relative overflow-hidden bg-[#1A2332] text-white">
+    <section
+      id="demo"
+      className="relative overflow-hidden bg-[#1A2332] text-white scroll-mt-14"
+    >
       <div className="mx-auto max-w-3xl px-6 py-28 lg:py-32 text-center">
         <Heading size="lg" className="text-white">
           Ready to stop wasting bonuses?
@@ -838,9 +663,9 @@ function SiteFooter() {
             <Link href="/contact" className="hover:text-quest-ink transition-colors">
               Contact
             </Link>
-            <Link href={DEMO_URL} className="hover:text-quest-ink transition-colors">
+            <a href={DEMO_URL} className="hover:text-quest-ink transition-colors">
               Request a demo
-            </Link>
+            </a>
           </nav>
         </div>
 
