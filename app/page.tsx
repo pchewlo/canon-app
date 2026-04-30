@@ -23,6 +23,7 @@ export default function LandingPage() {
       <ProductPreview />
       <WhyNow />
       <Outcomes />
+      <Compliance />
       <CTAFooter />
       <SiteFooter />
     </div>
@@ -686,6 +687,92 @@ function Outcomes() {
         </div>
       </div>
     </section>
+  )
+}
+
+// ============================================================================
+// Compliance
+// ============================================================================
+
+function Compliance() {
+  const pillars = [
+    {
+      title: "Per-decision RG checks",
+      body:
+        "Every agent decision passes through responsible-gaming guardrails — loss-chasing, stake escalation, session duration, deposit decline. At-risk players get bonuses held or blocked, not nudged harder.",
+    },
+    {
+      title: "Full audit trail",
+      body:
+        "Every decision is logged with the signals, model version, and policy that produced it. Regulators can trace exactly why a player got what — at a per-decision level.",
+    },
+    {
+      title: "Jurisdictional rules engine",
+      body:
+        "Bonus rules, wagering requirements, age and identity checks, and spend caps adapt to each player's market. New rules ship as policy updates, not engineering work.",
+    },
+    {
+      title: "Operator-controlled limits",
+      body:
+        "Set spending caps, frequency limits, cool-down windows, and exclusion lists. Canon optimises within them — never around them.",
+    },
+  ]
+
+  return (
+    <section className="bg-[#F3EFE6]">
+      <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-5">
+            <Eyebrow>Safety &amp; compliance</Eyebrow>
+            <Heading size="lg">
+              Built for regulated markets, not retrofitted for them.
+            </Heading>
+            <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted">
+              Autonomous decisioning isn&apos;t deployable if it breaks
+              compliance. Canon enforces responsible-gaming and jurisdictional
+              rules as part of every decision — and produces a regulator-ready
+              audit trail by default.
+            </p>
+
+            <div className="mt-8 grid grid-cols-3 gap-4">
+              <ComplianceStat value="100%" label="Decisions logged" />
+              <ComplianceStat value="<50ms" label="RG check latency" />
+              <ComplianceStat value="0" label="Untracked actions" />
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {pillars.map((p, i) => (
+              <div
+                key={p.title}
+                className="rounded-xl border border-quest-ink/10 bg-white p-6"
+              >
+                <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
+                  0{i + 1}
+                </div>
+                <div className="mt-3 text-[16px] font-semibold text-quest-ink">
+                  {p.title}
+                </div>
+                <p className="mt-2 text-[14px] leading-relaxed text-quest-ink-muted">
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ComplianceStat({ value, label }: { value: string; label: string }) {
+  return (
+    <div>
+      <div className="text-[24px] font-semibold tabular-nums leading-none text-quest-ink">
+        {value}
+      </div>
+      <div className="mt-2 text-[12px] text-quest-ink-muted">{label}</div>
+    </div>
   )
 }
 
