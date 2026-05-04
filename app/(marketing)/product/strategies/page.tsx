@@ -1,3 +1,11 @@
+import {
+  Crosshair,
+  Wallet,
+  Shield,
+  LayoutTemplate,
+  Layers,
+  FlaskConical,
+} from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { FAQAccordion } from "@/components/marketing/FAQAccordion"
@@ -5,6 +13,7 @@ import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StrategyBuilderAnimation } from "@/components/marketing/animations/StrategyBuilderAnimation"
+import { StrategyPolicyShot } from "@/components/marketing/animations/StrategyPolicyShot"
 
 export const metadata = {
   title: "Strategies — Canon",
@@ -40,7 +49,7 @@ export default function StrategiesPage() {
             "Guardrails: spend limits, frequency, cool-downs, exclusion lists",
             "Holdout: 10% rules-based control, by default",
           ]}
-          media={<StrategyBuilderAnimation />}
+          media={<StrategyPolicyShot />}
         />
       </SectionShell>
 
@@ -53,26 +62,32 @@ export default function StrategiesPage() {
           items={[
             {
               title: "Pick a metric",
+              icon: Crosshair,
               body: "Activation, retention, ARPU, referral, or AI-optimised. Each metric ships with a default control group and a measurement window.",
             },
             {
               title: "Allocate a budget",
+              icon: Wallet,
               body: "Set the daily or weekly bonus budget. Canon spends within it, prioritising the players with the highest expected lift.",
             },
             {
               title: "Set the guardrails",
+              icon: Shield,
               body: "Spend caps, frequency limits, cool-down windows, and exclusion lists. Canon optimises within them — never around them.",
             },
             {
               title: "Templates by use case",
+              icon: LayoutTemplate,
               body: "Welcome optimisation, lapsed-player reactivation, VIP retention, bonus-abuse defence — all available as starting templates.",
             },
             {
               title: "Multi-strategy operation",
+              icon: Layers,
               body: "Run multiple strategies side-by-side. Canon resolves overlaps and budget contention automatically.",
             },
             {
               title: "Always-on holdout",
+              icon: FlaskConical,
               body: "Every strategy ships with a control group. Lift is measured monthly, exportable to your warehouse.",
             },
           ]}
@@ -111,4 +126,3 @@ export default function StrategiesPage() {
     </>
   )
 }
-

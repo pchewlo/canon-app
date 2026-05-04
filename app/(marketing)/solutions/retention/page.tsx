@@ -6,6 +6,7 @@ import { PainPointGrid } from "@/components/marketing/PainPointGrid"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
+import { RetentionLifecycleAnimation } from "@/components/marketing/animations/RetentionLifecycleAnimation"
 
 export const metadata = {
   title: "Retention — Canon",
@@ -20,6 +21,7 @@ export default function RetentionPage() {
         eyebrow="Solutions · Retention"
         title="Stop losing the players you spent to acquire."
         subtitle="Most retention spend lands on players who would have stayed anyway, or arrives a week after they churned. Per-player agents fix the timing — and the size — of every retention decision."
+        media={<RetentionLifecycleAnimation />}
       />
 
       <SectionShell tone="cream" eyebrow="Today" title="The retention problem isn't the campaign. It's the cadence.">

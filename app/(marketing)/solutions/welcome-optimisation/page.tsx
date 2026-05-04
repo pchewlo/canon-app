@@ -5,6 +5,7 @@ import { PainPointGrid } from "@/components/marketing/PainPointGrid"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
+import { WelcomeBranchAnimation } from "@/components/marketing/animations/WelcomeBranchAnimation"
 
 export const metadata = {
   title: "Welcome optimisation — Canon",
@@ -19,6 +20,7 @@ export default function WelcomePage() {
         eyebrow="Solutions · Welcome optimisation"
         title="Stop paying every new sign-up the same welcome bonus."
         subtitle="The £50 first-deposit match is wasted on the player who'd have deposited £200 anyway, and not enough for the player who needs £80 to convert. Canon prices each welcome to the player."
+        media={<WelcomeBranchAnimation />}
       />
 
       <SectionShell tone="cream" eyebrow="Today" title="Welcome bonuses are the biggest line item in acquisition spend.">

@@ -5,6 +5,7 @@ import { PainPointGrid } from "@/components/marketing/PainPointGrid"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
+import { BonusAbuseAnimation } from "@/components/marketing/animations/BonusAbuseAnimation"
 
 export const metadata = {
   title: "Bonus-abuse defence — Canon",
@@ -19,6 +20,7 @@ export default function BonusAbusePage() {
         eyebrow="Solutions · Bonus-abuse defence"
         title="Don't pay bonuses to players who only deposited for the bonus."
         subtitle="Bonus-abuse hunters take a real slice of every operator's bonus budget. Canon detects the pattern at decision time and routes hunters to cooldown or no-action — not to a bigger nudge."
+        media={<BonusAbuseAnimation />}
       />
 
       <SectionShell tone="cream" eyebrow="Today" title="Detection comes after the bonus is paid.">

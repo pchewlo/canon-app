@@ -1,3 +1,11 @@
+import {
+  Antenna,
+  Network,
+  Shield,
+  ShieldAlert,
+  Repeat2,
+  GitCompare,
+} from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { FAQAccordion } from "@/components/marketing/FAQAccordion"
@@ -67,26 +75,32 @@ export default function DecisioningPage() {
           items={[
             {
               title: "Signal ingestion",
+              icon: Antenna,
               body: "Reads from your PAM, CDP, payments, and KYC systems. New signals plug in without engineering work.",
             },
             {
               title: "Per-player models",
+              icon: Network,
               body: "A policy network evaluates every event against your objective, with a per-player elasticity prior trained on the cohort.",
             },
             {
               title: "Hard guardrails",
+              icon: Shield,
               body: "Spend caps, frequency limits, cool-down windows, and exclusion lists are enforced before the model is consulted.",
             },
             {
               title: "Soft guardrails (RG)",
+              icon: ShieldAlert,
               body: "Loss-chasing, stake escalation, session duration, and deposit-decline checks can downgrade or block decisions.",
             },
             {
               title: "Replay & debug",
+              icon: Repeat2,
               body: "Every decision is replayable from its inputs. Operators can re-run what-if scenarios on yesterday's traffic.",
             },
             {
               title: "Holdout-based attribution",
+              icon: GitCompare,
               body: "10% rules-based holdout by default. Lift is measured monthly, exportable to your warehouse.",
             },
           ]}

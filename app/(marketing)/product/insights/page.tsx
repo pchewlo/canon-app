@@ -1,3 +1,11 @@
+import {
+  GitCompare,
+  Layers,
+  Trophy,
+  Activity,
+  Database,
+  FileSearch,
+} from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { FAQAccordion } from "@/components/marketing/FAQAccordion"
@@ -6,6 +14,7 @@ import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
 import { InsightsLiftAnimation } from "@/components/marketing/animations/InsightsLiftAnimation"
+import { InsightsWarehouseShot } from "@/components/marketing/animations/InsightsWarehouseShot"
 
 export const metadata = {
   title: "Insights — Canon",
@@ -51,7 +60,7 @@ export default function InsightsPage() {
             "Confidence intervals on every reported number",
             "Exportable to BigQuery, Snowflake, Redshift, Postgres",
           ]}
-          media={<InsightsLiftAnimation />}
+          media={<InsightsWarehouseShot />}
         />
       </SectionShell>
 
@@ -64,26 +73,32 @@ export default function InsightsPage() {
           items={[
             {
               title: "Holdout attribution",
+              icon: GitCompare,
               body: "Treated and control are matched on lifecycle, market, and risk. Lift is reported as the difference, with CIs.",
             },
             {
               title: "Cohort drilldown",
+              icon: Layers,
               body: "Slice lift by lifecycle stage, market, channel, vertical, or any custom dimension you ship from your CDP.",
             },
             {
               title: "Strategy comparison",
+              icon: Trophy,
               body: "See which strategies produced lift and which didn't. Kill the losers.",
             },
             {
               title: "Signal-level reporting",
+              icon: Activity,
               body: "Which signals are predictive of which actions. Lets you spot data-quality issues upstream.",
             },
             {
               title: "Warehouse export",
+              icon: Database,
               body: "Daily exports to BigQuery, Snowflake, Redshift, or Postgres. Operators query Canon data in their own BI stack.",
             },
             {
               title: "Audit-grade logs",
+              icon: FileSearch,
               body: "Per-decision logs include policy version, signals consumed, score, alternatives ranked, and shipped action — usable by regulators.",
             },
           ]}

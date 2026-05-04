@@ -5,6 +5,7 @@ import { PainPointGrid } from "@/components/marketing/PainPointGrid"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
+import { VIPLadderAnimation } from "@/components/marketing/animations/VIPLadderAnimation"
 
 export const metadata = {
   title: "VIP management — Canon",
@@ -19,6 +20,7 @@ export default function VIPPage() {
         eyebrow="Solutions · VIP management"
         title="Your VIP team handles 30 players. Canon handles the next 3,000."
         subtitle="Most operators have a long tail of high-value players that don't quite qualify for personal management — and get cohort treatment instead. Canon gives them per-player decisions without per-player headcount."
+        media={<VIPLadderAnimation />}
       />
 
       <SectionShell tone="cream" eyebrow="Today" title="The VIP gap is structural.">

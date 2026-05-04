@@ -1,3 +1,4 @@
+import { ShieldCheck, ScrollText, Globe2, SlidersHorizontal } from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { FAQAccordion } from "@/components/marketing/FAQAccordion"
@@ -5,6 +6,7 @@ import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
+import { SafetyAuditShot } from "@/components/marketing/animations/SafetyAuditShot"
 import { SafetyRGAnimation } from "@/components/marketing/animations/SafetyRGAnimation"
 
 export const metadata = {
@@ -54,7 +56,7 @@ export default function SafetyPage() {
             "Late-night and rapid-deposit anomaly detection",
             "Operator-set self-exclusion lists, honoured atomically",
           ]}
-          media={<SafetyRGAnimation />}
+          media={<SafetyAuditShot />}
         />
       </SectionShell>
 
@@ -64,18 +66,22 @@ export default function SafetyPage() {
           items={[
             {
               title: "Per-decision RG checks",
+              icon: ShieldCheck,
               body: "Every agent decision passes through responsible-gaming guardrails. At-risk players get bonuses held or blocked, not nudged harder.",
             },
             {
               title: "Full audit trail",
+              icon: ScrollText,
               body: "Every decision is logged with the signals, model version, and policy that produced it. Regulators can trace exactly why a player got what — at a per-decision level.",
             },
             {
               title: "Jurisdictional rules engine",
+              icon: Globe2,
               body: "Bonus rules, wagering requirements, age and identity checks, and spend caps adapt to each player's market. New rules ship as policy updates, not engineering work.",
             },
             {
               title: "Operator-controlled limits",
+              icon: SlidersHorizontal,
               body: "Set spending caps, frequency limits, cool-down windows, and exclusion lists. Canon optimises within them — never around them.",
             },
           ]}
@@ -113,9 +119,8 @@ export default function SafetyPage() {
         title="Want a compliance-team walkthrough?"
         body="We do RG-officer-led demos that focus on guardrails, audit, and jurisdictional rules — not retention lift."
         primaryCta={{ label: "Request a demo", href: "#demo" }}
-        secondaryCta={{ label: "Read our trust page", href: "/company/trust" }}
+        secondaryCta={{ label: "Read about decisioning", href: "/product/decisioning" }}
       />
     </>
   )
 }
-

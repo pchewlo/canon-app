@@ -6,6 +6,7 @@ import { PageHero } from "@/components/marketing/PageHero"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
+import { IGamingFlowAnimation } from "@/components/marketing/animations/IGamingFlowAnimation"
 
 export const metadata = {
   title: "iGaming — Canon",
@@ -20,6 +21,7 @@ export default function IGamingPage() {
         eyebrow="Industries · iGaming"
         title="Canon was built for iGaming first."
         subtitle="Sportsbook, casino, live, poker — same engine, different per-vertical priors. Real-time decisions. RG-aware by default. Regulator-ready audit trail."
+        media={<IGamingFlowAnimation />}
       />
 
       <SectionShell tone="white">

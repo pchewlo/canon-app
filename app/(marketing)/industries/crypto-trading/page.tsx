@@ -4,6 +4,7 @@ import { PageHero } from "@/components/marketing/PageHero"
 import { RoadmapSection } from "@/components/marketing/RoadmapSection"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { WaitlistForm } from "@/components/marketing/WaitlistForm"
+import { CryptoTradingAnimation } from "@/components/marketing/animations/CryptoTradingAnimation"
 
 export const metadata = {
   title: "Crypto trading — Canon",
@@ -18,6 +19,7 @@ export default function CryptoTradingPage() {
         eyebrow="Industries · Crypto trading"
         title="Per-trader agents are the next iGaming."
         subtitle="Canon's decisioning architecture works wherever bonuses meet attention. We're extending it to crypto exchanges and prediction markets — same engine, different interface."
+        media={<CryptoTradingAnimation />}
       />
 
       <SectionShell tone="white" maxWidth="3xl" padded={false}>

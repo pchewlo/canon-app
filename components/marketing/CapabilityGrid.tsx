@@ -1,4 +1,6 @@
-type Item = { title: string; body: string }
+import type { LucideIcon } from "lucide-react"
+
+type Item = { title: string; body: string; icon?: LucideIcon }
 
 export function CapabilityGrid({
   items,
@@ -19,38 +21,55 @@ export function CapabilityGrid({
 
   return (
     <div className={`grid grid-cols-1 ${colsClass} gap-4`}>
-      {items.map((item, i) => (
-        <div
-          key={item.title}
-          className={`rounded-xl border p-6 ${
-            isDark
-              ? "border-white/10 bg-white/[0.03]"
-              : "border-quest-ink/10 bg-white"
-          }`}
-        >
+      {items.map((item, i) => {
+        const Icon = item.icon
+        return (
           <div
-            className={`text-[11px] font-medium uppercase tracking-[0.2em] ${
-              isDark ? "text-white/55" : "text-quest-ink-faint"
+            key={item.title}
+            className={`rounded-xl border p-6 ${
+              isDark
+                ? "border-white/10 bg-white/[0.03]"
+                : "border-quest-ink/10 bg-white"
             }`}
           >
-            {String(i + 1).padStart(2, "0")}
+            <div className="flex items-center justify-between">
+              {Icon ? (
+                <div
+                  className={`flex h-9 w-9 items-center justify-center rounded-md ${
+                    isDark
+                      ? "bg-white/[0.06] text-white/80"
+                      : "bg-quest-accent-soft text-quest-accent"
+                  }`}
+                >
+                  <Icon className="h-4.5 w-4.5" strokeWidth={1.6} />
+                </div>
+              ) : (
+                <div
+                  className={`text-[11px] font-medium uppercase tracking-[0.2em] ${
+                    isDark ? "text-white/55" : "text-quest-ink-faint"
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+              )}
+            </div>
+            <div
+              className={`mt-3 text-[16px] font-semibold ${
+                isDark ? "text-white" : "text-quest-ink"
+              }`}
+            >
+              {item.title}
+            </div>
+            <p
+              className={`mt-2 text-[14px] leading-relaxed ${
+                isDark ? "text-white/70" : "text-quest-ink-muted"
+              }`}
+            >
+              {item.body}
+            </p>
           </div>
-          <div
-            className={`mt-3 text-[16px] font-semibold ${
-              isDark ? "text-white" : "text-quest-ink"
-            }`}
-          >
-            {item.title}
-          </div>
-          <p
-            className={`mt-2 text-[14px] leading-relaxed ${
-              isDark ? "text-white/70" : "text-quest-ink-muted"
-            }`}
-          >
-            {item.body}
-          </p>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }

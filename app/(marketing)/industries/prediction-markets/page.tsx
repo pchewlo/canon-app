@@ -4,6 +4,7 @@ import { PageHero } from "@/components/marketing/PageHero"
 import { RoadmapSection } from "@/components/marketing/RoadmapSection"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { WaitlistForm } from "@/components/marketing/WaitlistForm"
+import { PredictionMarketsAnimation } from "@/components/marketing/animations/PredictionMarketsAnimation"
 
 export const metadata = {
   title: "Prediction markets — Canon",
@@ -18,6 +19,7 @@ export default function PredictionMarketsPage() {
         eyebrow="Industries · Prediction markets"
         title="Prediction markets are sportsbook with cleaner attribution."
         subtitle="The engagement problem is the same: per-trader incentives, real-time signals, regulatory pressure. Canon is building the prediction-markets variant alongside crypto trading."
+        media={<PredictionMarketsAnimation />}
       />
 
       <SectionShell tone="white" maxWidth="3xl" padded={false}>

@@ -1,3 +1,11 @@
+import {
+  Eye,
+  Gauge,
+  Crosshair,
+  ShieldCheck,
+  ScrollText,
+  Brain,
+} from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { FAQAccordion } from "@/components/marketing/FAQAccordion"
@@ -5,6 +13,7 @@ import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { AgentReasoningAnimation } from "@/components/marketing/animations/AgentReasoningAnimation"
+import { AgentsGridShot } from "@/components/marketing/animations/AgentsGridShot"
 
 export const metadata = {
   title: "Agents — Canon",
@@ -19,7 +28,7 @@ export default function AgentsPage() {
         eyebrow="Product · Agents"
         title="An agent per player. Inspectable, replayable, explainable."
         subtitle="Cohort campaigns blur the player. Canon spins up an agent per player, with their own elasticity, lifecycle stage, and risk profile — and shows you exactly what it's doing, why, and what it would do next."
-        media={<AgentReasoningAnimation />}
+        media={<AgentsGridShot />}
       />
 
       <SectionShell tone="white">
@@ -55,26 +64,32 @@ export default function AgentsPage() {
           items={[
             {
               title: "Read the player",
+              icon: Eye,
               body: "Pull the player's full event history, lifecycle stage, and risk profile from your PAM and CDP.",
             },
             {
               title: "Score the moment",
+              icon: Gauge,
               body: "Evaluate the current event against the active strategies, ranked by expected lift.",
             },
             {
               title: "Pick an action",
+              icon: Crosshair,
               body: "Bonus, mission, cashback, cooldown, hold, or no action — sized to the player and the moment.",
             },
             {
               title: "Pass the guardrails",
+              icon: ShieldCheck,
               body: "RG checks (loss-chasing, stake escalation, session, deposit decline) can downgrade or block the chosen action.",
             },
             {
               title: "Ship and log",
+              icon: ScrollText,
               body: "Send the decision to your fulfilment system. Log every signal, score, and override that produced it.",
             },
             {
               title: "Learn",
+              icon: Brain,
               body: "Update the per-player elasticity prior on the observed outcome. Carry it forward to the next decision.",
             },
           ]}

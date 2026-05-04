@@ -1,3 +1,11 @@
+import {
+  Users,
+  Boxes,
+  CreditCard,
+  IdCard,
+  Database,
+  MessageCircle,
+} from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { FAQAccordion } from "@/components/marketing/FAQAccordion"
@@ -45,26 +53,32 @@ export default function IntegrationsPage() {
           items={[
             {
               title: "Player Account Management",
+              icon: Users,
               body: "Real-time event ingestion from your PAM. Canon reads logins, deposits, sessions, wagers, withdrawals — and writes bonuses, missions, and cooldowns back via the same channel.",
             },
             {
               title: "Customer Data Platforms",
+              icon: Boxes,
               body: "Canon enriches its per-player profile with traits from your CDP, and emits decision-level events back so downstream channels stay in sync.",
             },
             {
               title: "Payments & wallets",
+              icon: CreditCard,
               body: "Reads deposit attempts, declines, and withdrawal requests for risk and elasticity signals. Writes bonus balances back through the same provider.",
             },
             {
               title: "KYC & identity",
+              icon: IdCard,
               body: "Honours KYC status, age verification, and sanctions checks before any decision ships. Self-excluded players are atomically excluded.",
             },
             {
               title: "Data warehouse",
+              icon: Database,
               body: "Daily exports of decisions, signals, and lift attribution to BigQuery, Snowflake, Redshift, or Postgres. Operators query Canon data in their own BI stack.",
             },
             {
               title: "Comms & fulfilment",
+              icon: MessageCircle,
               body: "Canon decides the action; your fulfilment pipeline delivers it (email, in-app, SMS, push). We trigger; we don't replace your CRM channel orchestration.",
             },
           ]}

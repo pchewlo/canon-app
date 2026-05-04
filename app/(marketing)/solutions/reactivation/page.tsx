@@ -5,6 +5,7 @@ import { PainPointGrid } from "@/components/marketing/PainPointGrid"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
+import { ReactivationHookAnimation } from "@/components/marketing/animations/ReactivationHookAnimation"
 
 export const metadata = {
   title: "Reactivation — Canon",
@@ -19,6 +20,7 @@ export default function ReactivationPage() {
         eyebrow="Solutions · Reactivation"
         title="Win back the players who actually need a reason."
         subtitle="Canon decides which lapsed players are worth a reactivation bonus and how big — based on each player's history, not the segment's average."
+        media={<ReactivationHookAnimation />}
       />
 
       <SectionShell tone="cream" eyebrow="Today" title="Reactivation campaigns spray, then pray.">
