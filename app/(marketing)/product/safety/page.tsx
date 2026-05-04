@@ -5,6 +5,7 @@ import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
+import { SafetyRGAnimation } from "@/components/marketing/animations/SafetyRGAnimation"
 
 export const metadata = {
   title: "Safety — Canon",
@@ -20,6 +21,7 @@ export default function SafetyPage() {
         title="Built for regulated markets, not retrofitted for them."
         subtitle="Autonomous decisioning isn't deployable if it breaks compliance. Canon enforces RG and jurisdictional rules as part of every decision — and produces a regulator-ready audit trail by default."
         tone="navy"
+        media={<SafetyRGAnimation />}
       />
 
       <SectionShell tone="white">
@@ -52,7 +54,7 @@ export default function SafetyPage() {
             "Late-night and rapid-deposit anomaly detection",
             "Operator-set self-exclusion lists, honoured atomically",
           ]}
-          media={<RGTracePreview />}
+          media={<SafetyRGAnimation />}
         />
       </SectionShell>
 
@@ -117,49 +119,3 @@ export default function SafetyPage() {
   )
 }
 
-function RGTracePreview() {
-  const checks = [
-    { label: "Self-exclusion list", status: "pass" },
-    { label: "Jurisdictional spend cap", status: "pass" },
-    { label: "Loss-chasing window", status: "fail", note: "ratio 0.84 > 0.6" },
-    { label: "Stake escalation", status: "warn", note: "2.3× baseline" },
-    { label: "Session duration", status: "pass" },
-  ]
-  return (
-    <div className="rounded-2xl border border-quest-ink/10 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(26,35,50,0.18)]">
-      <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
-        RG check trace · player #P-91823
-      </div>
-      <div className="mt-1 text-[16px] font-semibold text-quest-ink">
-        Decision: <span className="text-quest-danger">Bonus held</span>
-      </div>
-
-      <ul className="mt-5 space-y-2">
-        {checks.map((c) => (
-          <li
-            key={c.label}
-            className="flex items-center justify-between rounded-md border border-border px-3 py-2 text-[13px]"
-          >
-            <span className="text-quest-ink">{c.label}</span>
-            <span className="flex items-center gap-2">
-              {c.note && (
-                <span className="text-[11px] text-quest-ink-muted">{c.note}</span>
-              )}
-              <span
-                className={`rounded-full px-2 py-0.5 text-[10px] uppercase tracking-wide ${
-                  c.status === "pass"
-                    ? "bg-quest-success-soft text-quest-success"
-                    : c.status === "warn"
-                      ? "bg-quest-warning-soft text-quest-warning"
-                      : "bg-quest-danger-soft text-quest-danger"
-                }`}
-              >
-                {c.status}
-              </span>
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}

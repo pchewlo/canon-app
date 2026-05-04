@@ -73,26 +73,6 @@ const NAV: NavSection[] = [
     ],
   },
   { label: "Pricing", href: "/pricing" },
-  {
-    label: "Compare",
-    items: [
-      { label: "vs Optimove", href: "/compare/canon-vs-optimove" },
-      { label: "vs Smartico", href: "/compare/canon-vs-smartico" },
-      { label: "vs Solitics", href: "/compare/canon-vs-solitics" },
-      { label: "vs xtremepush", href: "/compare/canon-vs-xtremepush" },
-      { label: "vs OptiKPI", href: "/compare/canon-vs-optikpi" },
-      { label: "vs in-house tools", href: "/compare/canon-vs-in-house" },
-    ],
-  },
-  {
-    label: "Company",
-    items: [
-      { label: "About", href: "/company/about" },
-      { label: "Security", href: "/company/security" },
-      { label: "Trust", href: "/company/trust" },
-      { label: "Careers", href: "/company/careers" },
-    ],
-  },
 ]
 
 export function SiteHeader() {

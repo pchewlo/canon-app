@@ -25,18 +25,6 @@ const STATIC_ROUTES: { path: string; changeFrequency: MetadataRoute.Sitemap[numb
   { path: "/industries/crypto-trading", changeFrequency: "monthly", priority: 0.6 },
   { path: "/industries/prediction-markets", changeFrequency: "monthly", priority: 0.6 },
 
-  { path: "/compare/canon-vs-optimove", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/compare/canon-vs-smartico", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/compare/canon-vs-solitics", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/compare/canon-vs-xtremepush", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/compare/canon-vs-optikpi", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/compare/canon-vs-in-house", changeFrequency: "monthly", priority: 0.7 },
-
-  { path: "/company/about", changeFrequency: "monthly", priority: 0.6 },
-  { path: "/company/security", changeFrequency: "monthly", priority: 0.6 },
-  { path: "/company/trust", changeFrequency: "monthly", priority: 0.6 },
-  { path: "/company/careers", changeFrequency: "weekly", priority: 0.5 },
-
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
   { path: "/cookies", changeFrequency: "yearly", priority: 0.3 },

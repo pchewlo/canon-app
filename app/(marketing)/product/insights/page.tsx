@@ -5,7 +5,7 @@ import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
-import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
+import { InsightsLiftAnimation } from "@/components/marketing/animations/InsightsLiftAnimation"
 
 export const metadata = {
   title: "Insights — Canon",
@@ -20,6 +20,7 @@ export default function InsightsPage() {
         eyebrow="Product · Insights"
         title="Measure what Canon actually moved."
         subtitle="Every strategy ships with a 10% rules-based holdout. Every decision is logged with the signals that produced it. Insights stitches the two together so you can see lift, not just activity."
+        media={<InsightsLiftAnimation />}
       />
 
       <SectionShell tone="white">
@@ -50,7 +51,7 @@ export default function InsightsPage() {
             "Confidence intervals on every reported number",
             "Exportable to BigQuery, Snowflake, Redshift, Postgres",
           ]}
-          media={<OutcomesPanel />}
+          media={<InsightsLiftAnimation />}
         />
       </SectionShell>
 

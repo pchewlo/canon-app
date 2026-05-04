@@ -36,23 +36,9 @@ const COLUMNS: FooterColumn[] = [
     ],
   },
   {
-    title: "Compare",
+    title: "More",
     links: [
-      { label: "vs Optimove", href: "/compare/canon-vs-optimove" },
-      { label: "vs Smartico", href: "/compare/canon-vs-smartico" },
-      { label: "vs Solitics", href: "/compare/canon-vs-solitics" },
-      { label: "vs xtremepush", href: "/compare/canon-vs-xtremepush" },
-      { label: "vs OptiKPI", href: "/compare/canon-vs-optikpi" },
-      { label: "vs in-house tools", href: "/compare/canon-vs-in-house" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "/company/about" },
-      { label: "Security", href: "/company/security" },
-      { label: "Trust", href: "/company/trust" },
-      { label: "Careers", href: "/company/careers" },
+      { label: "Pricing", href: "/pricing" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -63,7 +49,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-white">
       <div className="mx-auto max-w-7xl px-6 py-14">
-        <div className="grid grid-cols-2 gap-y-10 md:grid-cols-6 md:gap-x-8">
+        <div className="grid grid-cols-2 gap-y-10 md:grid-cols-5 md:gap-x-8">
           <div className="col-span-2 md:col-span-1">
             <Wordmark size={13} />
             <p className="mt-3 max-w-[220px] text-[12px] leading-relaxed text-quest-ink-faint">

@@ -4,6 +4,7 @@ import { FAQAccordion } from "@/components/marketing/FAQAccordion"
 import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
+import { StrategyBuilderAnimation } from "@/components/marketing/animations/StrategyBuilderAnimation"
 
 export const metadata = {
   title: "Strategies — Canon",
@@ -18,7 +19,7 @@ export default function StrategiesPage() {
         eyebrow="Product · Strategies"
         title="Set the goal. Set the budget. Canon does the rest."
         subtitle="A strategy is your declaration of intent: the metric to improve, the budget to spend, the guardrails to respect. Canon turns it into per-decision policy your agents follow."
-        media={<StrategyMockup />}
+        media={<StrategyBuilderAnimation />}
       />
 
       <SectionShell tone="white" maxWidth="6xl">
@@ -39,7 +40,7 @@ export default function StrategiesPage() {
             "Guardrails: spend limits, frequency, cool-downs, exclusion lists",
             "Holdout: 10% rules-based control, by default",
           ]}
-          media={<StrategyMockup />}
+          media={<StrategyBuilderAnimation />}
         />
       </SectionShell>
 
@@ -111,64 +112,3 @@ export default function StrategiesPage() {
   )
 }
 
-function StrategyMockup() {
-  const objectives = [
-    { name: "Activation", cpep: "£0.30 – £1.50", picked: false },
-    { name: "Retention", cpep: "£0.50 – £4.00", picked: true },
-    { name: "Revenue", cpep: "£0.80 – £6.00", picked: false },
-    { name: "Referral", cpep: "£0.20 – £1.20", picked: false },
-  ]
-
-  return (
-    <div className="rounded-2xl border border-quest-ink/10 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(26,35,50,0.18)]">
-      <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
-        New strategy
-      </div>
-      <div className="mt-1 text-[16px] font-semibold text-quest-ink">
-        What should Canon optimise for?
-      </div>
-
-      <div className="mt-5 space-y-2">
-        {objectives.map((o) => (
-          <div
-            key={o.name}
-            className={`flex items-center justify-between rounded-lg border px-4 py-3 transition-colors ${
-              o.picked
-                ? "border-quest-accent bg-quest-accent-soft"
-                : "border-border bg-white"
-            }`}
-          >
-            <div>
-              <div className="text-[13px] font-semibold text-quest-ink">
-                {o.name}
-              </div>
-              <div className="text-[11px] text-quest-ink-faint">
-                Typical CPEP {o.cpep}
-              </div>
-            </div>
-            {o.picked && (
-              <span className="rounded-full bg-quest-accent text-white text-[10px] px-2 py-0.5 uppercase tracking-wider">
-                Selected
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-5 grid grid-cols-2 gap-3 text-[12px]">
-        <div className="rounded-lg border border-border p-3">
-          <div className="text-quest-ink-faint">Daily budget</div>
-          <div className="mt-1 text-quest-ink font-semibold tabular-nums">
-            £62,000
-          </div>
-        </div>
-        <div className="rounded-lg border border-border p-3">
-          <div className="text-quest-ink-faint">Holdout</div>
-          <div className="mt-1 text-quest-ink font-semibold tabular-nums">
-            10% rules
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}

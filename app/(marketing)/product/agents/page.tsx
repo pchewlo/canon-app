@@ -4,7 +4,7 @@ import { FAQAccordion } from "@/components/marketing/FAQAccordion"
 import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
-import { PlayerJourney } from "@/components/landing/PlayerJourney"
+import { AgentReasoningAnimation } from "@/components/marketing/animations/AgentReasoningAnimation"
 
 export const metadata = {
   title: "Agents — Canon",
@@ -19,7 +19,7 @@ export default function AgentsPage() {
         eyebrow="Product · Agents"
         title="An agent per player. Inspectable, replayable, explainable."
         subtitle="Cohort campaigns blur the player. Canon spins up an agent per player, with their own elasticity, lifecycle stage, and risk profile — and shows you exactly what it's doing, why, and what it would do next."
-        media={<PlayerJourney />}
+        media={<AgentReasoningAnimation />}
       />
 
       <SectionShell tone="white">
@@ -41,7 +41,7 @@ export default function AgentsPage() {
             "RG check trace: which guardrails fired and why",
             "Lifetime value and lift vs. control",
           ]}
-          media={<PlayerJourney />}
+          media={<AgentReasoningAnimation />}
           reverse
         />
       </SectionShell>

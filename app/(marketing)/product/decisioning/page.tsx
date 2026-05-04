@@ -6,8 +6,8 @@ import { PageHero } from "@/components/marketing/PageHero"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
 import { StatStrip } from "@/components/marketing/StatStrip"
-import { DashboardSnapshot } from "@/components/landing/DashboardSnapshot"
-import { PlayerJourney } from "@/components/landing/PlayerJourney"
+import { AgentReasoningAnimation } from "@/components/marketing/animations/AgentReasoningAnimation"
+import { DecisioningAnimation } from "@/components/marketing/animations/DecisioningAnimation"
 
 export const metadata = {
   title: "Decisioning — Canon",
@@ -22,7 +22,7 @@ export default function DecisioningPage() {
         eyebrow="Product · Decisioning"
         title="Every player. Every event. A real-time decision."
         subtitle="Canon's decisioning engine evaluates each player event against your goal and budget — and chooses what to do, in under 50 ms, for every player you have."
-        media={<DashboardSnapshot />}
+        media={<DecisioningAnimation />}
       />
 
       <SectionShell tone="white">
@@ -54,7 +54,7 @@ export default function DecisioningPage() {
             "Sized per player from elasticity, lifecycle, and risk",
             "Logs every signal that produced the decision",
           ]}
-          media={<PlayerJourney />}
+          media={<AgentReasoningAnimation />}
         />
       </SectionShell>
 

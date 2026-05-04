@@ -4,6 +4,7 @@ import { FAQAccordion } from "@/components/marketing/FAQAccordion"
 import { LogoCloud } from "@/components/marketing/LogoCloud"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
+import { IntegrationsFlowAnimation } from "@/components/marketing/animations/IntegrationsFlowAnimation"
 
 export const metadata = {
   title: "Integrations — Canon",
@@ -18,6 +19,7 @@ export default function IntegrationsPage() {
         eyebrow="Product · Integrations"
         title="Plug into the operator stack you already run."
         subtitle="Canon reads from your PAM, CDP, payments, and KYC systems, and ships decisions back through your fulfilment pipeline. No replatforming, no green-field rebuild."
+        media={<IntegrationsFlowAnimation />}
       />
 
       <SectionShell tone="white" maxWidth="6xl">
