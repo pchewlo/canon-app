@@ -1,6 +1,7 @@
 import {
   LegalHeader,
   LegalSection,
+  LegalShell,
   LegalUpdated,
 } from "@/components/legal/LegalContent"
 
@@ -8,7 +9,7 @@ export const metadata = { title: "Cookie Policy — Canon" }
 
 export default function CookiesPage() {
   return (
-    <>
+    <LegalShell>
       <LegalHeader title="Cookie Policy" />
 
       <LegalSection title="1. What are cookies?">
@@ -67,6 +68,6 @@ export default function CookiesPage() {
       </LegalSection>
 
       <LegalUpdated date="29 April 2026" />
-    </>
+    </LegalShell>
   )
 }

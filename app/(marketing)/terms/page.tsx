@@ -1,6 +1,7 @@
 import {
   LegalHeader,
   LegalSection,
+  LegalShell,
   LegalUpdated,
 } from "@/components/legal/LegalContent"
 
@@ -8,7 +9,7 @@ export const metadata = { title: "Terms of Service — Canon" }
 
 export default function TermsPage() {
   return (
-    <>
+    <LegalShell>
       <LegalHeader title="Terms of Service" />
 
       <LegalSection title="1. Agreement">
@@ -98,6 +99,6 @@ export default function TermsPage() {
       </LegalSection>
 
       <LegalUpdated date="29 April 2026" />
-    </>
+    </LegalShell>
   )
 }

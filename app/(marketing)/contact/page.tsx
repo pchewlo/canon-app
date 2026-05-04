@@ -1,19 +1,18 @@
 import {
   LegalHeader,
   LegalSection,
+  LegalShell,
 } from "@/components/legal/LegalContent"
 
 export const metadata = { title: "Contact — Canon" }
 
 export default function ContactPage() {
   return (
-    <>
+    <LegalShell>
       <LegalHeader title="Contact" />
 
       <LegalSection title="Get in touch">
-        <p>
-          The fastest way to reach us is by email.
-        </p>
+        <p>The fastest way to reach us is by email.</p>
         <p>
           <strong>General enquiries</strong> —{" "}
           <a href="mailto:hello@canon.app">hello@canon.app</a>
@@ -35,6 +34,6 @@ export default function ContactPage() {
           <a href="/#demo">request a demo from the home page</a>.
         </p>
       </LegalSection>
-    </>
+    </LegalShell>
   )
 }

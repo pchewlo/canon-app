@@ -6,6 +6,7 @@ import { HeroShowcase } from "@/components/landing/HeroShowcase"
 import { HowItWorksAnimated } from "@/components/landing/HowItWorksAnimated"
 import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
 import { PlayerJourney } from "@/components/landing/PlayerJourney"
+import { Eyebrow, Heading } from "@/components/marketing/typography"
 
 export const metadata = {
   title: "Canon — The agentic platform for player bonuses",
@@ -15,8 +16,7 @@ export const metadata = {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white text-quest-ink">
-      <LandingNav />
+    <>
       <Hero />
       <Problem />
       <HowItWorks />
@@ -25,103 +25,7 @@ export default function LandingPage() {
       <Outcomes />
       <Compliance />
       <CTAFooter />
-      <SiteFooter />
-    </div>
-  )
-}
-
-// ============================================================================
-// Reusable bits
-// ============================================================================
-
-function Wordmark({ size = 14 }: { size?: number }) {
-  return (
-    <span
-      className="text-quest-accent uppercase"
-      style={{
-        fontFamily: 'var(--font-brand, "Iowan Old Style", Palatino, Georgia, serif)',
-        fontSize: size,
-        fontWeight: 400,
-        letterSpacing: "0.26em",
-        lineHeight: 1,
-        paddingLeft: "0.26em",
-      }}
-    >
-      Canon
-    </span>
-  )
-}
-
-function Heading({
-  children,
-  size = "lg",
-  className = "",
-  style,
-}: {
-  children: React.ReactNode
-  size?: "sm" | "md" | "lg" | "xl"
-  className?: string
-  style?: React.CSSProperties
-}) {
-  const sizes = {
-    sm: "clamp(22px, 2.4vw, 28px)",
-    md: "clamp(28px, 3.2vw, 38px)",
-    lg: "clamp(36px, 4.6vw, 56px)",
-    xl: "clamp(44px, 6vw, 76px)",
-  }
-  const tracking = {
-    sm: "-0.012em",
-    md: "-0.018em",
-    lg: "-0.022em",
-    xl: "-0.028em",
-  }
-  return (
-    <h2
-      className={className}
-      style={{
-        fontFamily: 'var(--font-sans)',
-        fontSize: sizes[size],
-        fontWeight: 600,
-        lineHeight: 1.05,
-        letterSpacing: tracking[size],
-        ...style,
-      }}
-    >
-      {children}
-    </h2>
-  )
-}
-
-function Eyebrow({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
-  return (
-    <p
-      className={`text-[11px] font-medium uppercase tracking-[0.22em] mb-5 ${
-        dark ? "text-white/55" : "text-quest-ink-faint"
-      }`}
-    >
-      {children}
-    </p>
-  )
-}
-
-// ============================================================================
-// Top nav
-// ============================================================================
-
-function LandingNav() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-border bg-white/85 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
-        <Link href="/" className="inline-flex items-center">
-          <Wordmark size={14} />
-        </Link>
-        <div className="flex items-center gap-5">
-          <DemoLink className="inline-flex items-center rounded-md bg-quest-accent px-3 py-1.5 text-[13px] font-medium text-white hover:bg-quest-accent/90 transition-colors">
-            Request a demo
-          </DemoLink>
-        </div>
-      </div>
-    </header>
+    </>
   )
 }
 
@@ -136,7 +40,9 @@ function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">
             <Eyebrow>For iGaming operators</Eyebrow>
-            <Heading size="xl">Stop wasting player bonuses.</Heading>
+            <Heading size="xl" as="h1">
+              Stop wasting player bonuses.
+            </Heading>
             <p className="mt-7 max-w-xl text-[18px] leading-relaxed text-quest-ink-muted">
               The agentic platform for player bonuses. Per-player AI agents that
               learn. Operators see an{" "}
@@ -222,7 +128,6 @@ function OperatorBreakdown() {
         <span className="text-[14px] text-white/60">a year on player bonuses</span>
       </div>
 
-      {/* Stacked split bar */}
       <div className="mt-7 flex h-12 rounded-md overflow-hidden">
         <div
           className="flex items-center justify-end pr-3.5 bg-quest-success text-white"
@@ -251,7 +156,6 @@ function OperatorBreakdown() {
         </span>
       </div>
 
-      {/* Breakdown of the waste */}
       <div className="mt-8 pt-6 border-t border-white/10">
         <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/55 mb-4">
           Where the £60M waste goes
@@ -403,9 +307,6 @@ function InferenceCostChart() {
   const max = 100
   const xs = data.map((_, i) => padX + (i * (w - 2 * padX)) / (data.length - 1))
   const ys = data.map((d) => h - padY - (d.cost / max) * (h - 2 * padY))
-  // Smooth curve through points using cubic Bézier with horizontal tangents
-  // — control points sit halfway along the x-gap at each endpoint's y, which
-  // gives the soft "ease" between data points without overshooting.
   let path = `M ${xs[0]},${ys[0]}`
   for (let i = 1; i < data.length; i++) {
     const prevX = xs[i - 1]
@@ -429,48 +330,22 @@ function InferenceCostChart() {
           const y = padY + f * (h - 2 * padY)
           return (
             <g key={f}>
-              <line
-                x1={padX}
-                x2={w - padX}
-                y1={y}
-                y2={y}
-                stroke="rgba(0,0,0,0.06)"
-              />
-              <text
-                x={padX - 6}
-                y={y + 3}
-                fontSize="10"
-                textAnchor="end"
-                fill="#9B9A97"
-              >
+              <line x1={padX} x2={w - padX} y1={y} y2={y} stroke="rgba(0,0,0,0.06)" />
+              <text x={padX - 6} y={y + 3} fontSize="10" textAnchor="end" fill="#9B9A97">
                 {Math.round(max - f * max)}
               </text>
             </g>
           )
         })}
 
-        <path
-          d={path}
-          fill="none"
-          stroke="#1A2332"
-          strokeWidth="2"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
+        <path d={path} fill="none" stroke="#1A2332" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
 
         {xs.map((x, i) => (
           <circle key={i} cx={x} cy={ys[i]} r="3.5" fill="#1A2332" />
         ))}
 
         {xs.map((x, i) => (
-          <text
-            key={i}
-            x={x}
-            y={h - 8}
-            fontSize="11"
-            textAnchor="middle"
-            fill="#5F5E5B"
-          >
+          <text key={i} x={x} y={h - 8} fontSize="11" textAnchor="middle" fill="#5F5E5B">
             {data[i].year}
           </text>
         ))}
@@ -591,7 +466,7 @@ function ComplianceStat({ value, label }: { value: string; label: string }) {
 }
 
 // ============================================================================
-// CTA Footer
+// CTA Footer (final demo capture)
 // ============================================================================
 
 function CTAFooter() {
@@ -622,49 +497,5 @@ function CTAFooter() {
         </div>
       </div>
     </section>
-  )
-}
-
-// ============================================================================
-// Site footer
-// ============================================================================
-
-function SiteFooter() {
-  const year = new Date().getFullYear()
-  return (
-    <footer className="border-t border-border bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-10">
-        <div className="flex flex-wrap items-start justify-between gap-8">
-          <div>
-            <Wordmark size={13} />
-            <p className="mt-3 text-[12px] text-quest-ink-faint">
-              The agentic platform for player bonuses
-            </p>
-          </div>
-
-          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12px] text-quest-ink-muted">
-            <Link href="/privacy" className="hover:text-quest-ink transition-colors">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-quest-ink transition-colors">
-              Terms
-            </Link>
-            <Link href="/cookies" className="hover:text-quest-ink transition-colors">
-              Cookies
-            </Link>
-            <Link href="/contact" className="hover:text-quest-ink transition-colors">
-              Contact
-            </Link>
-            <DemoLink className="hover:text-quest-ink transition-colors">
-              Request a demo
-            </DemoLink>
-          </nav>
-        </div>
-
-        <div className="mt-8 border-t border-border pt-6 text-[12px] text-quest-ink-faint">
-          © {year} Canon. All rights reserved.
-        </div>
-      </div>
-    </footer>
   )
 }

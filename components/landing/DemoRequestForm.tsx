@@ -1,10 +1,22 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export function DemoRequestForm() {
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
+
+  // If someone arrived at /#demo (e.g. from a CTA on another page),
+  // pull focus once the page settles.
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    if (window.location.hash !== "#demo") return
+    const t = window.setTimeout(() => {
+      inputRef.current?.focus({ preventScroll: false })
+    }, 400)
+    return () => window.clearTimeout(t)
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -26,6 +38,7 @@ export function DemoRequestForm() {
       className="mx-auto mt-10 flex w-full max-w-md flex-col gap-3 sm:flex-row"
     >
       <input
+        ref={inputRef}
         id="demo-email"
         type="email"
         required

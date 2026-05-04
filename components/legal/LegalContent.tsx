@@ -1,3 +1,11 @@
+import type { ReactNode } from "react"
+
+export function LegalShell({ children }: { children: ReactNode }) {
+  return (
+    <article className="mx-auto max-w-3xl px-6 py-16 lg:py-24">{children}</article>
+  )
+}
+
 export function LegalHeader({ title }: { title: string }) {
   return (
     <header className="mb-12">
