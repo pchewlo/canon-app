@@ -10,6 +10,7 @@ type NavItem = {
   label: string
   href: string
   description?: string
+  comingSoon?: boolean
 }
 
 type NavSection = {
@@ -69,7 +70,7 @@ const NAV: NavSection[] = [
     items: [
       { label: "iGaming", href: "/industries/igaming" },
       { label: "Crypto trading", href: "/industries/crypto-trading" },
-      { label: "Prediction markets", href: "/industries/prediction-markets" },
+      { label: "Prediction markets", href: "#", comingSoon: true },
     ],
   },
   { label: "Pricing", href: "/pricing" },
@@ -158,22 +159,46 @@ export function SiteHeader() {
                     onMouseLeave={scheduleClose}
                   >
                     <div className="w-[320px] rounded-lg border border-border bg-white p-2 shadow-[0_20px_50px_-20px_rgba(26,35,50,0.18)]">
-                      {section.items.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="block rounded-md px-3 py-2 text-[13px] hover:bg-quest-surface-muted"
-                        >
-                          <div className="font-medium text-quest-ink">
-                            {item.label}
-                          </div>
-                          {item.description && (
-                            <div className="mt-0.5 text-[12px] text-quest-ink-muted">
-                              {item.description}
+                      {section.items.map((item) => {
+                        if (item.comingSoon) {
+                          return (
+                            <div
+                              key={item.label}
+                              className="block rounded-md px-3 py-2 text-[13px] cursor-default"
+                            >
+                              <div className="flex items-center gap-2">
+                                <span className="font-medium text-quest-ink-faint">
+                                  {item.label}
+                                </span>
+                                <span className="rounded-full bg-quest-warning-soft px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-quest-warning">
+                                  Coming soon
+                                </span>
+                              </div>
+                              {item.description && (
+                                <div className="mt-0.5 text-[12px] text-quest-ink-faint">
+                                  {item.description}
+                                </div>
+                              )}
                             </div>
-                          )}
-                        </Link>
-                      ))}
+                          )
+                        }
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="block rounded-md px-3 py-2 text-[13px] hover:bg-quest-surface-muted"
+                          >
+                            <div className="font-medium text-quest-ink">
+                              {item.label}
+                            </div>
+                            {item.description && (
+                              <div className="mt-0.5 text-[12px] text-quest-ink-muted">
+                                {item.description}
+                              </div>
+                            )}
+                          </Link>
+                        )
+                      })}
                     </div>
                   </div>
                 )}

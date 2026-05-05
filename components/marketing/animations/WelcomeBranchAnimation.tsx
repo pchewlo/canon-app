@@ -1,43 +1,55 @@
 "use client"
 
-// Welcome optimisation visual: new sign-ups stream in from the left,
-// each one is routed by Canon to a sized welcome offer based on
-// elasticity / channel / device. Bonus-hunter signups get a no-action.
+// Welcome optimisation: new sign-up arrives at the top, Canon routes
+// it to one of four sized welcome offers. Counters per lane tick.
 
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
 type Lane = {
   key: string
   label: string
   hint: string
-  tone: "success" | "accent" | "warning" | "danger" | "muted"
+  tone: "success" | "accent" | "warning" | "danger"
 }
 
 const LANES: Lane[] = [
-  { key: "match", label: "£50 deposit match", hint: "high-elasticity, organic", tone: "success" },
-  { key: "freeplay", label: "8 spins free-play", hint: "casino, tier 2", tone: "accent" },
-  { key: "mission", label: "Activation mission", hint: "low-elasticity / low channel", tone: "warning" },
+  { key: "match", label: "£50 deposit match", hint: "high elasticity", tone: "success" },
+  { key: "freeplay", label: "8 spins free-play", hint: "casino · tier 2", tone: "accent" },
+  { key: "mission", label: "Activation mission", hint: "low elasticity", tone: "warning" },
   { key: "noaction", label: "No bonus", hint: "suspected hunter", tone: "danger" },
 ]
 
-const TONE_CLASS: Record<Lane["tone"], string> = {
-  success: "border-quest-success/30 bg-quest-success-soft text-quest-success",
-  accent: "border-quest-accent/30 bg-quest-accent-soft text-quest-accent",
-  warning: "border-quest-warning/30 bg-quest-warning-soft text-quest-warning",
-  danger: "border-quest-danger/30 bg-quest-danger-soft text-quest-danger",
-  muted: "border-border bg-quest-surface-muted text-quest-ink-muted",
+const TONE_BORDER: Record<Lane["tone"], string> = {
+  success: "border-quest-success/40",
+  accent: "border-quest-accent/40",
+  warning: "border-quest-warning/40",
+  danger: "border-quest-danger/40",
+}
+
+const TONE_DOT: Record<Lane["tone"], string> = {
+  success: "bg-quest-success",
+  accent: "bg-quest-accent",
+  warning: "bg-quest-warning",
+  danger: "bg-quest-danger",
+}
+
+const TONE_BG: Record<Lane["tone"], string> = {
+  success: "bg-quest-success-soft",
+  accent: "bg-quest-accent-soft",
+  warning: "bg-quest-warning-soft",
+  danger: "bg-quest-danger-soft",
 }
 
 const SIGNUPS = [
-  { name: "Sign-up · paid · UK · iOS", laneIdx: 0 },
-  { name: "Sign-up · organic · DE · Android", laneIdx: 1 },
-  { name: "Sign-up · affiliate · ES · web", laneIdx: 2 },
-  { name: "Sign-up · paid · IT · iOS", laneIdx: 0 },
-  { name: "Sign-up · UNK · proxy IP", laneIdx: 3 },
-  { name: "Sign-up · organic · UK · Android", laneIdx: 1 },
-  { name: "Sign-up · paid · NL · iOS", laneIdx: 0 },
-  { name: "Sign-up · UNK · multi-account", laneIdx: 3 },
+  { name: "paid · UK · iOS", laneIdx: 0 },
+  { name: "organic · DE · Android", laneIdx: 1 },
+  { name: "affiliate · ES · web", laneIdx: 2 },
+  { name: "paid · IT · iOS", laneIdx: 0 },
+  { name: "proxy IP · multi-account", laneIdx: 3 },
+  { name: "organic · UK · Android", laneIdx: 1 },
+  { name: "paid · NL · iOS", laneIdx: 0 },
+  { name: "VPN · velocity spike", laneIdx: 3 },
 ]
 
 export function WelcomeBranchAnimation() {
@@ -45,9 +57,7 @@ export function WelcomeBranchAnimation() {
   const [counts, setCounts] = useState([0, 0, 0, 0])
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setTick((t) => t + 1)
-    }, 1100)
+    const id = setInterval(() => setTick((t) => t + 1), 1300)
     return () => clearInterval(id)
   }, [])
 
@@ -71,80 +81,54 @@ export function WelcomeBranchAnimation() {
         Sign-up → routed to a sized welcome
       </div>
 
-      <div className="mt-5 grid grid-cols-[180px_auto_1fr] items-center gap-4">
-        {/* Incoming sign-ups */}
-        <div className="space-y-2">
-          <AnimatePresence>
-            <motion.div
-              key={tick}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="rounded-md border border-border bg-quest-surface-muted px-3 py-2 text-[11.5px] text-quest-ink"
-            >
-              <span className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-quest-accent" />
-                {current.name}
-              </span>
-            </motion.div>
-          </AnimatePresence>
-          {[1, 2, 3].map((n) => {
-            const past = SIGNUPS[(tick - n + SIGNUPS.length) % SIGNUPS.length]
-            return (
-              <div
-                key={n}
-                className="rounded-md border border-border bg-white px-3 py-1.5 text-[11px] text-quest-ink-muted"
-                style={{ opacity: 0.55 - n * 0.12 }}
-              >
-                <span className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-quest-ink-faint" />
-                  {past.name}
-                </span>
-              </div>
-            )
-          })}
+      {/* Incoming sign-up + Canon */}
+      <div className="mt-5 flex items-center gap-3">
+        <div className="flex-1 overflow-hidden">
+          <motion.div
+            key={tick}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2 rounded-md border border-border bg-quest-surface-muted px-3 py-1.5 text-[12px] text-quest-ink"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-quest-accent" />
+            Sign-up · {current.name}
+          </motion.div>
         </div>
-
-        {/* Canon routing badge */}
-        <div className="flex flex-col items-center gap-2">
-          <div className="rounded-full bg-[#1A2332] px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#F2EBD3]">
-            Canon
-          </div>
-          <div className="text-[10px] uppercase tracking-wider text-quest-ink-faint">
-            routes
-          </div>
-        </div>
-
-        {/* Lane targets */}
-        <div className="space-y-2">
-          {LANES.map((lane, i) => {
-            const hit = current.laneIdx === i
-            return (
-              <motion.div
-                key={lane.key}
-                animate={{
-                  scale: hit ? 1.03 : 1,
-                  opacity: hit ? 1 : 0.6,
-                }}
-                transition={{ duration: 0.3 }}
-                className={`flex items-center justify-between rounded-md border px-3 py-2 text-[12px] ${TONE_CLASS[lane.tone]}`}
-              >
-                <span>
-                  <span className="font-semibold">{lane.label}</span>
-                  <span className="ml-2 opacity-70 text-[11px]">{lane.hint}</span>
-                </span>
-                <span className="tabular-nums text-[11px] opacity-80">
-                  {counts[i]}
-                </span>
-              </motion.div>
-            )
-          })}
+        <div className="rounded-full bg-[#1A2332] px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#F2EBD3]">
+          Canon routes
         </div>
       </div>
 
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.18em] text-quest-ink-faint">
-        10% holdout stays on uniform offer · lift measured monthly
+      {/* Lanes */}
+      <div className="mt-4 space-y-2">
+        {LANES.map((lane, i) => {
+          const hit = current.laneIdx === i
+          return (
+            <motion.div
+              key={lane.key}
+              animate={{
+                scale: hit ? 1.015 : 1,
+                opacity: hit ? 1 : 0.7,
+              }}
+              transition={{ duration: 0.3 }}
+              className={`flex items-center justify-between gap-3 rounded-md border px-3 py-2.5 ${TONE_BORDER[lane.tone]} ${hit ? TONE_BG[lane.tone] : "bg-white"}`}
+            >
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${TONE_DOT[lane.tone]}`} />
+                <span className="text-[12.5px] font-semibold text-quest-ink truncate">
+                  {lane.label}
+                </span>
+                <span className="text-[11px] text-quest-ink-faint truncate">
+                  {lane.hint}
+                </span>
+              </div>
+              <span className="tabular-nums text-[11px] font-semibold text-quest-ink-muted shrink-0">
+                {counts[i]}
+              </span>
+            </motion.div>
+          )
+        })}
       </div>
     </div>
   )

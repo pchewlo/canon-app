@@ -1,9 +1,8 @@
 "use client"
 
-// iGaming hero: Canon node feeds decisions into four iGaming surfaces
-// (Sportsbook, Casino, Live, Poker). Each surface has a small live
-// counter ticking. Decision packets stream out with sub-vertical-tinted
-// colours.
+// iGaming hero: Canon centred, four sub-vertical surfaces in the four
+// corners. Decision packets stream out to each surface in colour-coded
+// pulses. Counters tick.
 
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
@@ -13,6 +12,19 @@ const SURFACES = [
   { key: "casino", label: "Casino", colour: "#448361", baseRate: 12 },
   { key: "live", label: "Live", colour: "#D9730D", baseRate: 4 },
   { key: "poker", label: "Poker", colour: "#7C3AED", baseRate: 2 },
+]
+
+// Geometry — fixed positions relative to a 360x360 viewBox so spacing
+// is deterministic and never overlaps.
+const VB = 360
+const C = VB / 2
+const NODE_W = 120
+const NODE_H = 38
+const POSITIONS = [
+  { x: C + 95, y: C - 90 },   // Sportsbook · NE
+  { x: C + 95, y: C + 90 },   // Casino · SE
+  { x: C - 95, y: C + 90 },   // Live · SW
+  { x: C - 95, y: C - 90 },   // Poker · NW
 ]
 
 export function IGamingFlowAnimation() {
@@ -27,21 +39,6 @@ export function IGamingFlowAnimation() {
     return () => clearInterval(id)
   }, [])
 
-  // Geometry
-  const VB = 360
-  const C = VB / 2
-  const RADIUS = 130
-  const positions = SURFACES.map((_, i) => {
-    // Spread across the right semicircle: 0° = north, 180° = south.
-    // Use angles 30°, 75°, 105°, 150° so they fan to the right of Canon.
-    const angles = [-60, -20, 20, 60]
-    const a = ((angles[i] + 90) * Math.PI) / 180
-    return {
-      x: C + RADIUS * Math.cos(a),
-      y: C + RADIUS * Math.sin(a),
-    }
-  })
-
   return (
     <div className="relative h-[420px] w-full overflow-hidden rounded-2xl border border-quest-ink/10 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(26,35,50,0.18)]">
       <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
@@ -51,16 +48,16 @@ export function IGamingFlowAnimation() {
         One engine. Four sub-verticals.
       </div>
 
-      <div className="mt-3 flex justify-center">
-        <svg viewBox={`0 0 ${VB} ${VB}`} className="h-[280px] w-[280px]">
+      <div className="mt-2 flex justify-center">
+        <svg viewBox={`0 0 ${VB} ${VB}`} className="h-[300px] w-[300px]">
           {/* Spokes */}
           {SURFACES.map((s, i) => (
             <line
               key={`spoke-${s.key}`}
-              x1={C - 30}
+              x1={C}
               y1={C}
-              x2={positions[i].x}
-              y2={positions[i].y}
+              x2={POSITIONS[i].x}
+              y2={POSITIONS[i].y}
               stroke="rgba(26,35,50,0.10)"
               strokeWidth="1"
               strokeDasharray="2 4"
@@ -71,12 +68,12 @@ export function IGamingFlowAnimation() {
           {SURFACES.map((s, i) => (
             <motion.circle
               key={`packet-${s.key}`}
-              r="3.5"
+              r="4"
               fill={s.colour}
-              initial={{ cx: C - 30, cy: C, opacity: 0 }}
+              initial={{ cx: C, cy: C, opacity: 0 }}
               animate={{
-                cx: [C - 30, positions[i].x],
-                cy: [C, positions[i].y],
+                cx: [C, POSITIONS[i].x],
+                cy: [C, POSITIONS[i].y],
                 opacity: [0, 1, 1, 0],
               }}
               transition={{
@@ -88,17 +85,17 @@ export function IGamingFlowAnimation() {
             />
           ))}
 
-          {/* Canon node */}
+          {/* Canon node — centred */}
           <rect
-            x={C - 75}
+            x={C - 50}
             y={C - 22}
-            width={90}
+            width={100}
             height={44}
             rx={8}
             fill="#1A2332"
           />
           <text
-            x={C - 30}
+            x={C}
             y={C + 4}
             fontSize="13"
             fontWeight="600"
@@ -115,29 +112,29 @@ export function IGamingFlowAnimation() {
 
           {/* Surface nodes */}
           {SURFACES.map((s, i) => {
-            const w = 110
-            const h = 40
+            const x = POSITIONS[i].x
+            const y = POSITIONS[i].y
             return (
               <g key={`node-${s.key}`}>
                 <rect
-                  x={positions[i].x - w / 2}
-                  y={positions[i].y - h / 2}
-                  width={w}
-                  height={h}
+                  x={x - NODE_W / 2}
+                  y={y - NODE_H / 2}
+                  width={NODE_W}
+                  height={NODE_H}
                   rx={6}
                   fill="white"
                   stroke="rgba(26,35,50,0.18)"
                   strokeWidth="1"
                 />
                 <circle
-                  cx={positions[i].x - w / 2 + 8}
-                  cy={positions[i].y}
+                  cx={x - NODE_W / 2 + 10}
+                  cy={y}
                   r="3"
                   fill={s.colour}
                 />
                 <text
-                  x={positions[i].x - w / 2 + 18}
-                  y={positions[i].y - 2}
+                  x={x - NODE_W / 2 + 20}
+                  y={y - 2}
                   fontSize="11"
                   fontWeight="600"
                   fill="#1A2332"
@@ -145,8 +142,8 @@ export function IGamingFlowAnimation() {
                   {s.label}
                 </text>
                 <text
-                  x={positions[i].x - w / 2 + 18}
-                  y={positions[i].y + 10}
+                  x={x - NODE_W / 2 + 20}
+                  y={y + 10}
                   fontSize="9"
                   fill="#5F5E5B"
                 >

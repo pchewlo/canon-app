@@ -112,7 +112,7 @@ export function InsightsLiftAnimation() {
         <span className="text-[14px] text-quest-ink-muted">{sc.suffix}</span>
       </motion.div>
 
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.18em] text-quest-ink-faint">
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] uppercase tracking-[0.16em] text-quest-ink-faint">
         91,245 treated · 10,138 control
       </div>
     </div>

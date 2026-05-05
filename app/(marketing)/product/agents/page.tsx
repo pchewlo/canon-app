@@ -12,7 +12,7 @@ import { FAQAccordion } from "@/components/marketing/FAQAccordion"
 import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
-import { AgentReasoningAnimation } from "@/components/marketing/animations/AgentReasoningAnimation"
+import { AgentTimelineShot } from "@/components/marketing/animations/AgentTimelineShot"
 import { AgentsGridShot } from "@/components/marketing/animations/AgentsGridShot"
 
 export const metadata = {
@@ -50,7 +50,7 @@ export default function AgentsPage() {
             "RG check trace: which guardrails fired and why",
             "Lifetime value and lift vs. control",
           ]}
-          media={<AgentReasoningAnimation />}
+          media={<AgentTimelineShot />}
           reverse
         />
       </SectionShell>

@@ -120,22 +120,22 @@ function RevenueShot() {
   return (
     <CardShell tag="ARPU · This month">
       <div className="px-5 pt-5 pb-2">
-        <div className="text-[11px] font-medium uppercase tracking-wide text-quest-ink-faint">
-          ARPU
-        </div>
-        <div className="mt-2 flex items-baseline gap-3">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1, duration: 0.4 }}
-            className="text-[40px] font-semibold tabular-nums leading-none text-quest-ink"
-          >
-            £15.20
-          </motion.span>
-          <span className="inline-flex items-center rounded bg-quest-success-soft px-1.5 py-0.5 text-[12px] font-medium text-quest-success">
+        <div className="flex items-center justify-between gap-2">
+          <div className="text-[11px] font-medium uppercase tracking-wide text-quest-ink-faint">
+            ARPU
+          </div>
+          <span className="inline-flex items-center whitespace-nowrap rounded bg-quest-success-soft px-1.5 py-0.5 text-[10px] font-semibold text-quest-success">
             +24% MoM
           </span>
         </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
+          className="mt-2 text-[40px] font-semibold tabular-nums leading-none text-quest-ink"
+        >
+          £15.20
+        </motion.div>
       </div>
       <div className="flex-1 px-5 pb-2 flex flex-col justify-center">
         <div className="space-y-3.5">

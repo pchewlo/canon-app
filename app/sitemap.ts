@@ -23,7 +23,6 @@ const STATIC_ROUTES: { path: string; changeFrequency: MetadataRoute.Sitemap[numb
 
   { path: "/industries/igaming", changeFrequency: "monthly", priority: 0.9 },
   { path: "/industries/crypto-trading", changeFrequency: "monthly", priority: 0.6 },
-  { path: "/industries/prediction-markets", changeFrequency: "monthly", priority: 0.6 },
 
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms", changeFrequency: "yearly", priority: 0.3 },

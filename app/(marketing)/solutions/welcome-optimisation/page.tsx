@@ -1,3 +1,4 @@
+import { Tag, GitBranch, BotOff, FlaskConical } from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { PageHero } from "@/components/marketing/PageHero"
@@ -51,18 +52,22 @@ export default function WelcomePage() {
           items={[
             {
               title: "Per-signup pricing",
+              icon: Tag,
               body: "Welcome bonus size derived from acquisition channel, market, device, time-of-signup, and early-event signals.",
             },
             {
               title: "Free-play vs. cash split",
+              icon: GitBranch,
               body: "Canon picks the format — free-play, deposit match, no-deposit, mission — based on the player's expected response.",
             },
             {
               title: "Bonus-hunter defence",
+              icon: BotOff,
               body: "Suspected hunters get cooldown or no-action, not a bonus. The detection model improves with every confirmed pattern.",
             },
             {
               title: "Holdout-measured",
+              icon: FlaskConical,
               body: "10% of new signups stay on a uniform-offer baseline. Lift is reported against that, not against historical activation rates.",
             },
           ]}

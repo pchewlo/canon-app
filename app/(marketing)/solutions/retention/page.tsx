@@ -1,4 +1,12 @@
 import Link from "next/link"
+import {
+  Zap,
+  Crosshair,
+  Sparkles,
+  ShieldAlert,
+  FlaskConical,
+  Shapes,
+} from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { PageHero } from "@/components/marketing/PageHero"
@@ -52,26 +60,32 @@ export default function RetentionPage() {
           items={[
             {
               title: "Real-time intervention",
+              icon: Zap,
               body: "An at-risk player triggers a decision on the next event — not on next Tuesday's batch.",
             },
             {
               title: "Sized to elasticity",
+              icon: Crosshair,
               body: "Bonus size derived from the player's per-history elasticity prior. High-elasticity players get bigger; low don't get spend.",
             },
             {
               title: "Right action, not always a bonus",
+              icon: Sparkles,
               body: "A mission, a cool-down, a lapse-prevention offer — Canon picks. Sometimes the right action is no action.",
             },
             {
               title: "RG-aware",
+              icon: ShieldAlert,
               body: "At-risk players don't get retention spend that would harm them. Holds and cool-downs replace nudges.",
             },
             {
               title: "Holdout-measured",
+              icon: FlaskConical,
               body: "10% rules-based holdout proves the lift. No counterfactual hand-waving.",
             },
             {
               title: "Cross-vertical",
+              icon: Shapes,
               body: "Sportsbook, casino, live, poker — same engine. Different per-vertical priors.",
             },
           ]}

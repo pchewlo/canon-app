@@ -104,12 +104,13 @@ function Problem() {
 }
 
 function OperatorBreakdown() {
+  // Numbers expressed in £K so the breakdown sums to £600K (60% of £1M).
   const waste = [
-    { label: "Poorly executed campaigns", value: 22 },
-    { label: "Already-loyal players", value: 14 },
-    { label: "Bonus / abuse hunters", value: 12 },
-    { label: "Untargeted welcome bonuses", value: 8 },
-    { label: "Other ROI-negative activity", value: 4 },
+    { label: "Poorly executed campaigns", value: 220 },
+    { label: "Already-loyal players", value: 140 },
+    { label: "Bonus / abuse hunters", value: 120 },
+    { label: "Untargeted welcome bonuses", value: 80 },
+    { label: "Other ROI-negative activity", value: 40 },
   ]
   const maxBar = waste[0].value
 
@@ -123,7 +124,7 @@ function OperatorBreakdown() {
           className="text-white tabular-nums leading-none"
           style={{ fontFamily: "var(--font-sans)", fontSize: 56, fontWeight: 600, letterSpacing: "-0.02em" }}
         >
-          £100M
+          £1M
         </span>
         <span className="text-[14px] text-white/60">a year on player bonuses</span>
       </div>
@@ -133,13 +134,13 @@ function OperatorBreakdown() {
           className="flex items-center justify-end pr-3.5 bg-quest-success text-white"
           style={{ width: "40%" }}
         >
-          <span className="text-[12px] font-semibold tabular-nums">£40M</span>
+          <span className="text-[12px] font-semibold tabular-nums">£400K</span>
         </div>
         <div
           className="flex items-center pl-3.5 text-white"
           style={{ width: "60%", background: "#7A2E2E" }}
         >
-          <span className="text-[12px] font-semibold tabular-nums">£60M</span>
+          <span className="text-[12px] font-semibold tabular-nums">£600K</span>
         </div>
       </div>
       <div className="mt-3 grid grid-cols-2 gap-2 text-[12px]">
@@ -158,7 +159,7 @@ function OperatorBreakdown() {
 
       <div className="mt-8 pt-6 border-t border-white/10">
         <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/55 mb-4">
-          Where the £60M waste goes
+          Where the £600K waste goes
         </div>
         <div className="space-y-3.5">
           {waste.map((row) => (
@@ -166,7 +167,7 @@ function OperatorBreakdown() {
               <div className="flex items-baseline justify-between mb-1.5">
                 <span className="text-[13px] text-white/75">{row.label}</span>
                 <span className="text-[13px] tabular-nums text-white font-medium">
-                  £{row.value}M
+                  £{row.value}K
                 </span>
               </div>
               <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden">

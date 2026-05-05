@@ -1,3 +1,4 @@
+import { Crown, Pin, ShieldAlert, ArrowUpRight } from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { PageHero } from "@/components/marketing/PageHero"
@@ -51,18 +52,22 @@ export default function VIPPage() {
           items={[
             {
               title: "Per-player offers",
+              icon: Crown,
               body: "Each long-tail VIP gets a decision shaped by their elasticity, lifecycle, and risk — not the cohort average.",
             },
             {
               title: "VIP-aware policies",
+              icon: Pin,
               body: "Pin policies for specific players, exclude others, set spend caps and frequency by VIP tier.",
             },
             {
               title: "RG-aware",
+              icon: ShieldAlert,
               body: "Long-tail VIPs are where RG risk concentrates. Canon flags loss-chasing, escalation, and session-length issues to your team.",
             },
             {
               title: "Hand-off to humans",
+              icon: ArrowUpRight,
               body: "When a player crosses a threshold (revenue, risk, intent signal), Canon escalates to a named VIP manager rather than handling autonomously.",
             },
           ]}

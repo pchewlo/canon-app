@@ -119,7 +119,7 @@ export function RetentionLifecycleAnimation() {
       {/* Running totals */}
       <div className="absolute inset-x-6 bottom-5 grid grid-cols-3 gap-3">
         <Pill
-          label="Players in cohort"
+          label="Cohort size"
           value={counter.toLocaleString("en-GB")}
         />
         <Pill
@@ -147,8 +147,8 @@ function Pill({
   tone?: "success" | "danger"
 }) {
   return (
-    <div className="rounded-md border border-border bg-quest-surface-muted/40 px-2.5 py-2">
-      <div className="text-[10px] uppercase tracking-wider text-quest-ink-faint">
+    <div className="rounded-md border border-border bg-quest-surface-muted/40 px-2.5 py-2 min-w-0">
+      <div className="text-[10px] uppercase tracking-wider text-quest-ink-faint truncate">
         {label}
       </div>
       <div

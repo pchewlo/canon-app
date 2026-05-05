@@ -1,3 +1,4 @@
+import { Fingerprint, ShieldOff, Brain, Filter } from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { PageHero } from "@/components/marketing/PageHero"
@@ -51,18 +52,22 @@ export default function BonusAbusePage() {
           items={[
             {
               title: "Pattern detection",
+              icon: Fingerprint,
               body: "Canon scores every player on a hunter likelihood derived from deposit, wagering, withdrawal, and time-of-day patterns.",
             },
             {
               title: "Decision-time routing",
+              icon: ShieldOff,
               body: "Suspected hunters get cooldown or no-action decisions — never a bonus. The cost of a wrong call is zero spend, not a payout.",
             },
             {
               title: "Continuous learning",
+              icon: Brain,
               body: "Confirmed hunters feed the model. Detection improves operator-by-operator as the signal pattern library grows.",
             },
             {
               title: "Low false positives",
+              icon: Filter,
               body: "Decisions are scored with confidence intervals; borderline players get held for review rather than blanket-blocked.",
             },
           ]}

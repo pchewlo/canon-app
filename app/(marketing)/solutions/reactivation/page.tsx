@@ -1,3 +1,4 @@
+import { Crosshair, Sparkles, Clock, FlaskConical } from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { PageHero } from "@/components/marketing/PageHero"
@@ -51,18 +52,22 @@ export default function ReactivationPage() {
           items={[
             {
               title: "Elasticity-priced offers",
+              icon: Crosshair,
               body: "Bonus size derived from each player's historical response to past reactivation attempts. High-elasticity players get worth-it offers; the rest get nothing.",
             },
             {
               title: "Right action, not always a bonus",
+              icon: Sparkles,
               body: "A free-play, a mission, a no-cost greeting — Canon picks. The lowest-cost intervention that produces lift wins.",
             },
             {
               title: "Trigger on the right signal",
+              icon: Clock,
               body: "Lapse window calibrated per player, not per cohort. Some players churn at 7 days; some at 60.",
             },
             {
               title: "Holdout-measured lift",
+              icon: FlaskConical,
               body: "Always-on holdout proves how many of the reactivated cohort would have come back anyway. Lift is what you get over that baseline.",
             },
           ]}

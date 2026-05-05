@@ -1,140 +1,198 @@
 "use client"
 
-// Crypto trading hero: a candlestick-ish price strip animates left-to-right
-// while bonus pills (maker rebate, fee discount, free first trade) float
-// up next to specific traders. Suggests per-trader incentives layered onto
-// trading flow.
+// Crypto trading hero: a trader timeline that walks through the
+// per-trader incentive flow — sign-up bonus → enters position → wins
+// rebate points → exits position → another bonus. Loops continuously.
 
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
-const CANDLES = 28
-
-function makeCandles(seed: number) {
-  // Pseudo-random but deterministic per seed so the chart is stable.
-  let s = seed
-  const rng = () => {
-    s = (s * 9301 + 49297) % 233280
-    return s / 233280
-  }
-  const out: { open: number; close: number; high: number; low: number }[] = []
-  let last = 50
-  for (let i = 0; i < CANDLES; i++) {
-    const move = (rng() - 0.5) * 14
-    const open = last
-    const close = Math.max(8, Math.min(92, open + move))
-    const high = Math.max(open, close) + rng() * 4
-    const low = Math.min(open, close) - rng() * 4
-    out.push({ open, close, high, low })
-    last = close
-  }
-  return out
+type Step = {
+  id: number
+  label: string
+  detail: string
+  tone: "accent" | "success" | "warning" | "muted"
 }
 
-const TRADER_BONUSES = [
-  { label: "Maker rebate +0.02%", tone: "success" },
-  { label: "Free first trade", tone: "accent" },
-  { label: "Fee discount 25%", tone: "warning" },
-  { label: "Volume bonus", tone: "success" },
-] as const
+const STEPS: Step[] = [
+  {
+    id: 0,
+    label: "Sign-up bonus",
+    detail: "$25 deposit credit",
+    tone: "accent",
+  },
+  {
+    id: 1,
+    label: "Enter position",
+    detail: "BTC long · 0.12 ETH",
+    tone: "muted",
+  },
+  {
+    id: 2,
+    label: "Maker rebate",
+    detail: "+12 points",
+    tone: "success",
+  },
+  {
+    id: 3,
+    label: "Exit position",
+    detail: "+£42 realised",
+    tone: "muted",
+  },
+  {
+    id: 4,
+    label: "Volume bonus",
+    detail: "Fee waived next 24h",
+    tone: "warning",
+  },
+  {
+    id: 5,
+    label: "Enter position",
+    detail: "ETH short · 1.4 ETH",
+    tone: "muted",
+  },
+  {
+    id: 6,
+    label: "Maker rebate",
+    detail: "+18 points",
+    tone: "success",
+  },
+]
 
-const TONE_CLASS: Record<string, string> = {
-  success: "bg-quest-success-soft text-quest-success border-quest-success/30",
-  accent: "bg-quest-accent-soft text-quest-accent border-quest-accent/30",
-  warning: "bg-quest-warning-soft text-quest-warning border-quest-warning/30",
+const TONE_CLASS: Record<Step["tone"], string> = {
+  accent: "border-quest-accent/30 bg-quest-accent-soft text-quest-accent",
+  success: "border-quest-success/30 bg-quest-success-soft text-quest-success",
+  warning: "border-quest-warning/30 bg-quest-warning-soft text-quest-warning",
+  muted: "border-border bg-white text-quest-ink",
+}
+
+const DOT_CLASS: Record<Step["tone"], string> = {
+  accent: "bg-quest-accent",
+  success: "bg-quest-success",
+  warning: "bg-quest-warning",
+  muted: "bg-quest-ink-faint",
 }
 
 export function CryptoTradingAnimation() {
-  const [seed, setSeed] = useState(7)
-  const [bonusTick, setBonusTick] = useState(0)
+  const [tick, setTick] = useState(0)
+  const [points, setPoints] = useState(0)
 
   useEffect(() => {
-    const id1 = setInterval(() => setSeed((s) => s + 1), 7000)
-    const id2 = setInterval(() => setBonusTick((t) => t + 1), 1600)
-    return () => {
-      clearInterval(id1)
-      clearInterval(id2)
-    }
+    const id = setInterval(() => {
+      setTick((t) => {
+        const next = t + 1
+        const step = STEPS[next % STEPS.length]
+        if (step.label === "Maker rebate") {
+          const earned = parseInt(step.detail.replace(/\D/g, ""), 10) || 0
+          setPoints((p) => p + earned)
+        }
+        return next
+      })
+    }, 1500)
+    return () => clearInterval(id)
   }, [])
 
-  const candles = makeCandles(seed)
-  const W = 360
-  const H = 200
-  const pad = 10
-  const cw = (W - 2 * pad) / CANDLES
+  // Visible window: most recent step + 3 history items
+  const visible = Array.from({ length: 4 }, (_, i) => {
+    const idx = (tick - i + STEPS.length * 10) % STEPS.length
+    return { ...STEPS[idx], _key: `${tick}-${i}` }
+  })
 
   return (
     <div className="relative h-[420px] w-full overflow-hidden rounded-2xl border border-quest-ink/10 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(26,35,50,0.18)]">
-      <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
-        Trader incentives · per-decision
-      </div>
-      <div className="mt-1 text-[15px] font-semibold text-quest-ink">
-        Bonuses sized to each trader, not the market
-      </div>
-
-      {/* Chart */}
-      <div className="mt-5 rounded-lg border border-border bg-quest-surface-muted/30 p-3">
-        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
-          {[0.25, 0.5, 0.75].map((f) => (
-            <line
-              key={f}
-              x1={pad}
-              x2={W - pad}
-              y1={pad + f * (H - 2 * pad)}
-              y2={pad + f * (H - 2 * pad)}
-              stroke="rgba(0,0,0,0.05)"
-            />
-          ))}
-
-          {candles.map((c, i) => {
-            const up = c.close >= c.open
-            const colour = up ? "#448361" : "#D44C47"
-            const x = pad + i * cw + cw / 2
-            const yHigh = pad + ((100 - c.high) / 100) * (H - 2 * pad)
-            const yLow = pad + ((100 - c.low) / 100) * (H - 2 * pad)
-            const yOpen = pad + ((100 - c.open) / 100) * (H - 2 * pad)
-            const yClose = pad + ((100 - c.close) / 100) * (H - 2 * pad)
-            const yTop = Math.min(yOpen, yClose)
-            const yBot = Math.max(yOpen, yClose)
-            return (
-              <g key={i}>
-                <line x1={x} x2={x} y1={yHigh} y2={yLow} stroke={colour} strokeWidth="1" />
-                <rect
-                  x={x - cw * 0.32}
-                  y={yTop}
-                  width={cw * 0.64}
-                  height={Math.max(1, yBot - yTop)}
-                  fill={colour}
-                />
-              </g>
-            )
-          })}
-        </svg>
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
+            Trader timeline · live
+          </div>
+          <div className="mt-1 text-[15px] font-semibold text-quest-ink">
+            Sign-up bonus → trade → reward → repeat
+          </div>
+        </div>
+        <div className="text-right">
+          <div className="text-[10px] uppercase tracking-wider text-quest-ink-faint">
+            Reward points
+          </div>
+          <motion.div
+            key={points}
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            className="text-[18px] font-semibold tabular-nums text-quest-success"
+          >
+            {points.toLocaleString("en-GB")}
+          </motion.div>
+        </div>
       </div>
 
-      {/* Floating per-trader bonus */}
-      <div className="absolute inset-x-6 bottom-16 flex justify-center">
-        {[0, 1, 2].map((slot) => {
-          const idx = (bonusTick + slot) % TRADER_BONUSES.length
-          const b = TRADER_BONUSES[idx]
-          return (
-            <motion.div
-              key={`${bonusTick}-${slot}`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+      {/* Timeline */}
+      <ol className="relative mt-5">
+        <div className="absolute left-[7px] top-1.5 bottom-1.5 w-px bg-border" />
+        <AnimatePresence initial={false}>
+          {visible.map((s, i) => (
+            <motion.li
+              key={s._key}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1 - i * 0.18, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, delay: slot * 0.18, ease: "easeOut" }}
-              className={`mx-1 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-medium ${TONE_CLASS[b.tone]}`}
+              transition={{ duration: 0.4 }}
+              className="relative flex items-start gap-3 pb-3"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-current" />
-              {b.label}
-            </motion.div>
-          )
-        })}
-      </div>
+              <span className="relative z-10 mt-1.5 h-3.5 w-3.5 shrink-0">
+                {i === 0 && (
+                  <span
+                    className={`absolute inset-0 rounded-full ${DOT_CLASS[s.tone]} animate-ping opacity-60`}
+                  />
+                )}
+                <span
+                  className={`relative inline-block h-3.5 w-3.5 rounded-full ring-4 ring-white ${DOT_CLASS[s.tone]}`}
+                />
+              </span>
+              <div
+                className={`flex flex-1 items-center justify-between gap-2 rounded-md border px-3 py-2 text-[12.5px] ${TONE_CLASS[s.tone]}`}
+              >
+                <span className="font-medium">{s.label}</span>
+                <span className="tabular-nums text-[11.5px] opacity-85">
+                  {s.detail}
+                </span>
+              </div>
+            </motion.li>
+          ))}
+        </AnimatePresence>
+      </ol>
 
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.18em] text-quest-ink-faint">
-        Same engine. Different ledger.
+      <div className="absolute inset-x-6 bottom-5 grid grid-cols-3 gap-3">
+        <Pill label="Trader tier" value="Active" tone="accent" />
+        <Pill label="Volume / 24h" value="$8.4K" />
+        <Pill label="Fee tier" value="−25%" tone="success" />
+      </div>
+    </div>
+  )
+}
+
+function Pill({
+  label,
+  value,
+  tone,
+}: {
+  label: string
+  value: string
+  tone?: "success" | "accent"
+}) {
+  return (
+    <div className="rounded-md border border-border bg-quest-surface-muted/40 px-2.5 py-2">
+      <div className="text-[10px] uppercase tracking-wider text-quest-ink-faint">
+        {label}
+      </div>
+      <div
+        className={`mt-0.5 text-[13px] font-semibold tabular-nums ${
+          tone === "success"
+            ? "text-quest-success"
+            : tone === "accent"
+              ? "text-quest-accent"
+              : "text-quest-ink"
+        }`}
+      >
+        {value}
       </div>
     </div>
   )

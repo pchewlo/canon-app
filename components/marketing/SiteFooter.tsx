@@ -32,7 +32,6 @@ const COLUMNS: FooterColumn[] = [
     links: [
       { label: "iGaming", href: "/industries/igaming" },
       { label: "Crypto trading", href: "/industries/crypto-trading" },
-      { label: "Prediction markets", href: "/industries/prediction-markets" },
     ],
   },
   {
