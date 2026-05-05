@@ -22,7 +22,7 @@ export function PageHero({
   eyebrow,
   title,
   subtitle,
-  primaryCta = { label: "Request a demo", href: "#demo" },
+  primaryCta = { label: "Book a call", href: "/book-call" },
   secondaryCta,
   media,
   tone = "white",

@@ -113,7 +113,7 @@ export default function SafetyPage() {
       <CalloutBanner
         title="Want a compliance-team walkthrough?"
         body="We do RG-officer-led demos that focus on guardrails, audit, and jurisdictional rules — not retention lift."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Read about decisioning", href: "/product/decisioning" }}
       />
     </>

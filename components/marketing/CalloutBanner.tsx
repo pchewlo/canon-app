@@ -17,7 +17,7 @@ type CTA = { label: string; href: string }
 export function CalloutBanner({
   title,
   body,
-  primaryCta = { label: "Request a demo", href: "#demo" },
+  primaryCta = { label: "Book a call", href: "/book-call" },
   secondaryCta,
   tone = "green",
 }: {

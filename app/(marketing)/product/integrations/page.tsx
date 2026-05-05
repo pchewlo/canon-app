@@ -111,7 +111,7 @@ export default function IntegrationsPage() {
       <CalloutBanner
         title="Tell us your stack — we'll tell you the integration plan."
         body="Most operators are integrated in 2–4 weeks for a pilot. We'll come back with a written plan in 48 hours."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Talk to engineering", href: "/contact" }}
       />
     </>

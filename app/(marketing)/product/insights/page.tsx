@@ -130,7 +130,7 @@ export default function InsightsPage() {
       <CalloutBanner
         title="Want to see the lift on your last quarter?"
         body="We can replay your historical event stream against a Canon policy and report counterfactual lift — no integration needed."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Read about decisioning", href: "/product/decisioning" }}
       />
     </>

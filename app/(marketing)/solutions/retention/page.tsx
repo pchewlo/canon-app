@@ -125,7 +125,7 @@ export default function RetentionPage() {
       <CalloutBanner
         title="See retention lift on a slice of your players."
         body="A 60-day pilot with a 10% holdout will tell you what Canon's retention lift looks like on your data."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "See pricing", href: "/pricing" }}
       />
     </>

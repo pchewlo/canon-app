@@ -102,7 +102,7 @@ export default function StrategiesPage() {
       <CalloutBanner
         title="See strategies on a live operator account."
         body="A 30-minute walkthrough on real data — yours or ours."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Explore decisioning", href: "/product/decisioning" }}
       />
     </>

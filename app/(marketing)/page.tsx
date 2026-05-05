@@ -2,7 +2,6 @@ import Link from "next/link"
 import type { ReactNode } from "react"
 import { DashboardSnapshot } from "@/components/landing/DashboardSnapshot"
 import { DemoLink } from "@/components/landing/DemoLink"
-import { DemoRequestForm } from "@/components/landing/DemoRequestForm"
 import { HeroShowcase } from "@/components/landing/HeroShowcase"
 import { HowItWorksAnimated } from "@/components/landing/HowItWorksAnimated"
 import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
@@ -105,7 +104,7 @@ function Hero() {
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <DemoLink className="inline-flex items-center rounded-[4px] bg-canon-navy px-5 py-2.5 text-[14px] font-medium text-white hover:bg-canon-navy/90 transition-colors">
-                Request a demo
+                Book a call
               </DemoLink>
               <Link
                 href="/app"
@@ -569,13 +568,17 @@ function CTAFooter() {
           you Canon running on a sample of your players.
         </p>
 
-        <DemoRequestForm />
-
-        <div className="mt-12">
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <Link
+            href="/book-call"
+            className="inline-flex items-center rounded-[4px] bg-canon-cream px-5 py-2.5 text-[14px] font-semibold text-canon-ink transition-colors hover:bg-canon-cream/90"
+          >
+            Book a call
+          </Link>
           <Link
             href="/app"
-            className="text-[13px] font-medium hover:text-white transition-colors"
-            style={{ color: "rgba(243, 239, 230, 0.55)" }}
+            className="inline-flex items-center text-[14px] font-medium hover:text-white transition-colors"
+            style={{ color: "rgba(243, 239, 230, 0.7)" }}
           >
             Explore the product →
           </Link>

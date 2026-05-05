@@ -91,7 +91,7 @@ export default function WelcomePage() {
       <CalloutBanner
         title="Run welcome optimisation on a slice of your sign-ups."
         body="Pilot on a 10% slice of new sign-ups against a uniform-offer holdout. We report lift in 30 days."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "See pricing", href: "/pricing" }}
       />
     </>

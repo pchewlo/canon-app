@@ -163,7 +163,7 @@ export default function IGamingPage() {
       <CalloutBanner
         title="See Canon running on iGaming data."
         body="A 30-minute walkthrough on a representative sportsbook or casino dataset — yours or ours."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "See pricing", href: "/pricing" }}
       />
     </>

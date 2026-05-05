@@ -104,7 +104,7 @@ export default function AgentsPage() {
       <CalloutBanner
         title="See an agent reason in real time."
         body="A demo on a synthetic player walks through 14 days of decisions, signal-by-signal."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Read about decisioning", href: "/product/decisioning" }}
       />
     </>

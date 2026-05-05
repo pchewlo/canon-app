@@ -149,7 +149,7 @@ export default function DecisioningPage() {
       <CalloutBanner
         title="See decisioning on a slice of your players."
         body="A 60-day pilot with a 10% holdout will tell you what Canon's lift looks like on your data — not somebody else's case study."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Explore pricing", href: "/pricing" }}
       />
     </>

@@ -91,7 +91,7 @@ export default function ReactivationPage() {
       <CalloutBanner
         title="Run reactivation against a holdout."
         body="A 30-day pilot on your lapsed cohort, with a 10% control. We show the lift, you keep the budget cut."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Read about agents", href: "/product/agents" }}
       />
     </>

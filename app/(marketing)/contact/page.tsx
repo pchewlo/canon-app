@@ -27,11 +27,10 @@ export default function ContactPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="Request a demo">
+      <LegalSection title="Book a call">
         <p>
           If you&apos;re an iGaming operator and want to see Canon running on a
-          sample of your players,{" "}
-          <a href="/#demo">request a demo from the home page</a>.
+          sample of your players, <a href="/book-call">book a call</a>.
         </p>
       </LegalSection>
     </LegalShell>

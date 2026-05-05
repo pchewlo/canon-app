@@ -214,8 +214,8 @@ export function SiteHeader() {
           >
             Sign in
           </Link>
-          <DemoLink className="inline-flex items-center rounded-md bg-quest-accent px-3 py-1.5 text-[13px] font-medium text-white hover:bg-quest-accent/90 transition-colors">
-            Request a demo
+          <DemoLink className="inline-flex items-center rounded-[4px] bg-canon-navy px-3 py-1.5 text-[13px] font-medium text-white hover:bg-canon-navy/90 transition-colors">
+            Book a call
           </DemoLink>
         </div>
       </div>

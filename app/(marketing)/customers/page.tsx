@@ -50,7 +50,7 @@ export default function CustomersPage() {
       <CalloutBanner
         title="Want to be the case study?"
         body="We're onboarding a small number of operators on pilot terms. Tell us your bonus spend and the metric you want to lift."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Read about the company", href: "/company/about" }}
       />
     </>

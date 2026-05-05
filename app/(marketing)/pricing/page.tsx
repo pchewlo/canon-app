@@ -19,7 +19,7 @@ export default function PricingPage() {
         eyebrow="Pricing"
         title="Priced on the lift we deliver."
         subtitle="Three components, no surprises. The bigger the retention uplift Canon creates, the more you pay — and the more you keep."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Run the numbers", href: "#calculator" }}
       />
 
@@ -37,7 +37,7 @@ export default function PricingPage() {
               "Weekly readouts with your CRM team",
               "Compliance review with your RG officer",
             ]}
-            cta={{ label: "Start a pilot", href: "#demo" }}
+            cta={{ label: "Start a pilot", href: "/book-call" }}
           />
           <PricingCard
             name="Scale"
@@ -51,7 +51,7 @@ export default function PricingPage() {
               "Operator-controlled limits, exclusion lists, RG policies",
               "Dedicated CSM, SLA-backed",
             ]}
-            cta={{ label: "Talk to sales", href: "#demo" }}
+            cta={{ label: "Talk to sales", href: "/book-call" }}
             featured
           />
           <PricingCard
@@ -175,7 +175,7 @@ export default function PricingPage() {
       <CalloutBanner
         title="Want a number for your operator?"
         body="Send us your bonus spend and target lift — we'll model the ACV and a pilot in 24 hours."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Contact sales", href: "/contact" }}
       />
     </>

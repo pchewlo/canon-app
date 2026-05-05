@@ -97,7 +97,7 @@ export default function VIPPage() {
       <CalloutBanner
         title="See per-player VIP on a slice of your tail."
         body="A 60-day pilot on the 1,000 players your VIP team can't reach. Holdout-measured."
-        primaryCta={{ label: "Request a demo", href: "#demo" }}
+        primaryCta={{ label: "Book a call", href: "/book-call" }}
         secondaryCta={{ label: "Read about safety", href: "/product/safety" }}
       />
     </>
