@@ -1,17 +1,9 @@
-import {
-  Eye,
-  Gauge,
-  Crosshair,
-  ShieldCheck,
-  ScrollText,
-  Brain,
-} from "lucide-react"
 import { CalloutBanner } from "@/components/marketing/CalloutBanner"
-import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { FAQAccordion } from "@/components/marketing/FAQAccordion"
 import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
+import { SectionHairlineSpecGrid } from "@/components/marketing/sections"
 import { AgentTimelineShot } from "@/components/marketing/animations/AgentTimelineShot"
 import { AgentsGridShot } from "@/components/marketing/animations/AgentsGridShot"
 
@@ -55,46 +47,36 @@ export default function AgentsPage() {
         />
       </SectionShell>
 
-      <SectionShell
-        tone="cream"
+      <SectionHairlineSpecGrid
         eyebrow="What agents do"
         title="Six things every agent does, every day."
-      >
-        <CapabilityGrid
-          items={[
-            {
-              title: "Read the player",
-              icon: Eye,
-              body: "Pull the player's full event history, lifecycle stage, and risk profile from your PAM and CDP.",
-            },
-            {
-              title: "Score the moment",
-              icon: Gauge,
-              body: "Evaluate the current event against the active strategies, ranked by expected lift.",
-            },
-            {
-              title: "Pick an action",
-              icon: Crosshair,
-              body: "Bonus, mission, cashback, cooldown, hold, or no action — sized to the player and the moment.",
-            },
-            {
-              title: "Pass the guardrails",
-              icon: ShieldCheck,
-              body: "RG checks (loss-chasing, stake escalation, session, deposit decline) can downgrade or block the chosen action.",
-            },
-            {
-              title: "Ship and log",
-              icon: ScrollText,
-              body: "Send the decision to your fulfilment system. Log every signal, score, and override that produced it.",
-            },
-            {
-              title: "Learn",
-              icon: Brain,
-              body: "Update the per-player elasticity prior on the observed outcome. Carry it forward to the next decision.",
-            },
-          ]}
-        />
-      </SectionShell>
+        items={[
+          {
+            title: "Read the player",
+            body: "Pull the player's full event history, lifecycle stage, and risk profile from your PAM and CDP.",
+          },
+          {
+            title: "Score the moment",
+            body: "Evaluate the current event against the active strategies, ranked by expected lift.",
+          },
+          {
+            title: "Pick an action",
+            body: "Bonus, mission, cashback, cooldown, hold, or no action — sized to the player and the moment.",
+          },
+          {
+            title: "Pass the guardrails",
+            body: "RG checks (loss-chasing, stake escalation, session, deposit decline) can downgrade or block the chosen action.",
+          },
+          {
+            title: "Ship and log",
+            body: "Send the decision to your fulfilment system. Log every signal, score, and override that produced it.",
+          },
+          {
+            title: "Learn",
+            body: "Update the per-player elasticity prior on the observed outcome. Carry it forward to the next decision.",
+          },
+        ]}
+      />
 
       <SectionShell tone="white" eyebrow="FAQ" title="Agents, in detail.">
         <FAQAccordion

@@ -3,9 +3,8 @@ import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { PageHero } from "@/components/marketing/PageHero"
 import { PainPointGrid } from "@/components/marketing/PainPointGrid"
-import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
-import { StatStrip } from "@/components/marketing/StatStrip"
+import { SectionBigStatSplit } from "@/components/marketing/sections"
 import { ReactivationHookAnimation } from "@/components/marketing/animations/ReactivationHookAnimation"
 
 export const metadata = {
@@ -74,24 +73,20 @@ export default function ReactivationPage() {
         />
       </SectionShell>
 
-      <SectionShell tone="cream" eyebrow="Outcomes" title="What operators see.">
-        <StatStrip
-          stats={[
-            { value: "+34%", label: "Reactivation rate lift", hint: "vs. uniform-offer baseline" },
-            { value: "−40%", label: "Wasted bonus spend", hint: "on already-returning players" },
-            { value: "+£8.20", label: "Incremental ARPU", hint: "per reactivated player" },
-          ]}
-        />
-      </SectionShell>
-
-      <SectionShell tone="white" maxWidth="4xl">
-        <Quote
-          quote="The number that surprised the CFO was how much we cut from the reactivation budget without losing a single returner."
-          author="VP CRM"
-          role="iGaming operator"
-          company="Anonymised pilot operator"
-        />
-      </SectionShell>
+      <SectionBigStatSplit
+        eyebrow="Outcomes"
+        statValue="+34%"
+        statCaption="Reactivation rate lift, vs. uniform-offer baseline"
+        quote={{
+          body: "The number that surprised the CFO was how much we cut from the reactivation budget without losing a single returner.",
+          author: "VP CRM",
+          role: "iGaming operator · anonymised pilot",
+        }}
+        supportingStats={[
+          { value: "−40%", label: "Wasted bonus spend on already-returning players" },
+          { value: "+£8.20", label: "Incremental ARPU per reactivated player" },
+        ]}
+      />
 
       <CalloutBanner
         title="Run reactivation against a holdout."

@@ -5,7 +5,7 @@ import { PageHero } from "@/components/marketing/PageHero"
 import { PainPointGrid } from "@/components/marketing/PainPointGrid"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
-import { StatStrip } from "@/components/marketing/StatStrip"
+import { SectionStatCards } from "@/components/marketing/sections"
 import { VIPLadderAnimation } from "@/components/marketing/animations/VIPLadderAnimation"
 
 export const metadata = {
@@ -74,15 +74,16 @@ export default function VIPPage() {
         />
       </SectionShell>
 
-      <SectionShell tone="cream" eyebrow="Outcomes" title="What the long tail looks like with Canon.">
-        <StatStrip
-          stats={[
-            { value: "+22%", label: "Long-tail VIP retention", hint: "vs. cohort treatment" },
-            { value: "3,000+", label: "Players given per-player treatment", hint: "without adding VIP headcount" },
-            { value: "−18%", label: "RG escalations missed", hint: "vs. cohort baseline" },
-          ]}
-        />
-      </SectionShell>
+      <SectionStatCards
+        tone="cream"
+        eyebrow="Outcomes"
+        title="What the long tail looks like with Canon."
+        stats={[
+          { value: "+22%", label: "Long-tail VIP retention", body: "vs. cohort treatment" },
+          { value: "3,000+", label: "Players given per-player treatment", body: "without adding VIP headcount" },
+          { value: "−18%", label: "RG escalations missed", body: "vs. cohort baseline" },
+        ]}
+      />
 
       <SectionShell tone="white" maxWidth="4xl">
         <Quote

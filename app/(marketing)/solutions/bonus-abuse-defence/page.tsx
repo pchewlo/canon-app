@@ -3,9 +3,8 @@ import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { PageHero } from "@/components/marketing/PageHero"
 import { PainPointGrid } from "@/components/marketing/PainPointGrid"
-import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
-import { StatStrip } from "@/components/marketing/StatStrip"
+import { SectionBigStatSplit } from "@/components/marketing/sections"
 import { BonusAbuseAnimation } from "@/components/marketing/animations/BonusAbuseAnimation"
 
 export const metadata = {
@@ -74,24 +73,20 @@ export default function BonusAbusePage() {
         />
       </SectionShell>
 
-      <SectionShell tone="cream" eyebrow="Outcomes" title="What hunter defence looks like.">
-        <StatStrip
-          stats={[
-            { value: "−72%", label: "Bonuses paid to suspected hunters" },
-            { value: "0.4%", label: "False-positive rate", hint: "vs. operator-confirmed legitimate cohort" },
-            { value: "£11K", label: "Median monthly bonus saved", hint: "per million treated decisions" },
-          ]}
-        />
-      </SectionShell>
-
-      <SectionShell tone="white" maxWidth="4xl">
-        <Quote
-          quote="The hunters were a known leak. We never expected to recover this much without false-positive complaints."
-          author="Head of Risk"
-          role="Tier-1 European sportsbook"
-          company="Anonymised pilot operator"
-        />
-      </SectionShell>
+      <SectionBigStatSplit
+        eyebrow="Outcomes"
+        statValue="−72%"
+        statCaption="Bonuses paid to suspected hunters"
+        quote={{
+          body: "The hunters were a known leak. We never expected to recover this much without false-positive complaints.",
+          author: "Head of Risk",
+          role: "Tier-1 European sportsbook · anonymised pilot",
+        }}
+        supportingStats={[
+          { value: "0.4%", label: "False-positive rate, vs. operator-confirmed legitimate cohort" },
+          { value: "£11K", label: "Median monthly bonus saved, per million treated decisions" },
+        ]}
+      />
 
       <CalloutBanner
         title="Run hunter defence against your last quarter."

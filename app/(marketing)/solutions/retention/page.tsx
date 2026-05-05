@@ -1,4 +1,3 @@
-import Link from "next/link"
 import {
   Zap,
   Crosshair,
@@ -13,6 +12,7 @@ import { PageHero } from "@/components/marketing/PageHero"
 import { PainPointGrid } from "@/components/marketing/PainPointGrid"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
+import { SectionProductFrame } from "@/components/marketing/sections"
 import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
 import { RetentionLifecycleAnimation } from "@/components/marketing/animations/RetentionLifecycleAnimation"
 
@@ -105,38 +105,22 @@ export default function RetentionPage() {
         />
       </SectionShell>
 
-      <SectionShell tone="cream" eyebrow="Powered by" title="Two products, one strategy.">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Link
-            href="/product/decisioning"
-            className="rounded-xl border border-quest-ink/10 bg-white p-6 hover:border-quest-accent/40 transition-colors"
-          >
-            <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
-              Product
-            </div>
-            <div className="mt-2 text-[16px] font-semibold text-quest-ink">
-              Decisioning →
-            </div>
-            <p className="mt-2 text-[14px] text-quest-ink-muted">
-              The runtime that picks the right action per player, per event.
-            </p>
-          </Link>
-          <Link
-            href="/product/safety"
-            className="rounded-xl border border-quest-ink/10 bg-white p-6 hover:border-quest-accent/40 transition-colors"
-          >
-            <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
-              Product
-            </div>
-            <div className="mt-2 text-[16px] font-semibold text-quest-ink">
-              Safety →
-            </div>
-            <p className="mt-2 text-[14px] text-quest-ink-muted">
-              RG-aware retention. At-risk players never get nudged harder.
-            </p>
-          </Link>
-        </div>
-      </SectionShell>
+      <SectionProductFrame
+        eyebrow="Powered by"
+        title="Two products, one strategy."
+        products={[
+          {
+            name: "Decisioning",
+            href: "/product/decisioning",
+            body: "The runtime that picks the right action per player, per event.",
+          },
+          {
+            name: "Safety",
+            href: "/product/safety",
+            body: "RG-aware retention. At-risk players never get nudged harder.",
+          },
+        ]}
+      />
 
       <CalloutBanner
         title="See retention lift on a slice of your players."

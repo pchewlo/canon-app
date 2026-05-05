@@ -13,7 +13,7 @@ import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
-import { StatStrip } from "@/components/marketing/StatStrip"
+import { SectionStatCards } from "@/components/marketing/sections"
 import { AgentReasoningAnimation } from "@/components/marketing/animations/AgentReasoningAnimation"
 import { DecisioningAnimation } from "@/components/marketing/animations/DecisioningAnimation"
 
@@ -33,15 +33,14 @@ export default function DecisioningPage() {
         media={<DecisioningAnimation />}
       />
 
-      <SectionShell tone="white">
-        <StatStrip
-          stats={[
-            { value: "<50ms", label: "Decision latency", hint: "p95 end-to-end" },
-            { value: "millions", label: "Decisions per day", hint: "across all operators" },
-            { value: "+14.3%", label: "Retention lift", hint: "vs. rules-based control, median" },
-          ]}
-        />
-      </SectionShell>
+      <SectionStatCards
+        tone="paper"
+        stats={[
+          { value: "<50ms", label: "Decision latency", body: "p95 end-to-end" },
+          { value: "millions", label: "Decisions per day", body: "across all operators" },
+          { value: "+14.3%", label: "Retention lift", body: "vs. rules-based control, median" },
+        ]}
+      />
 
       <SectionShell tone="cream">
         <FeatureSplit

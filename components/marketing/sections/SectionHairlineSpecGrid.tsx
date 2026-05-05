@@ -8,6 +8,7 @@ type Props = {
   eyebrow: string
   title: string
   items: Item[]
+  tone?: "cream" | "paper"
   id?: string
 }
 
@@ -15,10 +16,12 @@ export function SectionHairlineSpecGrid({
   eyebrow,
   title,
   items,
+  tone = "cream",
   id,
 }: Props) {
+  const surface = tone === "cream" ? "bg-canon-cream" : "bg-canon-paper"
   return (
-    <section id={id} className="relative bg-canon-cream px-[88px] py-24">
+    <section id={id} className={`relative ${surface} px-6 py-24 lg:px-[88px] lg:py-32`}>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"

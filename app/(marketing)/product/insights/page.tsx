@@ -12,7 +12,7 @@ import { FAQAccordion } from "@/components/marketing/FAQAccordion"
 import { FeatureSplit } from "@/components/marketing/FeatureSplit"
 import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
-import { StatStrip } from "@/components/marketing/StatStrip"
+import { SectionStatCards } from "@/components/marketing/sections"
 import { InsightsLiftAnimation } from "@/components/marketing/animations/InsightsLiftAnimation"
 import { InsightsWarehouseShot } from "@/components/marketing/animations/InsightsWarehouseShot"
 
@@ -32,15 +32,14 @@ export default function InsightsPage() {
         media={<InsightsLiftAnimation />}
       />
 
-      <SectionShell tone="white">
-        <StatStrip
-          stats={[
-            { value: "100%", label: "Decisions logged", hint: "with signal trace" },
-            { value: "10%", label: "Holdout, by default", hint: "rules-based control" },
-            { value: "Daily", label: "Lift reporting", hint: "exported to warehouse" },
-          ]}
-        />
-      </SectionShell>
+      <SectionStatCards
+        tone="paper"
+        stats={[
+          { value: "100%", label: "Decisions logged", body: "with signal trace" },
+          { value: "10%", label: "Holdout, by default", body: "rules-based control" },
+          { value: "Daily", label: "Lift reporting", body: "exported to warehouse" },
+        ]}
+      />
 
       <SectionShell tone="cream">
         <FeatureSplit

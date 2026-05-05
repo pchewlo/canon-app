@@ -5,7 +5,7 @@ import { LogoCloud } from "@/components/marketing/LogoCloud"
 import { PageHero } from "@/components/marketing/PageHero"
 import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
-import { StatStrip } from "@/components/marketing/StatStrip"
+import { SectionStatCards } from "@/components/marketing/sections"
 import { IGamingFlowAnimation } from "@/components/marketing/animations/IGamingFlowAnimation"
 
 export const metadata = {
@@ -24,15 +24,14 @@ export default function IGamingPage() {
         media={<IGamingFlowAnimation />}
       />
 
-      <SectionShell tone="white">
-        <StatStrip
-          stats={[
-            { value: "+14.3%", label: "Median retention lift", hint: "vs. rules-based control" },
-            { value: "<50ms", label: "Decision latency", hint: "p95 end-to-end" },
-            { value: "6+", label: "Major regulators supported", hint: "UKGC · MGA · Spelinspektionen · AGCO · MGCB · DGA" },
-          ]}
-        />
-      </SectionShell>
+      <SectionStatCards
+        tone="paper"
+        stats={[
+          { value: "+14.3%", label: "Median retention lift", body: "vs. rules-based control" },
+          { value: "<50ms", label: "Decision latency", body: "p95 end-to-end" },
+          { value: "6+", label: "Major regulators supported", body: "UKGC · MGA · Spelinspektionen · AGCO · MGCB · DGA" },
+        ]}
+      />
 
       <SectionShell
         tone="cream"

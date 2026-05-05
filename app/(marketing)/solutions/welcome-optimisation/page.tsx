@@ -3,9 +3,8 @@ import { CalloutBanner } from "@/components/marketing/CalloutBanner"
 import { CapabilityGrid } from "@/components/marketing/CapabilityGrid"
 import { PageHero } from "@/components/marketing/PageHero"
 import { PainPointGrid } from "@/components/marketing/PainPointGrid"
-import { Quote } from "@/components/marketing/Quote"
 import { SectionShell } from "@/components/marketing/SectionShell"
-import { StatStrip } from "@/components/marketing/StatStrip"
+import { SectionBigStatSplit } from "@/components/marketing/sections"
 import { WelcomeBranchAnimation } from "@/components/marketing/animations/WelcomeBranchAnimation"
 
 export const metadata = {
@@ -74,24 +73,20 @@ export default function WelcomePage() {
         />
       </SectionShell>
 
-      <SectionShell tone="cream" eyebrow="Outcomes" title="What welcome optimisation looks like.">
-        <StatStrip
-          stats={[
-            { value: "+45%", label: "Activation rate lift", hint: "vs. uniform-offer control" },
-            { value: "−28%", label: "Welcome bonus spend", hint: "with same-or-better activation" },
-            { value: "+£3.20", label: "Cohort ARPU lift", hint: "month 1, treated cohort" },
-          ]}
-        />
-      </SectionShell>
-
-      <SectionShell tone="white" maxWidth="4xl">
-        <Quote
-          quote="The welcome budget cut paid for the platform inside three months."
-          author="Head of Acquisition"
-          role="Tier-2 European operator"
-          company="Anonymised pilot operator"
-        />
-      </SectionShell>
+      <SectionBigStatSplit
+        eyebrow="Outcomes"
+        statValue="+45%"
+        statCaption="Activation rate lift, vs. uniform-offer control"
+        quote={{
+          body: "The welcome budget cut paid for the platform inside three months.",
+          author: "Head of Acquisition",
+          role: "Tier-2 European operator · anonymised pilot",
+        }}
+        supportingStats={[
+          { value: "−28%", label: "Welcome bonus spend, with same-or-better activation" },
+          { value: "+£3.20", label: "Cohort ARPU lift, month 1, treated cohort" },
+        ]}
+      />
 
       <CalloutBanner
         title="Run welcome optimisation on a slice of your sign-ups."
