@@ -3,12 +3,13 @@ import Link from "next/link"
 import { DemoLink } from "@/components/landing/DemoLink"
 import { Heading } from "@/components/marketing/typography"
 
-type Tone = "navy" | "cream" | "white"
+type Tone = "navy" | "cream" | "white" | "green"
 
 const TONE_BG: Record<Tone, string> = {
-  navy: "bg-[#1A2332] text-white",
-  cream: "bg-[#F3EFE6]",
-  white: "bg-white",
+  navy: "bg-canon-navy text-white",
+  cream: "bg-canon-cream",
+  white: "bg-canon-paper",
+  green: "bg-canon-green text-white",
 }
 
 type CTA = { label: string; href: string }
@@ -18,7 +19,7 @@ export function CalloutBanner({
   body,
   primaryCta = { label: "Request a demo", href: "#demo" },
   secondaryCta,
-  tone = "navy",
+  tone = "green",
 }: {
   title: ReactNode
   body?: ReactNode
@@ -26,34 +27,61 @@ export function CalloutBanner({
   secondaryCta?: CTA
   tone?: Tone
 }) {
-  const isDark = tone === "navy"
+  const isDark = tone === "navy" || tone === "green"
 
   const primaryClass = isDark
-    ? "inline-flex items-center rounded-md bg-white px-5 py-2.5 text-[14px] font-medium text-[#1A2332] hover:bg-white/90 transition-colors"
-    : "inline-flex items-center rounded-md bg-quest-accent px-5 py-2.5 text-[14px] font-medium text-white hover:bg-quest-accent/90 transition-colors"
+    ? "inline-flex items-center rounded-[4px] bg-canon-cream px-5 py-2.5 text-[14px] font-semibold text-canon-ink hover:bg-canon-cream/90 transition-colors"
+    : "inline-flex items-center rounded-[4px] bg-canon-navy px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-canon-navy/90 transition-colors"
 
   const secondaryClass = isDark
-    ? "inline-flex items-center text-[14px] font-medium text-white/70 hover:text-white transition-colors"
+    ? "inline-flex items-center text-[14px] font-medium hover:text-white transition-colors"
     : "inline-flex items-center text-[14px] font-medium text-quest-ink-muted hover:text-quest-ink transition-colors"
 
+  const titleClass = isDark
+    ? tone === "green"
+      ? "text-canon-cream"
+      : "text-white"
+    : ""
+
   return (
-    <section className={TONE_BG[tone]}>
-      <div className="mx-auto max-w-3xl px-6 py-20 lg:py-24 text-center">
-        <Heading size="lg" className={isDark ? "text-white" : ""}>
+    <section className={`relative overflow-hidden ${TONE_BG[tone]}`}>
+      {tone === "green" && (
+        <>
+          <Bracket position="tl" />
+          <Bracket position="tr" />
+          <Bracket position="bl" />
+          <Bracket position="br" />
+        </>
+      )}
+      <div className="relative z-[1] mx-auto max-w-3xl px-6 py-20 lg:py-24 text-center">
+        <Heading size="lg" className={`mx-auto ${titleClass}`}>
           {title}
         </Heading>
         {body && (
           <p
             className={`mt-6 mx-auto max-w-xl text-[16px] leading-relaxed ${
-              isDark ? "text-white/65" : "text-quest-ink-muted"
-            }`}
+              tone === "navy" ? "text-white/65" : ""
+            } ${tone === "cream" || tone === "white" ? "text-quest-ink-muted" : ""}`}
+            style={
+              tone === "green"
+                ? { color: "rgba(243, 239, 230, 0.7)" }
+                : undefined
+            }
           >
             {body}
           </p>
         )}
         <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           {renderCta(primaryCta, primaryClass)}
-          {secondaryCta && renderCta(secondaryCta, secondaryClass)}
+          {secondaryCta && (
+            <span
+              style={
+                isDark ? { color: "rgba(243, 239, 230, 0.7)" } : undefined
+              }
+            >
+              {renderCta(secondaryCta, secondaryClass)}
+            </span>
+          )}
         </div>
       </div>
     </section>
@@ -79,5 +107,27 @@ function renderCta(cta: CTA, className: string) {
     <Link href={cta.href} className={className}>
       {cta.label}
     </Link>
+  )
+}
+
+function Bracket({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
+  const isTop = position[0] === "t"
+  const isLeft = position[1] === "l"
+  const colour = "rgba(243,239,230,0.4)"
+  return (
+    <span
+      aria-hidden="true"
+      className="absolute h-6 w-6"
+      style={{
+        top: isTop ? 32 : undefined,
+        bottom: isTop ? undefined : 32,
+        left: isLeft ? 32 : undefined,
+        right: isLeft ? undefined : 32,
+        borderTop: isTop ? `1px solid ${colour}` : undefined,
+        borderBottom: isTop ? undefined : `1px solid ${colour}`,
+        borderLeft: isLeft ? `1px solid ${colour}` : undefined,
+        borderRight: isLeft ? undefined : `1px solid ${colour}`,
+      }}
+    />
   )
 }

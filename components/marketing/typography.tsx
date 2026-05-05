@@ -9,10 +9,8 @@ export function Wordmark({
 }) {
   return (
     <span
-      className={`text-quest-accent uppercase ${className ?? ""}`.trim()}
+      className={`text-quest-accent uppercase font-brand ${className ?? ""}`.trim()}
       style={{
-        fontFamily:
-          'var(--font-brand, "Iowan Old Style", Palatino, Georgia, serif)',
         fontSize: size,
         fontWeight: 400,
         letterSpacing: "0.26em",
@@ -25,21 +23,37 @@ export function Wordmark({
   )
 }
 
-const HEADING_SIZE: Record<HeadingSize, string> = {
-  sm: "clamp(22px, 2.4vw, 28px)",
-  md: "clamp(28px, 3.2vw, 38px)",
-  lg: "clamp(36px, 4.6vw, 56px)",
+export type HeadingSize = "sm" | "md" | "lg" | "xl"
+
+// HANDOFF spec: h2 = 32 px Inter 600, line-height 1.18, tracking -0.018 em,
+// max-width 22-26ch, text-balance. Hero h1 keeps responsive scale.
+const HEADING_FONT_SIZE: Record<HeadingSize, string> = {
+  sm: "24px",
+  md: "32px",
+  lg: "40px",
   xl: "clamp(44px, 6vw, 76px)",
+}
+
+const HEADING_MAX_WIDTH: Record<HeadingSize, string> = {
+  sm: "30ch",
+  md: "26ch",
+  lg: "22ch",
+  xl: "20ch",
 }
 
 const HEADING_TRACKING: Record<HeadingSize, string> = {
   sm: "-0.012em",
   md: "-0.018em",
-  lg: "-0.022em",
+  lg: "-0.018em",
   xl: "-0.028em",
 }
 
-export type HeadingSize = "sm" | "md" | "lg" | "xl"
+const HEADING_LINE_HEIGHT: Record<HeadingSize, number> = {
+  sm: 1.25,
+  md: 1.18,
+  lg: 1.18,
+  xl: 1.05,
+}
 
 export function Heading({
   children,
@@ -56,13 +70,13 @@ export function Heading({
 }) {
   return (
     <Tag
-      className={className}
+      className={`text-balance font-semibold ${className}`.trim()}
       style={{
         fontFamily: "var(--font-sans)",
-        fontSize: HEADING_SIZE[size],
-        fontWeight: 600,
-        lineHeight: 1.05,
+        fontSize: HEADING_FONT_SIZE[size],
+        lineHeight: HEADING_LINE_HEIGHT[size],
         letterSpacing: HEADING_TRACKING[size],
+        maxWidth: HEADING_MAX_WIDTH[size],
         ...style,
       }}
     >
@@ -71,6 +85,7 @@ export function Heading({
   )
 }
 
+// HANDOFF spec: JetBrains Mono 500, 11 px, uppercase, 0.14 em tracking.
 export function Eyebrow({
   children,
   dark,
@@ -82,9 +97,10 @@ export function Eyebrow({
 }) {
   return (
     <p
-      className={`text-[11px] font-medium uppercase tracking-[0.22em] mb-5 ${
-        dark ? "text-white/55" : "text-quest-ink-faint"
+      className={`font-mono text-[11px] font-medium uppercase tracking-[0.14em] mb-5 ${
+        dark ? "" : "text-quest-ink-faint"
       } ${className}`.trim()}
+      style={dark ? { color: "rgba(243, 239, 230, 0.55)" } : undefined}
     >
       {children}
     </p>

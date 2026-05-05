@@ -26,27 +26,27 @@ export function CapabilityGrid({
         return (
           <div
             key={item.title}
-            className={`rounded-xl border p-6 ${
+            className={`rounded-[4px] border p-6 ${
               isDark
                 ? "border-white/10 bg-white/[0.03]"
-                : "border-quest-ink/10 bg-white"
+                : "border-canon-line-soft bg-canon-paper"
             }`}
           >
             <div className="flex items-center justify-between">
               {Icon ? (
                 <div
-                  className={`flex h-9 w-9 items-center justify-center rounded-md ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-[4px] ${
                     isDark
                       ? "bg-white/[0.06] text-white/80"
-                      : "bg-quest-accent-soft text-quest-accent"
+                      : "bg-canon-cream text-canon-green"
                   }`}
                 >
                   <Icon className="h-4.5 w-4.5" strokeWidth={1.6} />
                 </div>
               ) : (
                 <div
-                  className={`text-[11px] font-medium uppercase tracking-[0.2em] ${
-                    isDark ? "text-white/55" : "text-quest-ink-faint"
+                  className={`font-mono text-[10px] font-semibold uppercase tracking-[0.14em] tabular-nums ${
+                    isDark ? "text-white/55" : "text-canon-green"
                   }`}
                 >
                   {String(i + 1).padStart(2, "0")}
@@ -54,14 +54,14 @@ export function CapabilityGrid({
               )}
             </div>
             <div
-              className={`mt-3 text-[16px] font-semibold ${
-                isDark ? "text-white" : "text-quest-ink"
+              className={`mt-3 text-[15px] font-semibold tracking-[-0.005em] ${
+                isDark ? "text-white" : "text-canon-ink"
               }`}
             >
               {item.title}
             </div>
             <p
-              className={`mt-2 text-[14px] leading-relaxed ${
+              className={`mt-2 text-[13px] leading-[1.55] ${
                 isDark ? "text-white/70" : "text-quest-ink-muted"
               }`}
             >

@@ -13,21 +13,21 @@ export function PainPointGrid({
       {items.map((p) => (
         <div
           key={p.title}
-          className={`rounded-xl border p-6 ${
+          className={`rounded-[4px] border p-6 ${
             isDark
               ? "border-white/10 bg-white/[0.03]"
-              : "border-quest-ink/10 bg-white"
+              : "border-canon-line-soft bg-canon-paper"
           }`}
         >
           <div
-            className={`mt-1 text-[15px] font-semibold ${
-              isDark ? "text-white" : "text-quest-ink"
+            className={`mt-1 text-[15px] font-semibold tracking-[-0.005em] ${
+              isDark ? "text-white" : "text-canon-ink"
             }`}
           >
             {p.title}
           </div>
           <p
-            className={`mt-2 text-[13.5px] leading-relaxed ${
+            className={`mt-2 text-[13px] leading-[1.55] ${
               isDark ? "text-white/65" : "text-quest-ink-muted"
             }`}
           >

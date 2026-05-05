@@ -22,7 +22,7 @@ export function StatStrip({
         <div key={s.label}>
           <div
             className={`tabular-nums leading-none ${
-              isDark ? "text-white" : "text-quest-ink"
+              isDark ? "text-white" : "text-canon-green"
             }`}
             style={{
               fontSize: "clamp(32px, 4vw, 48px)",
@@ -33,15 +33,15 @@ export function StatStrip({
             {s.value}
           </div>
           <div
-            className={`mt-3 text-[14px] font-semibold ${
-              isDark ? "text-white" : "text-quest-ink"
+            className={`mt-3 font-mono text-[11px] font-medium uppercase tracking-[0.14em] ${
+              isDark ? "text-white/70" : "text-quest-ink-faint"
             }`}
           >
             {s.label}
           </div>
           {s.hint && (
             <div
-              className={`mt-1 text-[12px] ${
+              className={`mt-2 text-[13px] leading-[1.55] ${
                 isDark ? "text-white/60" : "text-quest-ink-muted"
               }`}
             >

@@ -51,8 +51,9 @@ export function FeatureSplit({
               >
                 <Check
                   className={`mt-0.5 h-4 w-4 shrink-0 ${
-                    isDark ? "text-white/70" : "text-quest-success"
+                    isDark ? "text-white/70" : "text-canon-green"
                   }`}
+                  strokeWidth={2.2}
                 />
                 <span>{b}</span>
               </li>

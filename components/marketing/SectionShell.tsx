@@ -1,18 +1,27 @@
 import type { ReactNode } from "react"
 import { Eyebrow, Heading } from "@/components/marketing/typography"
 
-type Tone = "white" | "cream" | "navy"
+type Tone = "white" | "cream" | "navy" | "green"
 
 const TONE_BG: Record<Tone, string> = {
-  white: "bg-white",
-  cream: "bg-[#F3EFE6]",
-  navy: "bg-[#1A2332] text-white",
+  white: "bg-canon-paper",
+  cream: "bg-canon-cream",
+  navy: "bg-canon-navy text-white",
+  green: "bg-canon-green text-white",
 }
 
 const TONE_TEXT: Record<Tone, string | undefined> = {
   white: undefined,
   cream: undefined,
   navy: "text-white",
+  green: "text-canon-cream",
+}
+
+const TONE_BODY: Record<Tone, string> = {
+  white: "text-quest-ink-muted",
+  cream: "text-quest-ink-muted",
+  navy: "text-white/70",
+  green: "",
 }
 
 export function SectionShell({
@@ -48,7 +57,9 @@ export function SectionShell({
         {(eyebrow || title || description) && (
           <div className="max-w-3xl mb-12">
             {eyebrow && (
-              <Eyebrow dark={tone === "navy"}>{eyebrow}</Eyebrow>
+              <Eyebrow dark={tone === "navy" || tone === "green"}>
+                {eyebrow}
+              </Eyebrow>
             )}
             {title && (
               <Heading size="lg" className={TONE_TEXT[tone]}>
@@ -57,9 +68,12 @@ export function SectionShell({
             )}
             {description && (
               <p
-                className={`mt-6 text-[16px] leading-relaxed ${
-                  tone === "navy" ? "text-white/70" : "text-quest-ink-muted"
-                }`}
+                className={`mt-6 text-[16px] leading-relaxed max-w-[42ch] ${TONE_BODY[tone]}`}
+                style={
+                  tone === "green"
+                    ? { color: "rgba(243, 239, 230, 0.7)" }
+                    : undefined
+                }
               >
                 {description}
               </p>

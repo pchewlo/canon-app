@@ -6,9 +6,9 @@ import { Eyebrow, Heading } from "@/components/marketing/typography"
 type Tone = "white" | "cream" | "navy"
 
 const TONE_BG: Record<Tone, string> = {
-  white: "bg-white",
-  cream: "bg-[#F3EFE6]",
-  navy: "bg-[#1A2332] text-white",
+  white: "bg-canon-paper",
+  cream: "bg-canon-cream",
+  navy: "bg-canon-navy text-white",
 }
 
 type CTA = {
@@ -88,8 +88,8 @@ function CTAButton({
   const isDark = tone === "navy"
 
   const primaryClasses = isDark
-    ? "inline-flex items-center rounded-md bg-white px-5 py-2.5 text-[14px] font-medium text-[#1A2332] hover:bg-white/90 transition-colors"
-    : "inline-flex items-center rounded-md bg-quest-accent px-5 py-2.5 text-[14px] font-medium text-white hover:bg-quest-accent/90 transition-colors"
+    ? "inline-flex items-center rounded-[4px] bg-canon-cream px-5 py-2.5 text-[14px] font-semibold text-canon-ink hover:bg-canon-cream/90 transition-colors"
+    : "inline-flex items-center rounded-[4px] bg-canon-navy px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-canon-navy/90 transition-colors"
 
   const secondaryClasses = isDark
     ? "inline-flex items-center text-[14px] font-medium text-white/70 hover:text-white transition-colors"

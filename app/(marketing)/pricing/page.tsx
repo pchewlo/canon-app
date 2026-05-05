@@ -9,7 +9,7 @@ import { SectionShell } from "@/components/marketing/SectionShell"
 export const metadata = {
   title: "Pricing — Canon",
   description:
-    "Pay for the lift Canon delivers. 10% of the incremental value Canon creates — you keep the other 90%. Transparent unit economics.",
+    "Pay for the lift Canon delivers. 20% of the incremental value Canon creates — you keep the other 80%. Transparent unit economics.",
 }
 
 export default function PricingPage() {
@@ -42,8 +42,8 @@ export default function PricingPage() {
           <PricingCard
             name="Scale"
             summary="Production deployment across all players for a single product line."
-            price="10%"
-            formula="of the incremental value Canon creates — you keep 90%"
+            price="20%"
+            formula="of the incremental value Canon creates — you keep 80%"
             includes={[
               "Unlimited objectives across the chosen product line",
               "Per-decision audit trail and exportable logs",
@@ -58,7 +58,7 @@ export default function PricingPage() {
             name="Enterprise"
             summary="Multi-product, multi-jurisdiction deployments with custom commercials."
             price="Bespoke"
-            formula="Custom commercials on the 10% performance fee · annual commit"
+            formula="Custom commercials on the 20% performance fee · annual commit"
             includes={[
               "Multi-brand / multi-jurisdiction deployment",
               "Private model fine-tuning on your data",
@@ -79,7 +79,7 @@ export default function PricingPage() {
         tone="cream"
         eyebrow="Calculator"
         title="See what Canon would cost on your bonus spend."
-        description="Drag to your annual bonus spend. We assume a 7.5% retention-spend uplift after the calibration window — your real lift may be higher or lower."
+        description="Drag to your annual bonus spend. We assume Canon delivers a 50% lift on that spend after the calibration window — your real lift may be higher or lower."
         id="calculator"
       >
         <PricingCalculator />
