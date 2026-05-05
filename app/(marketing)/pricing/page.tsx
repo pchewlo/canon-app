@@ -9,7 +9,7 @@ import { SectionShell } from "@/components/marketing/SectionShell"
 export const metadata = {
   title: "Pricing — Canon",
   description:
-    "Pay for the lift Canon delivers. 5% of managed bonus spend + 17.5% performance fee + £8K platform minimum. Transparent unit economics.",
+    "Pay for the lift Canon delivers. 10% of the incremental value Canon creates — you keep the other 90%. Transparent unit economics.",
 }
 
 export default function PricingPage() {
@@ -42,8 +42,8 @@ export default function PricingPage() {
           <PricingCard
             name="Scale"
             summary="Production deployment across all players for a single product line."
-            price="5% + 17.5%"
-            formula="of managed bonus spend + retention uplift created"
+            price="10%"
+            formula="of the incremental value Canon creates — you keep 90%"
             includes={[
               "Unlimited objectives across the chosen product line",
               "Per-decision audit trail and exportable logs",
@@ -58,7 +58,7 @@ export default function PricingPage() {
             name="Enterprise"
             summary="Multi-product, multi-jurisdiction deployments with custom commercials."
             price="Bespoke"
-            formula="Volume discounts on managed-spend fee · annual commit"
+            formula="Custom commercials on the 10% performance fee · annual commit"
             includes={[
               "Multi-brand / multi-jurisdiction deployment",
               "Private model fine-tuning on your data",
@@ -71,8 +71,7 @@ export default function PricingPage() {
         </div>
 
         <p className="mt-6 text-[12px] text-quest-ink-faint text-center">
-          All plans include a £8,000/month platform minimum that offsets the
-          first £8,000 of variable fees.
+          One fee, one number. Canon only earns when Canon creates lift.
         </p>
       </SectionShell>
 
@@ -150,8 +149,8 @@ export default function PricingPage() {
               a: "We hold out 10% of treated players as a rules-based control. The performance fee is calculated against the difference in retained-spend between treated and control cohorts, measured monthly.",
             },
             {
-              q: "What counts as 'managed bonus spend'?",
-              a: "Any bonus, mission, cashback, or free-play decision that flows through Canon. We don't charge on bonuses outside our scope (e.g. promo codes you run manually).",
+              q: "What counts as 'incremental value'?",
+              a: "The retained-spend difference between treated players and the rules-based holdout, measured monthly. We only charge against value Canon demonstrably created — not on bonuses you'd have paid anyway.",
             },
             {
               q: "Are pilots refundable if Canon doesn't lift retention?",
@@ -167,7 +166,7 @@ export default function PricingPage() {
             },
             {
               q: "How do you handle bonus-abuse hunters?",
-              a: "Detection is bundled. Hunters get cooldown or no-action decisions, not bonuses. We don't charge a managed-spend fee on bonuses that were never paid out.",
+              a: "Detection is bundled. Hunters get cooldown or no-action decisions, not bonuses. Bonuses Canon prevents don't show up in the lift number, so they don't show up in the fee.",
             },
           ]}
         />

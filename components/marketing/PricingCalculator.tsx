@@ -2,9 +2,7 @@
 
 import { useMemo, useState } from "react"
 
-const MANAGED_BONUS_FEE = 0.05
-const PERFORMANCE_FEE = 0.175
-const PLATFORM_MIN_MONTHLY = 8_000
+const PERFORMANCE_FEE = 0.10
 const ASSUMED_RETENTION_LIFT_PCT = 7.5
 
 function fmtMoney(n: number) {
@@ -15,12 +13,10 @@ export function PricingCalculator() {
   const [annualBonus, setAnnualBonus] = useState(48_000_000)
 
   const breakdown = useMemo(() => {
-    const managedFee = annualBonus * MANAGED_BONUS_FEE
-    const retentionUpliftValue = annualBonus * (ASSUMED_RETENTION_LIFT_PCT / 100)
-    const performanceFee = retentionUpliftValue * PERFORMANCE_FEE
-    const platformMin = PLATFORM_MIN_MONTHLY * 12
-    const acv = managedFee + performanceFee + platformMin
-    return { managedFee, performanceFee, platformMin, retentionUpliftValue, acv }
+    const incrementalValue = annualBonus * (ASSUMED_RETENTION_LIFT_PCT / 100)
+    const performanceFee = incrementalValue * PERFORMANCE_FEE
+    const operatorKeeps = incrementalValue - performanceFee
+    return { incrementalValue, performanceFee, operatorKeeps }
   }, [annualBonus])
 
   return (
@@ -55,26 +51,28 @@ export function PricingCalculator() {
       </label>
 
       <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-[14px]">
-        <Row label="Managed bonus spend (5%)" value={`£${fmtMoney(breakdown.managedFee)}`} />
         <Row
-          label={`Performance fee (17.5% × ${ASSUMED_RETENTION_LIFT_PCT}% lift)`}
+          label={`Incremental value created (${ASSUMED_RETENTION_LIFT_PCT}% lift)`}
+          value={`£${fmtMoney(breakdown.incrementalValue)}`}
+        />
+        <Row
+          label="You keep (90%)"
+          value={`£${fmtMoney(breakdown.operatorKeeps)}`}
+        />
+        <Row
+          label="Canon performance fee (10%)"
           value={`£${fmtMoney(breakdown.performanceFee)}`}
         />
-        <Row label="Platform minimum (£8K × 12)" value={`£${fmtMoney(breakdown.platformMin)}`} />
         <Row
           label="Total ACV to Canon"
-          value={`£${fmtMoney(breakdown.acv)}`}
+          value={`£${fmtMoney(breakdown.performanceFee)}`}
           emphasised
         />
       </div>
 
       <div className="mt-6 rounded-lg bg-quest-success-soft/60 px-4 py-3 text-[13px] text-quest-ink">
-        At £{fmtMoney(breakdown.retentionUpliftValue)} of incremental retention
-        revenue, Canon costs roughly{" "}
-        <strong>
-          {((breakdown.acv / breakdown.retentionUpliftValue) * 100).toFixed(0)}%
-        </strong>{" "}
-        of the value created.
+        Canon takes <strong>10%</strong> of the value created. You keep the
+        other <strong>90%</strong> — at every scale.
       </div>
     </div>
   )
