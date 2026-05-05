@@ -8,7 +8,6 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -64,6 +63,20 @@
   --color-quest-danger-soft: var(--quest-danger-soft);
   --color-quest-info: var(--quest-info);
   --color-quest-info-soft: var(--quest-info-soft);
+
+  /* Canon section system tokens (from HANDOFF.md) */
+  --color-canon-paper: var(--canon-paper);
+  --color-canon-cream: var(--canon-cream-brand);
+  --color-canon-fog: var(--canon-fog);
+  --color-canon-navy: var(--canon-navy);
+  --color-canon-green: var(--canon-green);
+  --color-canon-ink: var(--canon-graphite-brand);
+  --color-canon-line: var(--border-default);
+  --color-canon-line-soft: var(--border-subtle);
+
+  /* Map font CSS vars into Tailwind theme so font-mono / font-brand work */
+  --font-mono: var(--font-mono);
+  --font-brand: var(--font-brand);
 }
 
 /* ==========================================================================
@@ -133,6 +146,16 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-brand: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+
+  /* Canon section system — raw palette (HANDOFF.md) */
+  --canon-paper: #FFFFFF;
+  --canon-cream-brand: #F3EFE6;
+  --canon-fog: #F7F7F5;
+  --canon-navy: #1A2332;
+  --canon-green: #1D3A2F;
+  --canon-graphite-brand: #37352F;
+  --border-subtle: rgba(55, 53, 47, 0.06);
+  --border-default: rgba(55, 53, 47, 0.12);
 }
 
 .dark {
