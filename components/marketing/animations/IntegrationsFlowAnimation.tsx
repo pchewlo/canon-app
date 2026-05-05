@@ -31,15 +31,17 @@ export function IntegrationsFlowAnimation() {
   const RADIUS = 145
 
   return (
-    <div className="relative h-[420px] w-full overflow-hidden rounded-2xl border border-quest-ink/10 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(26,35,50,0.18)]">
-      <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
-        Live integration flow
-      </div>
-      <div className="mt-1 text-[15px] font-semibold text-quest-ink">
-        Reading events. Writing decisions.
+    <div className="relative w-full overflow-hidden rounded-2xl border border-quest-ink/10 bg-white shadow-[0_20px_50px_-25px_rgba(26,35,50,0.18)]">
+      <div className="px-6 pt-6">
+        <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
+          Live integration flow
+        </div>
+        <div className="mt-1 text-[15px] font-semibold text-quest-ink">
+          Reading events. Writing decisions.
+        </div>
       </div>
 
-      <div className="mt-4 flex justify-center">
+      <div className="mt-4 flex justify-center px-6">
         <svg viewBox={`0 0 ${VB} ${VB}`} className="h-[300px] w-[300px]">
           {/* Spokes */}
           {NODES.map((n) => {
@@ -142,7 +144,7 @@ export function IntegrationsFlowAnimation() {
         </svg>
       </div>
 
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-5 text-[11px] text-quest-ink-muted">
+      <div className="mt-4 flex items-center justify-center gap-6 border-t border-quest-ink/10 bg-quest-surface-muted px-6 py-3 text-[11px] text-quest-ink-muted">
         <span className="flex items-center gap-1.5">
           <span className="h-2 w-2 rounded-full bg-quest-accent" />
           Reads (events)

@@ -70,7 +70,7 @@ export function ReactivationHookAnimation() {
         Lapsed player → sized bonus → re-engaged
       </div>
 
-      <div className="relative mt-7 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+      <div className="relative mt-7 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3">
         {/* Player card (left) */}
         <motion.div
           animate={{
@@ -78,7 +78,7 @@ export function ReactivationHookAnimation() {
             filter: reactivated ? "saturate(1)" : "saturate(0.3)",
           }}
           transition={{ duration: 0.5 }}
-          className="rounded-xl border border-border bg-white p-4"
+          className="rounded-xl border border-border bg-white p-3.5"
         >
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-quest-accent-soft text-quest-accent text-[12px] font-semibold tabular-nums">
@@ -117,7 +117,7 @@ export function ReactivationHookAnimation() {
         </motion.div>
 
         {/* Connector */}
-        <div className="relative h-1 w-16 sm:w-24">
+        <div className="relative h-1 w-10 sm:w-14">
           <div className="absolute inset-0 rounded-full bg-quest-surface-muted" />
           <motion.div
             initial={{ width: 0 }}
@@ -138,7 +138,7 @@ export function ReactivationHookAnimation() {
         </div>
 
         {/* Canon source (right) */}
-        <div className="rounded-xl border border-quest-ink/10 bg-[#1A2332] p-4 text-white">
+        <div className="rounded-xl border border-quest-ink/10 bg-[#1A2332] p-3.5 text-white">
           <div
             style={{
               fontFamily:
@@ -150,8 +150,8 @@ export function ReactivationHookAnimation() {
           >
             CANON
           </div>
-          <div className="mt-1.5 text-[11px] text-white/70 leading-tight">
-            Picks size + moment, per player
+          <div className="mt-1.5 text-[11px] text-white/70 leading-snug">
+            Sizes the bonus per&nbsp;player
           </div>
           <div className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2 py-0.5 text-[10px] uppercase tracking-wide text-white/80">
             <span className="h-1.5 w-1.5 rounded-full bg-quest-success" />
