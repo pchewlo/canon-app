@@ -1,4 +1,5 @@
 import Link from "next/link"
+import type { ReactNode } from "react"
 import { DashboardSnapshot } from "@/components/landing/DashboardSnapshot"
 import { DemoLink } from "@/components/landing/DemoLink"
 import { DemoRequestForm } from "@/components/landing/DemoRequestForm"
@@ -6,7 +7,6 @@ import { HeroShowcase } from "@/components/landing/HeroShowcase"
 import { HowItWorksAnimated } from "@/components/landing/HowItWorksAnimated"
 import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
 import { PlayerJourney } from "@/components/landing/PlayerJourney"
-import { Eyebrow, Heading } from "@/components/marketing/typography"
 
 export const metadata = {
   title: "Canon — The agentic platform for player bonuses",
@@ -30,19 +30,73 @@ export default function LandingPage() {
 }
 
 // ============================================================================
-// Hero
+// Local typography helpers — HANDOFF spec, scoped to this page so other pages
+// keep using the existing Eyebrow/Heading components until Phase 2.
+// ============================================================================
+
+function SpecEyebrow({
+  children,
+  dark = false,
+  className = "",
+}: {
+  children: ReactNode
+  dark?: boolean
+  className?: string
+}) {
+  return (
+    <div
+      className={`font-mono text-[11px] font-medium uppercase tracking-[0.14em] ${
+        dark ? "" : "text-quest-ink-faint"
+      } ${className}`.trim()}
+      style={dark ? { color: "rgba(243, 239, 230, 0.55)" } : undefined}
+    >
+      {children}
+    </div>
+  )
+}
+
+function SpecH2({
+  children,
+  dark = false,
+  size = "md",
+  className = "",
+}: {
+  children: ReactNode
+  dark?: boolean
+  size?: "md" | "lg"
+  className?: string
+}) {
+  const fontSize = size === "lg" ? "40px" : "32px"
+  const maxW = size === "lg" ? "22ch" : "26ch"
+  return (
+    <h2
+      className={`text-balance font-semibold leading-[1.18] tracking-[-0.018em] ${
+        dark ? "text-canon-cream" : "text-canon-ink"
+      } ${className}`.trim()}
+      style={{ fontSize, maxWidth: maxW }}
+    >
+      {children}
+    </h2>
+  )
+}
+
+// ============================================================================
+// Hero — Paper. Layout unchanged. Hero scale ignored by HANDOFF spec.
 // ============================================================================
 
 function Hero() {
   return (
-    <section className="bg-white overflow-hidden">
+    <section className="overflow-hidden bg-canon-paper">
       <div className="mx-auto max-w-6xl px-6 pt-20 pb-24 lg:pt-28 lg:pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">
-            <Eyebrow>For iGaming operators</Eyebrow>
-            <Heading size="xl" as="h1">
+            <SpecEyebrow className="mb-5">For iGaming operators</SpecEyebrow>
+            <h1
+              className="text-balance font-semibold leading-[1.05] tracking-[-0.028em] text-canon-ink"
+              style={{ fontSize: "clamp(44px, 6vw, 76px)" }}
+            >
               Stop wasting player bonuses.
-            </Heading>
+            </h1>
             <p className="mt-7 max-w-xl text-[18px] leading-relaxed text-quest-ink-muted">
               The agentic platform for player bonuses. Per-player AI agents that
               learn. Operators see an{" "}
@@ -50,7 +104,7 @@ function Hero() {
               on bonus spend.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <DemoLink className="inline-flex items-center rounded-md bg-quest-accent px-5 py-2.5 text-[14px] font-medium text-white hover:bg-quest-accent/90 transition-colors">
+              <DemoLink className="inline-flex items-center rounded-[4px] bg-canon-navy px-5 py-2.5 text-[14px] font-medium text-white hover:bg-canon-navy/90 transition-colors">
                 Request a demo
               </DemoLink>
               <Link
@@ -72,20 +126,20 @@ function Hero() {
 }
 
 // ============================================================================
-// Problem — personalised per-operator £100M breakdown
+// Problem — Navy. Page's single navy slab. Chart kept verbatim.
 // ============================================================================
 
 function Problem() {
   return (
-    <section className="relative bg-[#1A2332] text-white">
+    <section className="relative bg-canon-navy text-white">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
-            <Eyebrow dark>The problem</Eyebrow>
-            <Heading size="lg" className="text-white">
+            <SpecEyebrow dark className="mb-5">The problem</SpecEyebrow>
+            <SpecH2 dark size="lg">
               Your current tools weren&apos;t built for an agentic world.
-            </Heading>
-            <p className="mt-6 text-[16px] leading-relaxed text-white/70">
+            </SpecH2>
+            <p className="mt-6 text-[16px] leading-relaxed text-white/70 max-w-[42ch]">
               Operators waste{" "}
               <span className="text-white font-semibold">60%</span> of their bonus
               spend on the wrong players, at the wrong moments, in the wrong sizes —
@@ -116,7 +170,7 @@ function OperatorBreakdown() {
 
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-7 lg:p-8">
-      <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/55">
+      <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-white/55">
         If you&apos;re spending
       </div>
       <div className="mt-2 flex items-baseline gap-3">
@@ -158,7 +212,7 @@ function OperatorBreakdown() {
       </div>
 
       <div className="mt-8 pt-6 border-t border-white/10">
-        <div className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/55 mb-4">
+        <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-white/55 mb-4">
           Where the £600K waste goes
         </div>
         <div className="space-y-3.5">
@@ -188,20 +242,20 @@ function OperatorBreakdown() {
 }
 
 // ============================================================================
-// How it works (animated)
+// How it works — Cream. Animation kept.
 // ============================================================================
 
 function HowItWorks() {
   return (
-    <section className="bg-[#F3EFE6]">
+    <section className="bg-canon-cream">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <div className="max-w-4xl">
-          <Eyebrow>How it works</Eyebrow>
-          <Heading size="lg">
+          <SpecEyebrow className="mb-5">How it works</SpecEyebrow>
+          <SpecH2 size="lg">
             <span className="whitespace-nowrap">You set the goal and the budget.</span>
             <br />
             <span className="whitespace-nowrap">The agents do the rest.</span>
-          </Heading>
+          </SpecH2>
         </div>
 
         <div className="mt-14">
@@ -213,19 +267,19 @@ function HowItWorks() {
 }
 
 // ============================================================================
-// Product preview — full dashboard snapshot
+// Product preview — Paper. Animations kept.
 // ============================================================================
 
 function ProductPreview() {
   return (
-    <section className="bg-white">
+    <section className="bg-canon-paper">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <div className="max-w-2xl">
-          <Eyebrow>Live in product</Eyebrow>
-          <Heading size="lg">
+          <SpecEyebrow className="mb-5">Live in product</SpecEyebrow>
+          <SpecH2 size="lg">
             An army of agents,<br />optimising every player interaction.
-          </Heading>
-          <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted">
+          </SpecH2>
+          <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted max-w-[42ch]">
             What you see. What every player feels. The dashboard summarises millions
             of decisions; each player gets a journey shaped to their elasticity,
             lifecycle, and risk profile.
@@ -246,27 +300,27 @@ function ProductPreview() {
 }
 
 // ============================================================================
-// Why now
+// Why now — Cream. Chart kept verbatim.
 // ============================================================================
 
 function WhyNow() {
   return (
-    <section className="bg-[#F3EFE6]">
+    <section className="bg-canon-cream">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6">
-            <Eyebrow>Why now</Eyebrow>
-            <Heading size="lg">
+            <SpecEyebrow className="mb-5">Why now</SpecEyebrow>
+            <SpecH2 size="lg">
               Operators not running per-player agents are leaving lift on the table.
-            </Heading>
-            <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted">
+            </SpecH2>
+            <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted max-w-[42ch]">
               An agent decision was 60× more expensive in 2023. Today it costs less
               than a penny — and the operators deploying them now are taking the
               retention lift you&apos;re not.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-6">
               <div>
-                <div className="text-[34px] font-semibold tabular-nums leading-none text-quest-ink">
+                <div className="text-[34px] font-semibold tabular-nums leading-none text-canon-green">
                   60×
                 </div>
                 <div className="mt-2 text-[13px] text-quest-ink-muted">
@@ -274,7 +328,7 @@ function WhyNow() {
                 </div>
               </div>
               <div>
-                <div className="text-[34px] font-semibold tabular-nums leading-none text-quest-ink">
+                <div className="text-[34px] font-semibold tabular-nums leading-none text-canon-green">
                   &lt;£0.001
                 </div>
                 <div className="mt-2 text-[13px] text-quest-ink-muted">
@@ -319,8 +373,8 @@ function InferenceCostChart() {
   }
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6">
-      <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint mb-1">
+    <div className="rounded-[4px] border border-canon-line-soft bg-canon-paper p-6">
+      <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-quest-ink-faint mb-1">
         Cost per agent decision
       </div>
       <div className="text-[12px] text-quest-ink-muted mb-4">
@@ -356,17 +410,17 @@ function InferenceCostChart() {
 }
 
 // ============================================================================
-// Outcomes
+// Outcomes — Paper. Animation kept.
 // ============================================================================
 
 function Outcomes() {
   return (
-    <section className="bg-white">
+    <section className="bg-canon-paper">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <div className="max-w-2xl">
-          <Eyebrow>Outcomes</Eyebrow>
-          <Heading size="lg">What operators see in production.</Heading>
-          <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted">
+          <SpecEyebrow className="mb-5">Outcomes</SpecEyebrow>
+          <SpecH2 size="lg">What operators see in production.</SpecH2>
+          <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted max-w-[42ch]">
             Across treated cohorts vs. a rules-based control group. Lifts hold
             after the calibration window and compound over the player lifetime.
           </p>
@@ -381,7 +435,8 @@ function Outcomes() {
 }
 
 // ============================================================================
-// Compliance
+// Compliance — Variant 3B (hairline grid + green numerals) for the four
+// pillars. The body paragraph and stat strip ride above the grid as a header.
 // ============================================================================
 
 function Compliance() {
@@ -409,46 +464,60 @@ function Compliance() {
   ]
 
   return (
-    <section className="bg-[#F3EFE6]">
-      <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
+    <section className="relative bg-canon-cream">
+      {/* Hairline grid background (HANDOFF B01 / part of Variant 3B) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(55,53,47,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(55,53,47,0.045) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+        }}
+      />
+
+      <div className="relative z-[1] mx-auto max-w-6xl px-6 py-24 lg:py-32">
+        {/* Header — body + stats preserved above the spec grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5">
-            <Eyebrow>Safety &amp; compliance</Eyebrow>
-            <Heading size="lg">
+          <div className="lg:col-span-7">
+            <SpecEyebrow className="mb-5">Safety &amp; compliance</SpecEyebrow>
+            <SpecH2 size="lg">
               Built for regulated markets, not retrofitted for them.
-            </Heading>
-            <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted">
+            </SpecH2>
+            <p className="mt-6 text-[16px] leading-relaxed text-quest-ink-muted max-w-[42ch]">
               Autonomous decisioning isn&apos;t deployable if it breaks
               compliance. Canon enforces responsible-gaming and jurisdictional
               rules as part of every decision — and produces a regulator-ready
               audit trail by default.
             </p>
+          </div>
 
-            <div className="mt-8 grid grid-cols-3 gap-4">
+          <div className="lg:col-span-5">
+            <div className="grid grid-cols-3 gap-4">
               <ComplianceStat value="100%" label="Decisions logged" />
               <ComplianceStat value="<50ms" label="RG check latency" />
               <ComplianceStat value="0" label="Untracked actions" />
             </div>
           </div>
+        </div>
 
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {pillars.map((p, i) => (
-              <div
-                key={p.title}
-                className="rounded-xl border border-quest-ink/10 bg-white p-6"
-              >
-                <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
-                  0{i + 1}
-                </div>
-                <div className="mt-3 text-[16px] font-semibold text-quest-ink">
+        {/* Spec grid — four pillars, HANDOFF Variant 3B */}
+        <div className="mt-16 grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2">
+          {pillars.map((p, i) => (
+            <div key={p.title}>
+              <div className="mb-1.5 flex items-baseline gap-3">
+                <span className="font-mono text-[10px] font-semibold tracking-[0.14em] text-canon-green tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-[14px] font-semibold tracking-[-0.005em] text-canon-ink">
                   {p.title}
-                </div>
-                <p className="mt-2 text-[14px] leading-relaxed text-quest-ink-muted">
-                  {p.body}
-                </p>
+                </span>
               </div>
-            ))}
-          </div>
+              <p className="m-0 pl-[26px] text-[13px] leading-[1.55] text-quest-ink-muted">
+                {p.body}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -458,29 +527,43 @@ function Compliance() {
 function ComplianceStat({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <div className="text-[24px] font-semibold tabular-nums leading-none text-quest-ink">
+      <div className="text-[24px] font-semibold tabular-nums leading-none text-canon-green">
         {value}
       </div>
-      <div className="mt-2 text-[12px] text-quest-ink-muted">{label}</div>
+      <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-quest-ink-faint">
+        {label}
+      </div>
     </div>
   )
 }
 
 // ============================================================================
-// CTA Footer (final demo capture)
+// CTA Footer — Variant 7C-style green slab with brackets. The form sits where
+// the plan card would sit; centred layout preserved otherwise.
 // ============================================================================
 
 function CTAFooter() {
   return (
     <section
       id="demo"
-      className="relative overflow-hidden bg-[#1A2332] text-white scroll-mt-14"
+      className="relative overflow-hidden bg-canon-green text-white scroll-mt-14"
     >
-      <div className="mx-auto max-w-3xl px-6 py-28 lg:py-32 text-center">
-        <Heading size="lg" className="text-white">
+      <Bracket position="tl" />
+      <Bracket position="tr" />
+      <Bracket position="bl" />
+      <Bracket position="br" />
+
+      <div className="relative z-[1] mx-auto max-w-3xl px-6 py-28 lg:py-32 text-center">
+        <h2
+          className="text-balance font-semibold leading-[1.18] tracking-[-0.018em] text-canon-cream mx-auto"
+          style={{ fontSize: "40px", maxWidth: "22ch" }}
+        >
           Ready to stop wasting bonuses?
-        </Heading>
-        <p className="mt-6 mx-auto max-w-xl text-[16px] leading-relaxed text-white/65">
+        </h2>
+        <p
+          className="mt-6 mx-auto text-[16px] leading-relaxed max-w-xl"
+          style={{ color: "rgba(243, 239, 230, 0.7)" }}
+        >
           We&apos;re onboarding a small set of iGaming operators. Tell us what
           you want to lift — activation, retention, ARPU — and we&apos;ll show
           you Canon running on a sample of your players.
@@ -491,12 +574,35 @@ function CTAFooter() {
         <div className="mt-12">
           <Link
             href="/app"
-            className="text-[13px] font-medium text-white/55 hover:text-white transition-colors"
+            className="text-[13px] font-medium hover:text-white transition-colors"
+            style={{ color: "rgba(243, 239, 230, 0.55)" }}
           >
             Explore the product →
           </Link>
         </div>
       </div>
     </section>
+  )
+}
+
+function Bracket({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
+  const isTop = position[0] === "t"
+  const isLeft = position[1] === "l"
+  const colour = "rgba(243,239,230,0.4)"
+  return (
+    <span
+      aria-hidden="true"
+      className="absolute h-6 w-6"
+      style={{
+        top: isTop ? 32 : undefined,
+        bottom: isTop ? undefined : 32,
+        left: isLeft ? 32 : undefined,
+        right: isLeft ? undefined : 32,
+        borderTop: isTop ? `1px solid ${colour}` : undefined,
+        borderBottom: isTop ? undefined : `1px solid ${colour}`,
+        borderLeft: isLeft ? `1px solid ${colour}` : undefined,
+        borderRight: isLeft ? undefined : `1px solid ${colour}`,
+      }}
+    />
   )
 }
