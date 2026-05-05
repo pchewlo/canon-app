@@ -82,14 +82,26 @@ export function BookCallForm() {
           name="role"
           autoComplete="organization-title"
           placeholder="e.g. Head of CRM"
+          required
         />
-        <Select label="What you want to lift" name="lift" options={LIFT_OPTIONS} />
-        <Select label="Annual bonus spend" name="spend" options={SPEND_OPTIONS} />
+        <Select
+          label="What you want to lift"
+          name="lift"
+          options={LIFT_OPTIONS}
+          required
+        />
+        <Select
+          label="Annual bonus spend"
+          name="spend"
+          options={SPEND_OPTIONS}
+          required
+        />
       </div>
 
       <Textarea
         label="Anything else"
         name="message"
+        optional
         placeholder="The metric, the timeline, the constraint — whatever helps us prep."
       />
 
@@ -150,21 +162,26 @@ function Select({
   label,
   name,
   options,
+  required,
 }: {
   label: string
   name: string
   options: readonly string[]
+  required?: boolean
 }) {
   return (
     <label className="flex flex-col gap-1.5">
       <span className="text-[13px] font-medium text-canon-ink">
         {label}
-        <span className="ml-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-quest-ink-faint">
-          optional
-        </span>
+        {!required && (
+          <span className="ml-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-quest-ink-faint">
+            optional
+          </span>
+        )}
       </span>
       <select
         name={name}
+        required={required}
         defaultValue=""
         className="rounded-[4px] border border-canon-line bg-canon-paper px-3 py-2.5 text-[14px] text-canon-ink outline-none transition focus:border-canon-green focus:ring-2 focus:ring-canon-green/20"
       >
@@ -185,18 +202,22 @@ function Textarea({
   label,
   name,
   placeholder,
+  optional,
 }: {
   label: string
   name: string
   placeholder?: string
+  optional?: boolean
 }) {
   return (
     <label className="mt-4 flex flex-col gap-1.5">
       <span className="text-[13px] font-medium text-canon-ink">
         {label}
-        <span className="ml-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-quest-ink-faint">
-          optional
-        </span>
+        {optional && (
+          <span className="ml-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-quest-ink-faint">
+            optional
+          </span>
+        )}
       </span>
       <textarea
         name={name}
