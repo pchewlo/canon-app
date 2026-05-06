@@ -1,7 +1,7 @@
 import { BookCallForm } from "@/components/marketing/BookCallForm"
 
 export const metadata = {
-  title: "Book a call — Canon",
+  title: "Book a call",
   description:
     "Tell us what you want to lift. We'll come back within one working day to schedule a 30-minute walkthrough on your data — yours or ours.",
 }

@@ -8,7 +8,7 @@ import { SectionBigStatSplit } from "@/components/marketing/sections"
 import { WelcomeBranchAnimation } from "@/components/marketing/animations/WelcomeBranchAnimation"
 
 export const metadata = {
-  title: "Welcome optimisation — Canon",
+  title: "Welcome optimisation",
   description:
     "Welcome bonuses are the biggest single line item in iGaming acquisition spend. Canon prices each one to the player, not the cohort.",
 }

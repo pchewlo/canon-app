@@ -15,7 +15,7 @@ import { SectionShell } from "@/components/marketing/SectionShell"
 import { IntegrationsFlowAnimation } from "@/components/marketing/animations/IntegrationsFlowAnimation"
 
 export const metadata = {
-  title: "Integrations — Canon",
+  title: "Integrations",
   description:
     "Canon plugs into the operator stack you already run — PAM, CDP, payments, KYC, data warehouse. Read events. Ship decisions. No replatforming.",
 }

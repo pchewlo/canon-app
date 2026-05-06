@@ -9,7 +9,7 @@ import { SafetyAuditShot } from "@/components/marketing/animations/SafetyAuditSh
 import { SafetyRGAnimation } from "@/components/marketing/animations/SafetyRGAnimation"
 
 export const metadata = {
-  title: "Safety — Canon",
+  title: "Safety",
   description:
     "Responsible-gaming guardrails enforced per decision. Audit trails by default. Jurisdictional rules engine. Operator-controlled limits Canon optimises within — never around.",
 }

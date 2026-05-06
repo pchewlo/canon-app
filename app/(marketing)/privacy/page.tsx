@@ -5,7 +5,7 @@ import {
   LegalUpdated,
 } from "@/components/legal/LegalContent"
 
-export const metadata = { title: "Privacy Policy — Canon" }
+export const metadata = { title: "Privacy Policy" }
 
 export default function PrivacyPage() {
   return (

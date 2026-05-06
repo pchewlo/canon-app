@@ -4,7 +4,7 @@ import {
   LegalShell,
 } from "@/components/legal/LegalContent"
 
-export const metadata = { title: "Contact — Canon" }
+export const metadata = { title: "Contact" }
 
 export default function ContactPage() {
   return (

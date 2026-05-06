@@ -8,7 +8,6 @@ import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
 import { PlayerJourney } from "@/components/landing/PlayerJourney"
 
 export const metadata = {
-  title: "Canon — The agentic platform for player bonuses",
   description:
     "Per-player AI agents that decide who gets a bonus, when, and how much — in real time. Operators see an 80% lift in ROI on bonus spend.",
 }

@@ -7,7 +7,7 @@ import { WaitlistForm } from "@/components/marketing/WaitlistForm"
 import { CryptoTradingAnimation } from "@/components/marketing/animations/CryptoTradingAnimation"
 
 export const metadata = {
-  title: "Crypto trading — Canon",
+  title: "Crypto trading",
   description:
     "Per-trader engagement is the next iGaming. Canon is building a crypto-trading version of its decisioning engine for exchanges and prediction markets.",
 }

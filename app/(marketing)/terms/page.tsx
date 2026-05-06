@@ -5,7 +5,7 @@ import {
   LegalUpdated,
 } from "@/components/legal/LegalContent"
 
-export const metadata = { title: "Terms of Service — Canon" }
+export const metadata = { title: "Terms of Service" }
 
 export default function TermsPage() {
   return (

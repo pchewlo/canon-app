@@ -9,7 +9,7 @@ import { SectionStatCards } from "@/components/marketing/sections"
 import { VIPLadderAnimation } from "@/components/marketing/animations/VIPLadderAnimation"
 
 export const metadata = {
-  title: "VIP management — Canon",
+  title: "VIP management",
   description:
     "VIP managers handle 30 players each. Canon handles the next 3,000. Per-player decisions for the long tail of high-value players your team can't reach.",
 }

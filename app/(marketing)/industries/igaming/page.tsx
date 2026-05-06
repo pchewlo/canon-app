@@ -9,7 +9,7 @@ import { SectionStatCards } from "@/components/marketing/sections"
 import { IGamingFlowAnimation } from "@/components/marketing/animations/IGamingFlowAnimation"
 
 export const metadata = {
-  title: "iGaming — Canon",
+  title: "iGaming",
   description:
     "Canon was built for iGaming first. Sportsbook, casino, live, and poker — per-player decisioning, RG-aware, regulator-ready, integrated with your existing PAM and CDP.",
 }

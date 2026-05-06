@@ -8,7 +8,7 @@ import { SectionBigStatSplit } from "@/components/marketing/sections"
 import { ReactivationHookAnimation } from "@/components/marketing/animations/ReactivationHookAnimation"
 
 export const metadata = {
-  title: "Reactivation — Canon",
+  title: "Reactivation",
   description:
     "Win back lapsed players without spending the bonus budget on those who would have come back anyway. Per-player elasticity decides who gets what, when.",
 }

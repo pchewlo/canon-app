@@ -7,7 +7,7 @@ import { PricingCard } from "@/components/marketing/PricingCard"
 import { SectionShell } from "@/components/marketing/SectionShell"
 
 export const metadata = {
-  title: "Pricing — Canon",
+  title: "Pricing",
   description:
     "Pay for the lift Canon delivers. 20% of the incremental value Canon creates — you keep the other 80%. Transparent unit economics.",
 }

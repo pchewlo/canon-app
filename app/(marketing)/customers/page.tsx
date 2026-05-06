@@ -4,7 +4,7 @@ import { PageHero } from "@/components/marketing/PageHero"
 import { SectionShell } from "@/components/marketing/SectionShell"
 
 export const metadata = {
-  title: "Customers — Canon",
+  title: "Customers",
   description:
     "Canon is currently piloting with a small set of iGaming operators. Real, named case studies will be published as pilots conclude.",
 }

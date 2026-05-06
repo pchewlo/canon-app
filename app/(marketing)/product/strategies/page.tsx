@@ -8,7 +8,7 @@ import { StrategyBuilderAnimation } from "@/components/marketing/animations/Stra
 import { StrategyPolicyShot } from "@/components/marketing/animations/StrategyPolicyShot"
 
 export const metadata = {
-  title: "Strategies — Canon",
+  title: "Strategies",
   description:
     "Operators set the goal, the budget, and the guardrails. Canon's strategies translate intent into per-decision policy — without writing rules.",
 }

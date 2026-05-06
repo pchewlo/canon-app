@@ -5,7 +5,7 @@ import {
   LegalUpdated,
 } from "@/components/legal/LegalContent"
 
-export const metadata = { title: "Cookie Policy — Canon" }
+export const metadata = { title: "Cookie Policy" }
 
 export default function CookiesPage() {
   return (

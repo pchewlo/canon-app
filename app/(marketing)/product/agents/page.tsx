@@ -8,7 +8,7 @@ import { AgentTimelineShot } from "@/components/marketing/animations/AgentTimeli
 import { AgentsGridShot } from "@/components/marketing/animations/AgentsGridShot"
 
 export const metadata = {
-  title: "Agents — Canon",
+  title: "Agents",
   description:
     "An agent per player. Every decision is shaped by that player's elasticity, lifecycle, and risk — and every action is inspectable, replayable, and explainable.",
 }

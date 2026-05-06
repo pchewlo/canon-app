@@ -17,7 +17,7 @@ import { OutcomesPanel } from "@/components/landing/OutcomesPanel"
 import { RetentionLifecycleAnimation } from "@/components/marketing/animations/RetentionLifecycleAnimation"
 
 export const metadata = {
-  title: "Retention — Canon",
+  title: "Retention",
   description:
     "Stop losing the players you spent to acquire. Per-player agents shape the right intervention at the right moment — not next week's cohort blast.",
 }

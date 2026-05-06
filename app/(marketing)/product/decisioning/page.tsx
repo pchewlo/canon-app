@@ -18,7 +18,7 @@ import { AgentReasoningAnimation } from "@/components/marketing/animations/Agent
 import { DecisioningAnimation } from "@/components/marketing/animations/DecisioningAnimation"
 
 export const metadata = {
-  title: "Decisioning — Canon",
+  title: "Decisioning",
   description:
     "The decisioning engine at the core of Canon. Per-player AI agents that evaluate every player event in real time and choose what to do — bonus, mission, cooldown, hold, or no action.",
 }

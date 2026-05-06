@@ -8,7 +8,7 @@ import { SectionBigStatSplit } from "@/components/marketing/sections"
 import { BonusAbuseAnimation } from "@/components/marketing/animations/BonusAbuseAnimation"
 
 export const metadata = {
-  title: "Bonus-abuse defence — Canon",
+  title: "Bonus-abuse defence",
   description:
     "Bonus-abuse hunters drain a meaningful slice of every operator's bonus budget. Canon detects them at decision time and routes them to no-action, not nudges.",
 }

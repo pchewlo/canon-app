@@ -17,7 +17,7 @@ import { InsightsLiftAnimation } from "@/components/marketing/animations/Insight
 import { InsightsWarehouseShot } from "@/components/marketing/animations/InsightsWarehouseShot"
 
 export const metadata = {
-  title: "Insights — Canon",
+  title: "Insights",
   description:
     "Holdout-based attribution, cohort comparisons, and per-strategy lift reporting — wired straight to your warehouse. Measure what Canon actually moved.",
 }

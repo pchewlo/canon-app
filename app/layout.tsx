@@ -22,15 +22,15 @@ const sourceSerif = Source_Serif_4({
 })
 
 const SITE_URL = "https://canon-app-seven.vercel.app"
-const TITLE = "Canon — The agentic platform for player bonuses"
+const HOME_TITLE = "Canon | The agentic platform for player bonuses"
 const DESCRIPTION =
   "Per-player AI agents that decide who gets a bonus, when, and how much — in real time. Built for regulated markets, priced on the lift we deliver."
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: TITLE,
-    template: "%s",
+    default: HOME_TITLE,
+    template: "Canon | %s",
   },
   description: DESCRIPTION,
   applicationName: "Canon",
@@ -47,12 +47,12 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Canon",
     url: SITE_URL,
-    title: TITLE,
+    title: HOME_TITLE,
     description: DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: TITLE,
+    title: HOME_TITLE,
     description: DESCRIPTION,
   },
   robots: {
