@@ -169,7 +169,7 @@ export default function CreatePlanPage() {
   const canLaunch = !!selectedObjective && dailyBudget > 0 && perPlayerCap > 0 && selectedTemplates.length > 0
 
   return (
-    <div className="space-y-4 pb-28 sm:space-y-6 lg:pb-0">
+    <div className="space-y-4 pb-28 sm:space-y-6 xl:pb-0">
       {/* Back link */}
       <button
         onClick={() => router.push("/app/strategies")}
@@ -191,9 +191,9 @@ export default function CreatePlanPage() {
       </h1>
 
       {/* Stacked on mobile, 2-col on lg+ */}
-      <div className="flex flex-col gap-6 lg:flex-row">
+      <div className="flex flex-col gap-6 xl:flex-row">
         {/* Wizard column */}
-        <div className="min-w-0 lg:flex-[3]">
+        <div className="min-w-0 xl:flex-[3]">
           <PlanWizard steps={steps} onStepClick={handleStepClick}>
             {/* Step 1: Objective */}
             <ObjectiveStep
@@ -240,7 +240,7 @@ export default function CreatePlanPage() {
           </PlanWizard>
 
           {/* Desktop action bar (hidden on mobile \u2014 sticky bar takes over) */}
-          <div className="mt-6 hidden items-center justify-end gap-3 border-t border-border pt-4 lg:flex">
+          <div className="mt-6 hidden items-center justify-end gap-3 border-t border-border pt-4 xl:flex">
             <button
               onClick={handleSaveDraft}
               className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-4 py-2 text-[13px] font-medium text-quest-ink transition-colors hover:bg-quest-surface-muted"
@@ -260,11 +260,11 @@ export default function CreatePlanPage() {
         </div>
 
         {/* Strategy preview \u2014 full-width on mobile, sticky right on lg+ */}
-        <div className="lg:flex-[2]">
-          <div className="rounded-lg border border-border bg-card p-5 lg:sticky lg:top-6">
+        <div className="xl:flex-[2]">
+          <div className="rounded-lg border border-border bg-card p-5 xl:sticky xl:top-6">
             <h3 className="mb-4 text-[14px] font-medium text-quest-ink">Strategy preview</h3>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-1">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 xl:grid-cols-1">
               {/* Objective */}
               <div className="flex flex-col gap-1">
                 <span className="text-[11px] font-medium uppercase tracking-wide text-quest-ink-faint">Objective</span>
@@ -313,7 +313,7 @@ export default function CreatePlanPage() {
               </div>
 
               {/* Guardrails \u2014 spans full preview row when stacked */}
-              <div className="col-span-2 flex flex-col gap-1 sm:col-span-3 lg:col-span-1">
+              <div className="col-span-2 flex flex-col gap-1 sm:col-span-3 xl:col-span-1">
                 <span className="text-[11px] font-medium uppercase tracking-wide text-quest-ink-faint">Guardrails</span>
                 <div className="flex flex-col gap-0.5">
                   <span className="text-[12px] text-quest-ink-muted">
@@ -354,7 +354,7 @@ export default function CreatePlanPage() {
       </div>
 
       {/* Mobile sticky action bar */}
-      <div className="fixed inset-x-0 bottom-0 z-20 flex items-center gap-2 border-t border-border bg-card/95 p-3 backdrop-blur supports-[backdrop-filter]:bg-card/80 lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-20 flex items-center gap-2 border-t border-border bg-card/95 p-3 backdrop-blur supports-[backdrop-filter]:bg-card/80 xl:hidden">
         <button
           onClick={handleSaveDraft}
           className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg border border-border bg-card text-[13px] font-medium text-quest-ink transition-colors hover:bg-quest-surface-muted"
