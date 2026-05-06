@@ -62,7 +62,7 @@ export function BudgetStep({
   }, [dailyBudget, perPlayerCap, controlGroupPct])
 
   return (
-    <div className="flex gap-6">
+    <div className="flex flex-col gap-6 sm:flex-row">
       {/* Inputs */}
       <div className="flex flex-1 flex-col gap-5">
         <p className="text-[13px] text-quest-ink-muted">
@@ -163,7 +163,7 @@ export function BudgetStep({
 
       {/* Projections panel */}
       <div
-        className="flex w-[200px] shrink-0 flex-col gap-3 rounded-lg p-4"
+        className="flex w-full flex-col gap-3 rounded-lg p-4 sm:w-[200px] sm:shrink-0"
         style={{
           background: '#FBFBFA',
           border: '1px solid rgba(55,53,47,0.09)',

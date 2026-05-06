@@ -197,7 +197,7 @@ export function GuardrailsStep({
           Select which templates agents can use. At least one required.
         </p>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {availableTemplates.map((template) => {
             const isSelected = selectedTemplates.includes(template.id)
             return (

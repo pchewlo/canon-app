@@ -169,7 +169,7 @@ export default function CreatePlanPage() {
   const canLaunch = !!selectedObjective && dailyBudget > 0 && perPlayerCap > 0 && selectedTemplates.length > 0
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 pb-28 sm:space-y-6 lg:pb-0">
       {/* Back link */}
       <button
         onClick={() => router.push("/app/strategies")}
@@ -179,12 +179,21 @@ export default function CreatePlanPage() {
         Strategies
       </button>
 
-      <h1 className="text-[32px] font-medium text-quest-ink">Create strategy</h1>
+      <h1
+        className="font-medium text-quest-ink"
+        style={{
+          fontSize: "clamp(24px, 6vw, 32px)",
+          letterSpacing: "-0.018em",
+          lineHeight: 1.15,
+        }}
+      >
+        Create strategy
+      </h1>
 
-      {/* Two column layout */}
-      <div className="flex gap-6">
-        {/* Left: Wizard steps (60%) */}
-        <div className="flex-[3] min-w-0">
+      {/* Stacked on mobile, 2-col on lg+ */}
+      <div className="flex flex-col gap-6 lg:flex-row">
+        {/* Wizard column */}
+        <div className="min-w-0 lg:flex-[3]">
           <PlanWizard steps={steps} onStepClick={handleStepClick}>
             {/* Step 1: Objective */}
             <ObjectiveStep
@@ -214,7 +223,7 @@ export default function CreatePlanPage() {
                 <button
                   onClick={() => setCurrentStep(3)}
                   disabled={!cohortFilter.stakeBand?.length && !cohortFilter.lifecycle?.length}
-                  className="rounded-lg bg-quest-accent px-4 py-2 text-[13px] font-medium text-white transition-colors hover:bg-quest-accent/90 disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="w-full rounded-lg bg-quest-accent px-4 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-quest-accent/90 disabled:opacity-40 disabled:cursor-not-allowed sm:w-auto sm:py-2"
                 >
                   Continue
                 </button>
@@ -230,8 +239,8 @@ export default function CreatePlanPage() {
             />
           </PlanWizard>
 
-          {/* Bottom buttons */}
-          <div className="mt-6 flex items-center justify-end gap-3 border-t border-border pt-4">
+          {/* Desktop action bar (hidden on mobile \u2014 sticky bar takes over) */}
+          <div className="mt-6 hidden items-center justify-end gap-3 border-t border-border pt-4 lg:flex">
             <button
               onClick={handleSaveDraft}
               className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-4 py-2 text-[13px] font-medium text-quest-ink transition-colors hover:bg-quest-surface-muted"
@@ -250,12 +259,12 @@ export default function CreatePlanPage() {
           </div>
         </div>
 
-        {/* Right: Strategy preview (40%) */}
-        <div className="flex-[2]">
-          <div className="sticky top-6 rounded-lg border border-border bg-card p-5">
+        {/* Strategy preview \u2014 full-width on mobile, sticky right on lg+ */}
+        <div className="lg:flex-[2]">
+          <div className="rounded-lg border border-border bg-card p-5 lg:sticky lg:top-6">
             <h3 className="mb-4 text-[14px] font-medium text-quest-ink">Strategy preview</h3>
 
-            <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-1">
               {/* Objective */}
               <div className="flex flex-col gap-1">
                 <span className="text-[11px] font-medium uppercase tracking-wide text-quest-ink-faint">Objective</span>
@@ -303,8 +312,8 @@ export default function CreatePlanPage() {
                 )}
               </div>
 
-              {/* Guardrails */}
-              <div className="flex flex-col gap-1">
+              {/* Guardrails \u2014 spans full preview row when stacked */}
+              <div className="col-span-2 flex flex-col gap-1 sm:col-span-3 lg:col-span-1">
                 <span className="text-[11px] font-medium uppercase tracking-wide text-quest-ink-faint">Guardrails</span>
                 <div className="flex flex-col gap-0.5">
                   <span className="text-[12px] text-quest-ink-muted">
@@ -331,17 +340,36 @@ export default function CreatePlanPage() {
                   <span className="text-[14px] tabular-nums text-quest-ink">{estimatedAgents.toLocaleString()}</span>
                 </div>
               )}
+            </div>
 
-              {/* Calibration estimate */}
-              <div className="mt-2 rounded-md border border-border bg-quest-surface-muted/50 px-3 py-2.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-[12px] text-quest-ink-faint">Estimated calibration</span>
-                  <span className="text-[13px] font-medium tabular-nums text-quest-ink">~72 hours</span>
-                </div>
+            {/* Calibration estimate */}
+            <div className="mt-4 rounded-md border border-border bg-quest-surface-muted/50 px-3 py-2.5">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[12px] text-quest-ink-faint">Estimated calibration</span>
+                <span className="text-[13px] font-medium tabular-nums text-quest-ink whitespace-nowrap">~72 hours</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Mobile sticky action bar */}
+      <div className="fixed inset-x-0 bottom-0 z-20 flex items-center gap-2 border-t border-border bg-card/95 p-3 backdrop-blur supports-[backdrop-filter]:bg-card/80 lg:hidden">
+        <button
+          onClick={handleSaveDraft}
+          className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-lg border border-border bg-card text-[13px] font-medium text-quest-ink transition-colors hover:bg-quest-surface-muted"
+        >
+          <Save size={14} strokeWidth={1.5} />
+          Save draft
+        </button>
+        <button
+          onClick={handleLaunch}
+          disabled={!canLaunch}
+          className="inline-flex h-11 flex-[1.4] items-center justify-center gap-1.5 rounded-lg bg-quest-accent text-[13px] font-semibold text-white transition-colors hover:bg-quest-accent/90 disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          <Rocket size={14} strokeWidth={1.5} />
+          Launch
+        </button>
       </div>
     </div>
   )
