@@ -288,7 +288,7 @@ export default function PlanDetailPage({
       </div>
 
       {/* KPI row */}
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <KPICard
           label="Active agents"
           value={stats.activeAgents}
@@ -407,7 +407,7 @@ export default function PlanDetailPage({
         </TabsContent>
 
         <TabsContent value="settings" className="pt-4">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {/* Objective & Budget */}
             <div className="rounded-lg border border-border bg-card p-4">
               <h4 className="mb-3 text-[12px] font-medium uppercase tracking-wide text-quest-ink-faint">Objective & Budget</h4>

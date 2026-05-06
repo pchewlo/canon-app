@@ -170,7 +170,7 @@ export default function OverviewPage() {
       </p>
 
       {/* KPI Row */}
-      <div className="grid grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
         <KPICard
           label="Active agents"
           value={formatNumber(kpis.activeAgents)}
@@ -190,7 +190,7 @@ export default function OverviewPage() {
         />
 
         {/* Double-width retention comparison card */}
-        <div className="col-span-2 rounded-lg border border-border bg-card overflow-hidden">
+        <div className="rounded-lg border border-border bg-card overflow-hidden sm:col-span-2">
           <div className="px-4 pt-3 pb-1">
             <span className="text-[10px] font-semibold uppercase tracking-widest text-quest-ink-faint">A/B test results</span>
           </div>
@@ -228,17 +228,17 @@ export default function OverviewPage() {
       </div>
 
       {/* Main content: Chart + Live Feed */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* Left: Performance chart */}
-        <div className="col-span-2 rounded-lg border border-border bg-card p-4">
+        <div className="rounded-lg border border-border bg-card p-4 lg:col-span-2">
           <p className="mb-2 text-[12px] text-quest-ink-faint">
             Performance across all active strategies over the last 7 days.
           </p>
-          <div className="mb-3 flex items-center justify-between">
+          <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-[15px] font-medium text-quest-ink">
               Performance &middot; last 7 days
             </h2>
-            <div className="flex items-center gap-1.5">
+            <div className="flex flex-wrap items-center gap-1.5">
               {allSeriesDefs.map((s) => {
                 const isSelected = selectedKeys.includes(s.key)
                 return (
@@ -286,7 +286,7 @@ export default function OverviewPage() {
         </div>
 
         {/* Right: Live feed */}
-        <div className="col-span-1 flex flex-col [&>div]:flex-1 [&>div]:max-h-[440px]">
+        <div className="flex flex-col [&>div]:flex-1 [&>div]:max-h-[440px]">
           <LiveFeed decisions={liveFeed} maxItems={20} />
         </div>
       </div>

@@ -335,7 +335,7 @@ export default function PlansPage() {
       </div>
 
       {/* Filter row */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <div className="relative flex-1 max-w-xs">
           <Search
             size={14}

@@ -2,10 +2,14 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Search, Bell, Plus, User, Settings, HelpCircle, LogOut } from "lucide-react"
+import { Search, Bell, Plus, User, Settings, HelpCircle, LogOut, Menu } from "lucide-react"
 import Link from "next/link"
 
-export function TopBar() {
+type Props = {
+  onMenu?: () => void
+}
+
+export function TopBar({ onMenu }: Props) {
   const [avatarOpen, setAvatarOpen] = useState(false)
   const avatarRef = useRef<HTMLDivElement>(null)
 
@@ -21,21 +25,57 @@ export function TopBar() {
   }, [])
 
   return (
-    <header className="flex h-14 shrink-0 items-center justify-end border-b border-border bg-card px-5">
-      <div className="flex items-center gap-2">
+    <header className="flex h-14 shrink-0 items-center justify-between gap-2 border-b border-border bg-card px-3 sm:px-5">
+      {/* Mobile: hamburger + wordmark on the left. Hidden on lg+. */}
+      <div className="flex items-center gap-2 lg:hidden">
+        <button
+          type="button"
+          onClick={onMenu}
+          aria-label="Open navigation"
+          className="-ml-1 flex h-9 w-9 items-center justify-center rounded-md text-quest-ink-muted hover:bg-quest-surface-muted active:bg-quest-surface-muted"
+        >
+          <Menu size={18} strokeWidth={1.5} />
+        </button>
+        <span
+          className="text-quest-accent uppercase"
+          style={{
+            fontFamily:
+              'var(--font-brand, "Iowan Old Style", Palatino, Georgia, serif)',
+            fontSize: "13px",
+            fontWeight: 400,
+            letterSpacing: "0.26em",
+            lineHeight: 1,
+          }}
+        >
+          Canon
+        </span>
+      </div>
+
+      {/* Spacer pushes the actions right on lg+ where the sidebar already
+          shows the brand. */}
+      <div className="hidden lg:block lg:flex-1" />
+
+      <div className="flex items-center gap-1.5 sm:gap-2">
         <Link href="/app/strategies/new">
           <Button
             size="sm"
-            className="h-8 gap-1.5 bg-quest-accent text-white hover:bg-quest-accent/90 text-[13px]"
+            className="h-9 gap-1.5 bg-quest-accent text-white hover:bg-quest-accent/90 text-[13px] sm:h-8"
+            aria-label="Create strategy"
           >
             <Plus size={14} strokeWidth={2} />
-            Create strategy
+            <span className="hidden sm:inline">Create strategy</span>
           </Button>
         </Link>
-        <button className="flex h-8 w-8 items-center justify-center rounded-md text-quest-ink-muted hover:bg-quest-surface-muted transition-colors">
+        <button
+          aria-label="Search"
+          className="flex h-9 w-9 items-center justify-center rounded-md text-quest-ink-muted hover:bg-quest-surface-muted transition-colors sm:h-8 sm:w-8"
+        >
           <Search size={16} strokeWidth={1.5} />
         </button>
-        <button className="flex h-8 w-8 items-center justify-center rounded-md text-quest-ink-muted hover:bg-quest-surface-muted transition-colors">
+        <button
+          aria-label="Notifications"
+          className="flex h-9 w-9 items-center justify-center rounded-md text-quest-ink-muted hover:bg-quest-surface-muted transition-colors sm:h-8 sm:w-8"
+        >
           <Bell size={16} strokeWidth={1.5} />
         </button>
 
@@ -43,7 +83,9 @@ export function TopBar() {
         <div ref={avatarRef} className="relative">
           <button
             onClick={() => setAvatarOpen(!avatarOpen)}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-quest-surface-muted text-quest-ink-faint"
+            aria-label="Account menu"
+            aria-expanded={avatarOpen}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-quest-surface-muted text-quest-ink-faint sm:h-8 sm:w-8"
           >
             <User size={14} strokeWidth={1.5} />
           </button>
