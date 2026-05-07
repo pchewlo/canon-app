@@ -64,7 +64,8 @@ function SpecH2({
   size?: "md" | "lg"
   className?: string
 }) {
-  const fontSize = size === "lg" ? "40px" : "32px"
+  const fontSize =
+    size === "lg" ? "clamp(28px, 6vw, 40px)" : "clamp(24px, 5vw, 32px)"
   const maxW = size === "lg" ? "22ch" : "26ch"
   return (
     <h2
@@ -250,9 +251,7 @@ function HowItWorks() {
         <div className="max-w-4xl">
           <SpecEyebrow className="mb-5">How it works</SpecEyebrow>
           <SpecH2 size="lg">
-            <span className="whitespace-nowrap">You set the goal and the budget.</span>
-            <br />
-            <span className="whitespace-nowrap">The agents do the rest.</span>
+            You set the goal and the budget. The agents do the rest.
           </SpecH2>
         </div>
 
