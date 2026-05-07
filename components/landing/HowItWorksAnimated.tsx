@@ -87,9 +87,12 @@ export function HowItWorksAnimated() {
         })}
       </div>
 
-      {/* Animated screen panel */}
-      <div className="col-span-12 lg:col-span-7">
-        <div className="relative h-[480px] sm:h-[440px] rounded-xl border border-border bg-white shadow-[0_18px_60px_-20px_rgba(26,35,50,0.18)] overflow-hidden">
+      {/* Animated screen panel — hidden on mobile so the steps are the whole
+          story below lg. The screen mockups are too dense to read on a
+          ~360 px viewport, and stacking them under the step list creates a
+          disconnect between the "click step" affordance and the visual. */}
+      <div className="hidden lg:block lg:col-span-7">
+        <div className="relative h-[440px] rounded-xl border border-border bg-white shadow-[0_18px_60px_-20px_rgba(26,35,50,0.18)] overflow-hidden">
           <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
             <span
               className="text-quest-accent uppercase"

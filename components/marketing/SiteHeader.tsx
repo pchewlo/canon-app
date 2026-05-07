@@ -123,8 +123,9 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-white/85 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-6 px-6">
+    <>
+      <header className="sticky top-0 z-50 border-b border-border bg-white/85 backdrop-blur">
+        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-6 px-6">
         <Link href="/" className="inline-flex items-center shrink-0">
           <Wordmark size={14} />
         </Link>
@@ -250,12 +251,16 @@ export function SiteHeader() {
             <Menu size={18} strokeWidth={1.6} />
           </button>
         </div>
-      </div>
+        </div>
+      </header>
 
+      {/* MobileMenu lives outside <header> so its position:fixed escapes the
+          header's backdrop-filter containing block and actually covers the
+          viewport (not just the 56 px header bar). */}
       {mobileOpen && (
         <MobileMenu pathname={pathname} onClose={() => setMobileOpen(false)} />
       )}
-    </header>
+    </>
   )
 }
 

@@ -55,8 +55,8 @@ export function DashboardSnapshot() {
         </span>
       </div>
 
-      <div className="flex-1 bg-white p-5 space-y-5">
-        <div className="grid grid-cols-3 gap-3">
+      <div className="flex-1 bg-white p-3 space-y-4 sm:p-5 sm:space-y-5">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           <PreviewKPI label="Active agents" value={agents.toLocaleString("en-GB")} />
           <PreviewKPI
             label="Today's spend"
@@ -102,19 +102,21 @@ function PreviewKPI({
   accent?: boolean
 }) {
   return (
-    <div className="relative flex flex-col gap-1.5 rounded-lg border border-border bg-card p-3.5 overflow-hidden">
-      <span className="text-[10px] font-medium uppercase tracking-wide text-quest-ink-faint">
+    <div className="relative flex flex-col gap-1 rounded-lg border border-border bg-card p-2.5 sm:p-3.5 sm:gap-1.5 overflow-hidden">
+      <span className="text-[9px] sm:text-[10px] font-medium uppercase tracking-wide text-quest-ink-faint">
         {label}
       </span>
       <span
-        className={`text-[24px] font-semibold tabular-nums leading-none ${
+        className={`text-[16px] sm:text-[24px] font-semibold tabular-nums leading-none ${
           accent ? "text-quest-success" : "text-quest-ink"
         }`}
       >
         {value}
       </span>
       {subtitle && (
-        <span className="text-[11px] text-quest-ink-faint">{subtitle}</span>
+        <span className="text-[10px] sm:text-[11px] text-quest-ink-faint leading-tight">
+          {subtitle}
+        </span>
       )}
       {progress !== undefined && (
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-quest-surface-muted">
