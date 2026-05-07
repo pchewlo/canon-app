@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
-import { submitPassword } from "@/app/[operator]/actions"
+import { submitPassword } from "@/app/proposals/[operator]/actions"
 
 type Props = {
   slug: string
