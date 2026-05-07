@@ -33,19 +33,19 @@ export function HowItWorksAnimated() {
   }, [])
 
   return (
-    <div className="grid grid-cols-12 gap-x-10 gap-y-10 items-start">
+    <div className="grid grid-cols-12 gap-x-6 gap-y-8 items-start lg:gap-x-10 lg:gap-y-10">
       {/* Steps list */}
-      <div className="col-span-12 lg:col-span-5 space-y-3">
+      <div className="col-span-12 space-y-2 sm:space-y-3 lg:col-span-5">
         {STEPS.map((s, i) => {
           const isActive = active === i
           return (
             <button
               key={s.n}
               onClick={() => setActive(i)}
-              className={`relative w-full text-left p-5 rounded-xl border transition-colors ${
+              className={`relative w-full text-left rounded-xl border p-4 transition-colors sm:p-5 ${
                 isActive
-                  ? "bg-white border-border shadow-sm"
-                  : "bg-transparent border-transparent hover:bg-white/40"
+                  ? "bg-canon-paper border-canon-line lg:shadow-sm"
+                  : "bg-transparent border-transparent hover:bg-canon-paper/40"
               }`}
             >
               <div className="flex items-baseline gap-3">
@@ -89,7 +89,7 @@ export function HowItWorksAnimated() {
 
       {/* Animated screen panel */}
       <div className="col-span-12 lg:col-span-7">
-        <div className="relative h-[440px] rounded-xl border border-border bg-white shadow-[0_18px_60px_-20px_rgba(26,35,50,0.18)] overflow-hidden">
+        <div className="relative h-[480px] sm:h-[440px] rounded-xl border border-border bg-white shadow-[0_18px_60px_-20px_rgba(26,35,50,0.18)] overflow-hidden">
           <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
             <span
               className="text-quest-accent uppercase"
@@ -111,7 +111,7 @@ export function HowItWorksAnimated() {
             </span>
           </div>
 
-          <div className="relative h-[392px] overflow-hidden">
+          <div className="relative h-[432px] sm:h-[392px] overflow-hidden">
             <AnimatePresence mode="wait">
               {active === 0 && (
                 <Screen key="s1">
@@ -143,7 +143,7 @@ function Screen({ children }: { children: React.ReactNode }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="absolute inset-0 p-6"
+      className="absolute inset-0 p-4 sm:p-6"
     >
       {children}
     </motion.div>
