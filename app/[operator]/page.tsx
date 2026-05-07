@@ -43,12 +43,18 @@ export default async function OperatorAppendixPage({
   const config = getOperatorConfig(operator)
   if (!config) notFound()
 
-  const jar = await cookies()
-  const cookieValue = jar.get(cookieNameFor(operator))?.value
-  const authed = verifyCookieValue(operator, cookieValue)
+  // Testing escape hatch: set APPENDIX_BYPASS_GATE=1 in Vercel env to skip
+  // the password gate entirely. Flip back off (or unset) before sending the
+  // link to an operator.
+  const bypass = process.env.APPENDIX_BYPASS_GATE === "1"
 
-  if (!authed) {
-    return <PasswordGate slug={operator} operatorName={config.name} />
+  if (!bypass) {
+    const jar = await cookies()
+    const cookieValue = jar.get(cookieNameFor(operator))?.value
+    const authed = verifyCookieValue(operator, cookieValue)
+    if (!authed) {
+      return <PasswordGate slug={operator} operatorName={config.name} />
+    }
   }
 
   return <Appendix config={config} />
