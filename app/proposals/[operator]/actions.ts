@@ -2,7 +2,6 @@
 
 import { cookies } from "next/headers"
 import {
-  COOKIE_TTL_DAYS,
   comparePassword,
   cookieNameFor,
   getOperatorPassword,
@@ -43,5 +42,3 @@ export async function submitPassword(
 
   return { ok: true }
 }
-
-export const COOKIE_TTL = COOKIE_TTL_DAYS
