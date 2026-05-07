@@ -15,7 +15,6 @@ const TOC = [
   { id: "security", label: "Data, security, RG" },
   { id: "decision-traces", label: "Decision trace examples" },
   { id: "commercial", label: "Commercial detail" },
-  { id: "team", label: "Team" },
 ] as const
 
 export function Appendix({ config }: { config: OperatorConfig }) {
@@ -35,7 +34,6 @@ export function Appendix({ config }: { config: OperatorConfig }) {
       <Security />
       <DecisionTraces config={config} symbol={symbol} />
       <Commercial config={config} />
-      <Team />
       <Footer config={config} lastUpdated={lastUpdated} />
     </main>
   )
@@ -87,10 +85,10 @@ function Intro({ config }: { config: OperatorConfig }) {
           className="mt-4 text-balance font-semibold leading-[1.1] tracking-[-0.022em] text-canon-ink"
           style={{ fontSize: "clamp(32px, 6vw, 48px)" }}
         >
-          The detail behind the two-pager.
+          The detail behind the 1-pager.
         </h1>
         <p className="mt-6 max-w-[58ch] text-[16px] leading-[1.65] text-quest-ink-muted">
-          This appendix expands on the two-page pilot proposal sent to{" "}
+          This appendix expands on the 1-page pilot proposal sent to{" "}
           {config.name}. It contains the operational, technical, and
           methodological detail your team will want to evaluate before
           agreeing to a pilot. Read it in full, or jump to the section
@@ -470,59 +468,7 @@ function Commercial({ config }: { config: OperatorConfig }) {
 }
 
 // ============================================================================
-// 8 — Team
-// ============================================================================
-
-function Team() {
-  return (
-    <Section id="team" eyebrow="08 · Team" title="Who's building this.">
-      <TeamRow
-        name="Tom Littler"
-        role="CEO & co-founder"
-        body="Builds the product and runs commercial. Prior: founder-operator across a handful of consumer products. Reachable on tom@getcanon.io."
-      />
-      <TeamRow
-        name="Aaron"
-        role="Co-founder, engineering"
-        body="Owns the decision engine and integration surface. Prior: senior engineering at scale-up consumer products with real-time decisioning."
-      />
-      <TeamRow
-        name="Charles"
-        role="Co-founder, ML"
-        body="Owns the policy + safety models. Prior: applied research, with shipped models in regulated environments."
-      />
-    </Section>
-  )
-}
-
-function TeamRow({
-  name,
-  role,
-  body,
-}: {
-  name: string
-  role: string
-  body: string
-}) {
-  return (
-    <div className="border-t border-canon-line-soft py-5 first-of-type:border-t-0 first-of-type:pt-0">
-      <div className="flex items-baseline justify-between gap-4">
-        <span className="text-[15px] font-semibold tracking-[-0.005em] text-canon-ink">
-          {name}
-        </span>
-        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-quest-ink-faint">
-          {role}
-        </span>
-      </div>
-      <p className="mt-2 text-[14px] leading-[1.65] text-quest-ink-muted">
-        {body}
-      </p>
-    </div>
-  )
-}
-
-// ============================================================================
-// 9 — Footer
+// Footer
 // ============================================================================
 
 function Footer({
