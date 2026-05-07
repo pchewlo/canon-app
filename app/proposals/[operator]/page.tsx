@@ -7,6 +7,7 @@ import {
 } from "@/lib/appendix/operators"
 import { Appendix } from "@/components/appendix/Appendix"
 import { PasswordGate } from "@/components/appendix/PasswordGate"
+import { SiteHeader } from "@/components/marketing/SiteHeader"
 
 export const dynamic = "force-dynamic"
 
@@ -48,14 +49,21 @@ export default async function OperatorAppendixPage({
   // link to an operator.
   const bypass = process.env.APPENDIX_BYPASS_GATE === "1"
 
-  if (!bypass) {
+  let authed = bypass
+  if (!authed) {
     const jar = await cookies()
     const cookieValue = jar.get(cookieNameFor(operator))?.value
-    const authed = verifyCookieValue(operator, cookieValue)
-    if (!authed) {
-      return <PasswordGate slug={operator} operatorName={config.name} />
-    }
+    authed = verifyCookieValue(operator, cookieValue)
   }
 
-  return <Appendix config={config} />
+  return (
+    <>
+      <SiteHeader />
+      {authed ? (
+        <Appendix config={config} />
+      ) : (
+        <PasswordGate slug={operator} operatorName={config.name} />
+      )}
+    </>
+  )
 }

@@ -30,23 +30,10 @@ export function PasswordGate({ slug, operatorName }: Props) {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-canon-cream px-6">
+    <div className="flex min-h-[calc(100svh-56px)] items-center justify-center bg-canon-cream px-6 py-12">
       <div className="w-full max-w-sm">
         <div className="text-center">
-          <span
-            className="text-canon-navy uppercase"
-            style={{
-              fontFamily:
-                'var(--font-brand, "Iowan Old Style", Palatino, Georgia, serif)',
-              fontSize: 18,
-              fontWeight: 400,
-              letterSpacing: "0.26em",
-              lineHeight: 1,
-            }}
-          >
-            Canon
-          </span>
-          <p className="mt-6 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-quest-ink-faint">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-quest-ink-faint">
             Pilot proposal appendix
           </p>
           <h1 className="mt-3 text-balance text-[24px] font-semibold leading-[1.2] tracking-[-0.018em] text-canon-ink">
