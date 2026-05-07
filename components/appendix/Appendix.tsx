@@ -34,7 +34,7 @@ export function Appendix({ config }: { config: OperatorConfig }) {
       <Integration config={config} />
       <Security />
       <DecisionTraces config={config} symbol={symbol} />
-      <Commercial config={config} symbol={symbol} />
+      <Commercial config={config} />
       <Team />
       <Footer config={config} lastUpdated={lastUpdated} />
     </main>
@@ -429,18 +429,12 @@ function DecisionTraces({
 // 7 — Commercial detail
 // ============================================================================
 
-function Commercial({
-  config,
-  symbol,
-}: {
-  config: OperatorConfig
-  symbol: string
-}) {
+function Commercial({ config }: { config: OperatorConfig }) {
   return (
     <Section
       id="commercial"
       eyebrow="07 · Commercial"
-      title="What's in scope, what's out, and what underperformance costs us."
+      title="What's in scope, and what's out."
     >
       <DataGrid
         rows={[
@@ -453,27 +447,11 @@ function Commercial({
             "Acquisition bonuses (sign-up offers, deposit-match welcome packages) — these stay on your existing acquisition flows. Affiliate-driven promotional spend. Manually-overridden VIP gestures issued by your team directly.",
           ],
           [
-            "Invoicing",
-            `Monthly invoices, net 30 terms, ${config.currency} or USD at your preference. First invoice issued in the month following pilot completion — no charges during the 90-day pilot itself.`,
-          ],
-          [
             "Termination",
             "You can terminate at any time during the pilot or post-pilot, with 30 days' notice. Canon retains the right to terminate if RG protocols are violated or if data access becomes restricted.",
           ],
         ]}
       />
-
-      <SubHeading>Underperformance refund</SubHeading>
-      <Body>
-        If Canon&apos;s bonus ROI on the test arm is below the control
-        arm&apos;s ROI at the end of the 90-day pilot, Canon pays{" "}
-        {config.name} <strong>
-          {symbol}
-          {config.underperformanceRefund.toLocaleString("en-GB")}
-        </strong>{" "}
-        within 30 days of the result confirmation. Both arms are measured
-        by the same methodology defined in section 03.
-      </Body>
 
       <SubHeading>Term sheet</SubHeading>
       <Body>

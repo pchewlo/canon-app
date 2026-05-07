@@ -22,11 +22,6 @@ export type OperatorConfig = {
   /** Currency for commercial detail */
   currency: "GBP" | "USD" | "EUR"
   /**
-   * Underperformance refund amount. The two-pager promised this; the
-   * appendix references it in the commercial section.
-   */
-  underperformanceRefund: number
-  /**
    * Optional notes to the team in the commercial section. Anything
    * operator-specific worth flagging.
    */

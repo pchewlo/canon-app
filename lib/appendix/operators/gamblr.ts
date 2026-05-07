@@ -13,7 +13,4 @@ export const gamblr: OperatorConfig = {
   ],
   defaultMonthlyBonusSpend: 100_000,
   currency: "GBP",
-  underperformanceRefund: 25_000,
-  commercialNotes:
-    "Invoicing in GBP with USD reference available — Gamblr is crypto-native and likely operates primarily in USD.",
 }
