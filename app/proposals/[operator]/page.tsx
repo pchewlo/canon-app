@@ -1,13 +1,14 @@
+import Link from "next/link"
 import { cookies } from "next/headers"
 import { notFound } from "next/navigation"
 import { cookieNameFor, verifyCookieValue } from "@/lib/appendix/auth"
 import {
   getOperatorConfig,
   listOperatorSlugs,
+  type OperatorConfig,
 } from "@/lib/appendix/operators"
 import { Appendix } from "@/components/appendix/Appendix"
 import { PasswordGate } from "@/components/appendix/PasswordGate"
-import { SiteHeader } from "@/components/marketing/SiteHeader"
 
 export const dynamic = "force-dynamic"
 
@@ -57,13 +58,55 @@ export default async function OperatorAppendixPage({
   }
 
   return (
-    <>
-      <SiteHeader />
+    <div className="bg-canon-cream">
+      <ProposalHeader config={config} />
       {authed ? (
         <Appendix config={config} />
       ) : (
         <PasswordGate slug={operator} operatorName={config.name} />
       )}
-    </>
+    </div>
+  )
+}
+
+function ProposalHeader({ config }: { config: OperatorConfig }) {
+  return (
+    <header
+      className="grid grid-cols-3 items-center border-b border-canon-line bg-canon-cream px-5 py-3 text-[12px] sm:px-8"
+      style={{ color: "rgba(55,53,47,0.7)" }}
+    >
+      <Link
+        href="/"
+        className="justify-self-start hover:opacity-80"
+        style={{
+          fontFamily:
+            '"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif',
+          letterSpacing: "0.32em",
+          fontSize: 13,
+          color: "#1A2332",
+        }}
+      >
+        CANON
+      </Link>
+
+      <div className="hidden justify-self-center font-mono text-[11px] uppercase tracking-[0.14em] text-quest-ink-faint sm:block">
+        Proposal · {config.name}
+      </div>
+
+      <nav className="justify-self-end flex items-center gap-5">
+        <Link
+          href="/"
+          className="text-canon-ink/70 transition-colors hover:text-canon-ink"
+        >
+          Site
+        </Link>
+        <Link
+          href="/app"
+          className="text-canon-ink/70 transition-colors hover:text-canon-ink"
+        >
+          Product demo
+        </Link>
+      </nav>
+    </header>
   )
 }

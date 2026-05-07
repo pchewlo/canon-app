@@ -30,7 +30,7 @@ export function PasswordGate({ slug, operatorName }: Props) {
   }
 
   return (
-    <div className="flex min-h-[calc(100svh-56px)] items-center justify-center bg-canon-cream px-6 py-12">
+    <div className="flex min-h-[calc(100svh-49px)] items-center justify-center bg-canon-cream px-6 py-12">
       <div className="w-full max-w-sm">
         <div className="text-center">
           <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-quest-ink-faint">
