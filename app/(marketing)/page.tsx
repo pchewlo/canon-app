@@ -131,7 +131,7 @@ function Hero() {
 function Problem() {
   return (
     <section className="relative bg-canon-navy text-white">
-      <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
             <SpecEyebrow dark className="mb-5">The problem</SpecEyebrow>
@@ -172,14 +172,21 @@ function OperatorBreakdown() {
       <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-white/55">
         If you&apos;re spending
       </div>
-      <div className="mt-2 flex items-baseline gap-3">
+      <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <span
           className="text-white tabular-nums leading-none"
-          style={{ fontFamily: "var(--font-sans)", fontSize: 56, fontWeight: 600, letterSpacing: "-0.02em" }}
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "clamp(40px, 12vw, 56px)",
+            fontWeight: 600,
+            letterSpacing: "-0.02em",
+          }}
         >
           £1M
         </span>
-        <span className="text-[14px] text-white/60">a year on player bonuses</span>
+        <span className="text-[13px] sm:text-[14px] text-white/60">
+          a year on player bonuses
+        </span>
       </div>
 
       <div className="mt-7 flex h-12 rounded-md overflow-hidden">
@@ -247,7 +254,7 @@ function OperatorBreakdown() {
 function HowItWorks() {
   return (
     <section className="bg-canon-cream">
-      <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-32">
         <div className="max-w-4xl">
           <SpecEyebrow className="mb-5">How it works</SpecEyebrow>
           <SpecH2 size="lg">
@@ -270,7 +277,7 @@ function HowItWorks() {
 function ProductPreview() {
   return (
     <section className="bg-canon-paper">
-      <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-32">
         <div className="max-w-2xl">
           <SpecEyebrow className="mb-5">Live in product</SpecEyebrow>
           <SpecH2 size="lg">
@@ -303,7 +310,7 @@ function ProductPreview() {
 function WhyNow() {
   return (
     <section className="bg-canon-cream">
-      <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6">
             <SpecEyebrow className="mb-5">Why now</SpecEyebrow>
@@ -315,9 +322,12 @@ function WhyNow() {
               than a penny — and the operators deploying them now are taking the
               retention lift you&apos;re not.
             </p>
-            <div className="mt-8 grid grid-cols-2 gap-6">
+            <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-6">
               <div>
-                <div className="text-[34px] font-semibold tabular-nums leading-none text-canon-green">
+                <div
+                  className="font-semibold tabular-nums leading-none text-canon-green"
+                  style={{ fontSize: "clamp(24px, 6vw, 34px)" }}
+                >
                   60×
                 </div>
                 <div className="mt-2 text-[13px] text-quest-ink-muted">
@@ -325,7 +335,10 @@ function WhyNow() {
                 </div>
               </div>
               <div>
-                <div className="text-[34px] font-semibold tabular-nums leading-none text-canon-green">
+                <div
+                  className="font-semibold tabular-nums leading-none text-canon-green"
+                  style={{ fontSize: "clamp(22px, 6vw, 34px)" }}
+                >
                   &lt;£0.001
                 </div>
                 <div className="mt-2 text-[13px] text-quest-ink-muted">
@@ -413,7 +426,7 @@ function InferenceCostChart() {
 function Outcomes() {
   return (
     <section className="bg-canon-paper">
-      <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20 lg:py-32">
         <div className="max-w-2xl">
           <SpecEyebrow className="mb-5">Outcomes</SpecEyebrow>
           <SpecH2 size="lg">What operators see in production.</SpecH2>
@@ -524,7 +537,10 @@ function Compliance() {
 function ComplianceStat({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <div className="text-[24px] font-semibold tabular-nums leading-none text-canon-green">
+      <div
+        className="font-semibold tabular-nums leading-none text-canon-green"
+        style={{ fontSize: "clamp(18px, 5vw, 24px)" }}
+      >
         {value}
       </div>
       <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-quest-ink-faint">

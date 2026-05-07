@@ -19,7 +19,7 @@ export default function CustomersPage() {
       />
 
       <SectionShell tone="cream" maxWidth="4xl">
-        <div className="rounded-2xl border border-quest-ink/10 bg-white p-7">
+        <div className="rounded-2xl border border-quest-ink/10 bg-white p-6 sm:p-7">
           <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-quest-ink-faint">
             Currently in pilot
           </div>

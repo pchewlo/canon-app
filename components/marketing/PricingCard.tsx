@@ -23,11 +23,11 @@ export function PricingCard({
 }: PricingCardProps) {
   const isDemo = cta.href.startsWith("#demo")
   const ctaClass =
-    "mt-7 inline-flex w-full items-center justify-center rounded-[4px] bg-canon-navy px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-canon-navy/90 transition-colors"
+    "mt-7 inline-flex h-11 w-full items-center justify-center rounded-[4px] bg-canon-navy px-5 text-[14px] font-semibold text-white hover:bg-canon-navy/90 transition-colors"
 
   return (
     <div
-      className="rounded-[4px] border border-canon-line bg-canon-paper p-7"
+      className="rounded-[4px] border border-canon-line bg-canon-paper p-6 sm:p-7"
       style={
         featured ? { borderTop: "2px solid var(--canon-green)" } : undefined
       }

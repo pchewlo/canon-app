@@ -19,14 +19,14 @@ export function ComparisonTable({
 }) {
   return (
     <div className="overflow-x-auto rounded-xl border border-border">
-      <table className="min-w-full text-left text-[14px]">
+      <table className="min-w-[600px] text-left text-[14px]">
         <thead className="bg-quest-surface-muted">
           <tr>
-            <th className="px-5 py-4 font-medium text-quest-ink-muted">&nbsp;</th>
+            <th className="px-4 py-3.5 sm:px-5 sm:py-4 font-medium text-quest-ink-muted">&nbsp;</th>
             {columns.map((col) => (
               <th
                 key={col.name}
-                className={`px-5 py-4 font-semibold ${
+                className={`px-4 py-3.5 sm:px-5 sm:py-4 font-semibold ${
                   col.highlighted ? "text-quest-ink" : "text-quest-ink-muted"
                 }`}
               >
@@ -38,13 +38,13 @@ export function ComparisonTable({
         <tbody className="divide-y divide-border">
           {rows.map((row) => (
             <tr key={row.label}>
-              <td className="px-5 py-4 align-top text-quest-ink-muted">
+              <td className="px-4 py-3.5 sm:px-5 sm:py-4 align-top text-quest-ink-muted">
                 {row.label}
               </td>
               {row.cells.map((cell, i) => (
                 <td
                   key={i}
-                  className={`px-5 py-4 align-top ${
+                  className={`px-4 py-3.5 sm:px-5 sm:py-4 align-top ${
                     columns[i]?.highlighted ? "bg-quest-success-soft/30" : ""
                   }`}
                 >

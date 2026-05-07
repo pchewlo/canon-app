@@ -22,7 +22,7 @@ export function FeatureSplit({
   const isDark = tone === "navy"
   return (
     <div
-      className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${
+      className={`grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 items-center ${
         reverse ? "lg:[&>*:first-child]:order-2" : ""
       }`}
     >

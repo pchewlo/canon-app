@@ -51,11 +51,11 @@ export function SectionShell({
     <section id={id} className={`${TONE_BG[tone]} ${className}`.trim()}>
       <div
         className={`mx-auto ${widthClass} px-6 ${
-          padded ? "py-24 lg:py-32" : "py-12"
+          padded ? "py-16 sm:py-20 lg:py-32" : "py-10 sm:py-12"
         }`}
       >
         {(eyebrow || title || description) && (
-          <div className="max-w-3xl mb-12">
+          <div className="max-w-3xl mb-10 sm:mb-12">
             {eyebrow && (
               <Eyebrow dark={tone === "navy" || tone === "green"}>
                 {eyebrow}

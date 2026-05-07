@@ -30,8 +30,8 @@ export function CalloutBanner({
   const isDark = tone === "navy" || tone === "green"
 
   const primaryClass = isDark
-    ? "inline-flex items-center rounded-[4px] bg-canon-cream px-5 py-2.5 text-[14px] font-semibold text-canon-ink hover:bg-canon-cream/90 transition-colors"
-    : "inline-flex items-center rounded-[4px] bg-canon-navy px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-canon-navy/90 transition-colors"
+    ? "inline-flex items-center rounded-[4px] bg-canon-cream h-11 px-5 text-[14px] font-semibold text-canon-ink hover:bg-canon-cream/90 transition-colors"
+    : "inline-flex items-center rounded-[4px] bg-canon-navy h-11 px-5 text-[14px] font-semibold text-white hover:bg-canon-navy/90 transition-colors"
 
   const secondaryClass = isDark
     ? "inline-flex items-center text-[14px] font-medium hover:text-white transition-colors"
@@ -53,7 +53,7 @@ export function CalloutBanner({
           <Bracket position="br" />
         </>
       )}
-      <div className="relative z-[1] mx-auto max-w-3xl px-6 py-20 lg:py-24 text-center">
+      <div className="relative z-[1] mx-auto max-w-3xl px-6 py-16 sm:py-20 lg:py-24 text-center">
         <Heading size="lg" className={`mx-auto ${titleClass}`}>
           {title}
         </Heading>

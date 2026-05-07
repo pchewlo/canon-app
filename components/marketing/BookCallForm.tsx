@@ -53,7 +53,7 @@ export function BookCallForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-[4px] border border-canon-line bg-canon-paper p-7"
+      className="rounded-[4px] border border-canon-line bg-canon-paper p-5 sm:p-7"
     >
       <div className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-quest-ink-faint">
         Book a call

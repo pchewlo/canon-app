@@ -39,11 +39,11 @@ export function PageHero({
 
   return (
     <section className={`${TONE_BG[tone]} overflow-hidden`}>
-      <div className="mx-auto max-w-6xl px-6 pt-20 pb-20 lg:pt-28 lg:pb-24">
+      <div className="mx-auto max-w-6xl px-6 pt-16 pb-16 sm:pt-20 sm:pb-20 lg:pt-28 lg:pb-24">
         <div
           className={`grid grid-cols-1 ${
             media ? "lg:grid-cols-12" : ""
-          } gap-12 items-center`}
+          } gap-10 sm:gap-12 items-center`}
         >
           <div className={media ? "lg:col-span-7" : "max-w-3xl"}>
             {eyebrow && <Eyebrow dark={isDark}>{eyebrow}</Eyebrow>}
@@ -88,8 +88,8 @@ function CTAButton({
   const isDark = tone === "navy"
 
   const primaryClasses = isDark
-    ? "inline-flex items-center rounded-[4px] bg-canon-cream px-5 py-2.5 text-[14px] font-semibold text-canon-ink hover:bg-canon-cream/90 transition-colors"
-    : "inline-flex items-center rounded-[4px] bg-canon-navy px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-canon-navy/90 transition-colors"
+    ? "inline-flex items-center rounded-[4px] bg-canon-cream h-11 px-5 text-[14px] font-semibold text-canon-ink hover:bg-canon-cream/90 transition-colors"
+    : "inline-flex items-center rounded-[4px] bg-canon-navy h-11 px-5 text-[14px] font-semibold text-white hover:bg-canon-navy/90 transition-colors"
 
   const secondaryClasses = isDark
     ? "inline-flex items-center text-[14px] font-medium text-white/70 hover:text-white transition-colors"
