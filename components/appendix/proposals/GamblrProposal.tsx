@@ -21,7 +21,7 @@ export function GamblrProposal() {
         >
           No spend. No commitment. Just build together.
         </h1>
-        <p className="mt-6 max-w-[52ch] font-brand text-[18px] italic leading-[1.55] text-quest-ink">
+        <p className="mt-6 font-brand text-[18px] italic leading-[1.55] text-quest-ink">
           We&apos;re a few months from a public launch and right now we are
           prioritising trusted design partners and feedback. You guys have
           very deep domain-specific knowledge and we want to work with you
