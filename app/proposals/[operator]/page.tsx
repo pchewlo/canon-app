@@ -8,6 +8,7 @@ import {
   type OperatorConfig,
 } from "@/lib/appendix/operators"
 import { Appendix } from "@/components/appendix/Appendix"
+import { MansionGroupAppendix } from "@/components/appendix/MansionGroupAppendix"
 import { PasswordGate } from "@/components/appendix/PasswordGate"
 
 export const dynamic = "force-dynamic"
@@ -61,12 +62,17 @@ export default async function OperatorAppendixPage({
     <div className="bg-canon-cream">
       <ProposalHeader config={config} />
       {authed ? (
-        <Appendix config={config} />
+        renderAppendixFor(operator, config)
       ) : (
         <PasswordGate slug={operator} operatorName={config.name} />
       )}
     </div>
   )
+}
+
+function renderAppendixFor(operator: string, config: OperatorConfig) {
+  if (operator === "mansion-group") return <MansionGroupAppendix config={config} />
+  return <Appendix config={config} />
 }
 
 function ProposalHeader({ config }: { config: OperatorConfig }) {

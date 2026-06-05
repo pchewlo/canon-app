@@ -3,6 +3,7 @@
 // (OPERATOR_<SLUG>_PASSWORD). Adding a new operator = new file + env var.
 
 import { gamblr } from "./operators/gamblr"
+import { mansionGroup } from "./operators/mansion-group"
 
 export type OperatorConfig = {
   /** URL slug, e.g. "gamblr" → /gamblr */
@@ -30,6 +31,7 @@ export type OperatorConfig = {
 
 const OPERATORS: Record<string, OperatorConfig> = {
   gamblr,
+  "mansion-group": mansionGroup,
 }
 
 export function listOperatorSlugs(): string[] {

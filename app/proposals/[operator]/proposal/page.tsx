@@ -8,6 +8,7 @@ import {
   type OperatorConfig,
 } from "@/lib/appendix/operators"
 import { GamblrProposal } from "@/components/appendix/proposals/GamblrProposal"
+import { MansionGroupProposal } from "@/components/appendix/proposals/MansionGroupProposal"
 import { PasswordGate } from "@/components/appendix/PasswordGate"
 
 export const dynamic = "force-dynamic"
@@ -65,6 +66,7 @@ export default async function OperatorProposalPage({
 
 function renderProposalFor(operator: string) {
   if (operator === "gamblr") return <GamblrProposal />
+  if (operator === "mansion-group") return <MansionGroupProposal />
   // No 1-pager registered for this operator yet.
   notFound()
 }
