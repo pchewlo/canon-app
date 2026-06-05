@@ -39,6 +39,11 @@ export default async function OperatorProposalPage({
   if (!listOperatorSlugs().includes(operator)) {
     notFound()
   }
+  // Operators without a registered 1-pager 404 here so the gate doesn't
+  // appear for a page that will eventually 404 anyway.
+  if (!hasOnePager(operator)) {
+    notFound()
+  }
   const config = getOperatorConfig(operator)
   if (!config) notFound()
 
@@ -61,6 +66,10 @@ export default async function OperatorProposalPage({
       )}
     </div>
   )
+}
+
+function hasOnePager(operator: string): boolean {
+  return operator === "gamblr"
 }
 
 function renderProposalFor(operator: string) {
