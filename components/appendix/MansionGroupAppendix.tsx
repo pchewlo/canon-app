@@ -470,39 +470,34 @@ function WorkingTogether() {
         actually work. Here&apos;s how the day-to-day would run.
       </Body>
 
-      <SubHeading>Week one — a build sprint, ideally in person in London</SubHeading>
+      <SubHeading>Week one: A build sprint, ideally in person in London</SubHeading>
       <Body>
-        We kick off with a week-long sprint you can drop into as much or
-        as little as you like. The goal is to lock the foundations
-        together before any code touches your data:
+        In our experience there&apos;s no better way to kick off solving
+        a complex problem than in person, we&apos;ll be setting up in
+        London for 1-2 weeks at the start with the dev team. Mansion can
+        just hop in when you want or do everything remotely.
       </Body>
       <UnorderedList
         items={[
-          "Exactly what we're going after — the specific player behaviours and outcomes Canon should target first.",
-          "What we're going to measure — locking the metric, the attribution window, the success bands.",
-          "How we get the data together — mapping where your player and event data lives and how we access it cleanly.",
-          "The models we'll use — the agent policy, the value and churn models, and the guardrails around them.",
+          "First goal will be to set the goal of exactly what we are going after, currently suggested at Bonus ROI.",
+          "We'll then need to set the measure, this will actually be quite tricky to normalise for variables and get a clean result.",
+          "How we get the data together, mapping where your player and event data lives and how we access it cleanly.",
+          "The models we'll use, the agent policy, the value and churn models, and the guardrails around them.",
         ]}
       />
 
-      <SubHeading>From then on — ad hoc, fast, and transparent</SubHeading>
+      <SubHeading>From then on we&apos;ll move to weekly sprints.</SubHeading>
       <Body>
-        Once the sprint sets the direction, the working rhythm is
-        deliberately lightweight:
+        After the first couple of weeks we&apos;ll just iterate weekly,
+        each week setting a goal, then demoing it working on the Friday.
       </Body>
       <UnorderedList
         items={[
-          "Slack for everything day-to-day. A shared channel — quick questions, decisions, and context as they come up.",
-          "Daily stand-ups. Short, optional for your side, so you always know what's moving.",
-          "Weekly sprint review. Once a week we walk through progress, the devs give their update, and we agree the next week's priorities together.",
+          "We'll set up a joint Slack channel ideally,",
+          "We will run daily stand-ups, Mansion can drop in when it suits",
+          "Weekly sprint review. Once a week we walk through progress, the devs give their update, and we agree the next week's priorities together. This will require Mansion.",
         ]}
       />
-      <Body>
-        The point of this cadence is that you see everything as it&apos;s
-        built and can redirect us fast. If something&apos;s wrong for the
-        industry, we want to hear it in the weekly review, not after
-        we&apos;ve shipped it.
-      </Body>
     </Section>
   )
 }
