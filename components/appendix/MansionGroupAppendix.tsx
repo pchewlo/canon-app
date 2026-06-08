@@ -237,6 +237,7 @@ function Integration() {
       <ListWithBadge
         required={[
           "Player profile — anonymised ID, registration date, RG status, VIP tier",
+          "Non-identifiable demographic information — gender, age bracket",
           "Session events — login, logout, game played, stake size, win/loss",
           "Deposit and withdrawal events",
           "Bonus history",
@@ -275,7 +276,7 @@ function Integration() {
       <SubHeading>Where Canon lives</SubHeading>
       <Body>
         Canon runs on a combination of Anthropic Claude / OpenAI API
-        behind Vercel infrastructure, with player data processed in EU
+        behind AWS infrastructure, with player data processed in EU
         regions by default. Canon does not store PII beyond the in-flight
         decision cycle; raw data stays in your systems. Decision logs are
         anonymised and retained for audit.
@@ -290,16 +291,18 @@ function Integration() {
       </Body>
       <UnorderedList
         items={[
+          "WebSocket stream for real-time session events from your platform — our default, because we act on signals as they happen.",
+          "Webhook-based integration with an existing CRM (e.g., Smartico-style triggers) — also fine, but requires the triggers configured on your side.",
           "Direct API integration with your player platform.",
-          "Webhook-based integration with an existing CRM (e.g., Smartico-style triggers).",
           "Replica DB read access — for operators who prefer not to expose write-API access during the pilot.",
         ]}
       />
       <Body>
         The pilot uses whichever pattern is fastest to set up at Mansion.
-        Default is direct API. In the planning phase we&apos;d need to
-        understand your current stack and how we actually issue the bonus
-        triggers.
+        Default is a WebSocket stream for real-time signals paired with
+        direct API for everything else. In the planning phase we&apos;d
+        need to understand your current stack and how we actually issue
+        the bonus triggers.
       </Body>
     </Section>
   )
