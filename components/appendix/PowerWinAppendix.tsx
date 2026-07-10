@@ -448,7 +448,7 @@ function WorkingTogether() {
         actually work. Here&apos;s how the day-to-day would run.
       </Body>
 
-      <SubHeading>Week one: A build sprint, ideally in person in London</SubHeading>
+      <SubHeading>Week one: A build sprint</SubHeading>
       <UnorderedList
         items={[
           "First goal will be to set the goal of exactly what we are going after, currently suggested at Bonus ROI.",
