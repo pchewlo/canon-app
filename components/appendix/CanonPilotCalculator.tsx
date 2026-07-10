@@ -23,11 +23,28 @@ type Result = {
   impractical: boolean
 }
 
-export function CanonPilotCalculator() {
-  const [liftPct, setLiftPct] = useState(15)
-  const [canonSharePct, setCanonSharePct] = useState(25)
-  const [activePlayers, setActivePlayers] = useState(1250)
-  const [bonusesPerPlayer, setBonusesPerPlayer] = useState(4)
+type CalculatorDefaults = {
+  liftPct?: number
+  canonSharePct?: number
+  activePlayers?: number
+  bonusesPerPlayer?: number
+}
+
+export function CanonPilotCalculator({
+  defaults = {},
+}: {
+  defaults?: CalculatorDefaults
+} = {}) {
+  const [liftPct, setLiftPct] = useState(defaults.liftPct ?? 15)
+  const [canonSharePct, setCanonSharePct] = useState(
+    defaults.canonSharePct ?? 25,
+  )
+  const [activePlayers, setActivePlayers] = useState(
+    defaults.activePlayers ?? 1250,
+  )
+  const [bonusesPerPlayer, setBonusesPerPlayer] = useState(
+    defaults.bonusesPerPlayer ?? 4,
+  )
 
   const result: Result = useMemo(() => {
     const lift = liftPct / 100

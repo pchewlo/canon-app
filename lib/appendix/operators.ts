@@ -4,6 +4,7 @@
 
 import { gamblr } from "./operators/gamblr"
 import { mansionGroup } from "./operators/mansion-group"
+import { powerWin } from "./operators/power-win"
 
 export type OperatorConfig = {
   /** URL slug, e.g. "gamblr" → /gamblr */
@@ -32,6 +33,7 @@ export type OperatorConfig = {
 const OPERATORS: Record<string, OperatorConfig> = {
   gamblr,
   "mansion-group": mansionGroup,
+  "power-win": powerWin,
 }
 
 export function listOperatorSlugs(): string[] {

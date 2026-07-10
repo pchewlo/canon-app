@@ -9,6 +9,7 @@ import {
 } from "@/lib/appendix/operators"
 import { Appendix } from "@/components/appendix/Appendix"
 import { MansionGroupAppendix } from "@/components/appendix/MansionGroupAppendix"
+import { PowerWinAppendix } from "@/components/appendix/PowerWinAppendix"
 import { PasswordGate } from "@/components/appendix/PasswordGate"
 
 export const dynamic = "force-dynamic"
@@ -72,6 +73,7 @@ export default async function OperatorAppendixPage({
 
 function renderAppendixFor(operator: string, config: OperatorConfig) {
   if (operator === "mansion-group") return <MansionGroupAppendix config={config} />
+  if (operator === "power-win") return <PowerWinAppendix config={config} />
   return <Appendix config={config} />
 }
 
