@@ -449,12 +449,6 @@ function WorkingTogether() {
       </Body>
 
       <SubHeading>Week one: A build sprint, ideally in person in London</SubHeading>
-      <Body>
-        In our experience there&apos;s no better way to kick off solving
-        a complex problem than in person, we&apos;ll be setting up in
-        London for 1-2 weeks at the start with the dev team. Power.Win
-        can just hop in when you want or do everything remotely.
-      </Body>
       <UnorderedList
         items={[
           "First goal will be to set the goal of exactly what we are going after, currently suggested at Bonus ROI.",
