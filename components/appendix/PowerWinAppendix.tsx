@@ -174,20 +174,13 @@ function Methodology({ symbol }: { symbol: string }) {
       <SubHeading>Statistical power planner</SubHeading>
       <Body>
         We&apos;ve built an interactive planner so you can move the
-        sliders to your own numbers. We&apos;ve seeded it with your rough
-        scale — ~350 active players each receiving ~3 bonuses a month,
-        which lands around {symbol}20K of monthly bonus spend. At that
-        volume, the default 15% lift target with Canon managing just 25%
-        of bonuses pushes the pilot beyond six months — the calculator
-        will flag it in amber. That&apos;s the honest picture at small
-        book sizes.
-      </Body>
-      <Body>
-        <em>How you&apos;d fit it inside a practical window.</em> Two
-        levers: give Canon a bigger share of the bonus spend, and accept
-        detection of a slightly larger lift. As a working example — 20%
-        lift target and 45% Canon share — the pilot lands around 14 weeks.
-        Drag the sliders below to feel the trade-off.
+        sliders to your own numbers. We&apos;ve seeded it with a
+        working test shape — ~500 active players receiving ~5 bonuses
+        a month, a 20% lift target, and Canon managing 50% of the
+        bonus spend. At those settings the pilot reaches significance
+        in roughly 5 weeks, needing about 1,570 observations per arm
+        (~3,140 bonuses across both arms). Drag the sliders to see how
+        much room there is either way.
       </Body>
       <Body>
         <em>An important note.</em> The metric that matters for throughput
@@ -201,7 +194,12 @@ function Methodology({ symbol }: { symbol: string }) {
 
       <div className="mt-8">
         <CanonPilotCalculator
-          defaults={{ activePlayers: 350, bonusesPerPlayer: 3 }}
+          defaults={{
+            liftPct: 20,
+            canonSharePct: 50,
+            activePlayers: 500,
+            bonusesPerPlayer: 5,
+          }}
         />
       </div>
     </Section>
